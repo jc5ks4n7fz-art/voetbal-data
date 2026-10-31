@@ -473,10 +473,12 @@ function pageMyBets() {
   const today = refDate(), up = S.matches.filter(m => m.s === sid && !played(m) && m.d && m.d >= today && m.d <= addDaysStr(today, 10) && S.comps[m.c] && S.comps[m.c].type !== 'nation')
     .sort((a, b) => (a.d + (a.t || '')).localeCompare(b.d + (b.t || '')));
   const m = up.find(x => String(x.id) === String(mb.mid));
+  const qn = baseNorm(mb.q || ''), upQ = qn ? up.filter(x => (m && x.id === m.id) || baseNorm(tName(x.h) + ' ' + tName(x.a) + ' ' + S.comps[x.c].name).includes(qn)) : up;
   const LO = m ? legOptions(sid, m) : null;
   const opt = LO && mb.opt != null ? LO.opts[+mb.opt] : null;
   const form = `<div class="poule"><h3>Bet samenstellen</h3><div class="row wrap">
-    <label>Wedstrijd<select data-change="mbmatch"><option value="">kies…</option>${up.map(x => `<option value="${x.id}" ${m && x.id === m.id ? 'selected' : ''}>${fmtDate(x.d)} ${esc(x.t || '')} · ${esc(tName(x.h))} – ${esc(tName(x.a))} (${esc(S.comps[x.c].name)})</option>`).join('')}</select></label>
+    <label>Zoek wedstrijd of team<input id="mbQ" type="search" data-input="mbsearch" placeholder="bv. PSV, Roda, Arsenal" value="${esc(mb.q || '')}" autocomplete="off"></label>
+    <label>Wedstrijd<select id="mbSel" data-change="mbmatch"><option value="">kies… (${mb.q ? upQ.length + ' gevonden' : up.length + ' wedstrijden'})</option>${upQ.map(x => `<option value="${x.id}" data-s="${esc(baseNorm(tName(x.h) + ' ' + tName(x.a) + ' ' + S.comps[x.c].name))}" ${m && x.id === m.id ? 'selected' : ''}>${fmtDate(x.d)} ${esc(x.t || '')} · ${esc(tName(x.h))} – ${esc(tName(x.a))} (${esc(S.comps[x.c].name)})</option>`).join('')}</select></label>
     ${LO ? `<label>Markt<select data-change="mbopt"><option value="">kies…</option>${LO.opts.map((o, i) => `<option value="${i}" ${String(mb.opt) === String(i) ? 'selected' : ''}>${esc(o.label)} — tool ${pct(o.q * (1 - o.pp))}${o.pp > 0.005 ? ' (+' + pct(o.pp) + ' geld terug)' : ''}</option>`).join('')}</select></label>` : ''}
     ${opt ? `<label>Odds<input id="mbOdds" type="number" step="0.01" min="1.01" placeholder="bv. 1,85"></label><label>Jouw kans (%)<input id="mbOwn" type="number" step="1" min="1" max="99" placeholder="bv. 70"></label><button class="btn" data-act="mbadd">Toevoegen</button>` : ''}
   </div>${opt ? `<p class="dim">Faire odds volgens de tool: ${num(1 / opt.q, 2)}. Jouw kans is optioneel, maar juist daarmee zie je later of je eigen inschatting klopt.</p>` : ''}
@@ -840,7 +842,7 @@ function onClick(e) {
       const o = legOptions(sid, m).opts[+mb.opt], odds = parseFloat(val('mbOdds').replace(',', '.')), own = parseFloat(val('mbOwn').replace(',', '.'));
       if (!(odds > 1)) { ui.msg = 'Vul geldige odds in (groter dan 1).'; break; }
       mb.legs.push({mid: m.id, c: m.c, d: m.d, h: tName(m.h), a: tName(m.a), mk: o.mk, line: o.line, side: o.side, label: o.label, odds, tool: o.q * (1 - o.pp), own: own > 0 && own < 100 ? own / 100 : null});
-      mb.mid = ''; mb.opt = null; break; }
+      mb.mid = ''; mb.opt = null; mb.q = ''; break; }
     case 'mbdel': ui.mb.legs.splice(+v, 1); break;
     case 'mbsave': { const mb = ui.mb, st = parseFloat(val('mbStake').replace(',', '.')) || 0; if (!mb.legs.length) break;
       S.mybets = S.mybets || []; S.mybets.push({id: 'b' + Date.now().toString(36), at: new Date().toISOString(), stake: st, paper: document.getElementById('mbPaper').checked, legs: mb.legs.slice()});
@@ -935,6 +937,14 @@ function onChange(e) {
 function onInput(e) {
   const el = e.target;
   if (el.type === 'range' && el.nextElementSibling) el.nextElementSibling.textContent = el.value;
+  if (el.dataset.input === 'mbsearch') { // wedstrijdlijst filteren zonder opnieuw te tekenen (focus blijft in het zoekveld); opties opnieuw opbouwen werkt ook op iPhone
+    const q = baseNorm(el.value); ui.mb = ui.mb || {legs: []}; ui.mb.q = el.value; const sel = document.getElementById('mbSel'); if (!sel) return;
+    if (!sel._all) sel._all = [...sel.options].filter(o => o.value).map(o => ({v: o.value, t: o.textContent, s: o.dataset.s || ''}));
+    const hits = sel._all.filter(o => !q || o.s.includes(q)), cur = sel.value;
+    sel.innerHTML = `<option value="">${q ? `kies… (${hits.length} gevonden)` : `kies… (${sel._all.length} wedstrijden)`}</option>` + hits.map(o => `<option value="${esc(o.v)}">${esc(o.t)}</option>`).join('');
+    if (hits.some(o => o.v === cur)) sel.value = cur;
+    if (hits.length === 1 && sel.value !== hits[0].v) { sel.value = hits[0].v; sel.dispatchEvent(new Event('change', {bubbles: true})); }
+    return; }
   if (el.dataset.input === 'pred') { const P = ui.pred[ui.comp] = ui.pred[ui.comp] || {}; P[el.dataset.k] = el.value; clearTimeout(onInput.t); onInput.t = setTimeout(() => { const id = el.id, pos = el.selectionStart; render(); const n = document.getElementById(id); if (n) { n.focus(); try { n.setSelectionRange(pos, pos); } catch (x) {} } }, 350); }
 }
 function onSubmit(e) {
