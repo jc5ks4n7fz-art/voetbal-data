@@ -64,10 +64,24 @@ def stat(lijst, naam):
     return None
 
 
+STATUS = "data/status.json"
+
+
+def schrijf_status(ok, melding, extra=None):
+    """Status in de repository, zodat ook zonder toegang tot de Actions-logboeken zichtbaar is wat er gebeurde.
+    Bevat nooit de sleutel."""
+    os.makedirs(os.path.dirname(STATUS), exist_ok=True)
+    st = {"tijd": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "ok": ok, "melding": melding}
+    st.update(extra or {})
+    with open(STATUS, "w", encoding="utf-8") as fh:
+        json.dump(st, fh, ensure_ascii=False, indent=1)
+
+
 def main():
-    sleutel = os.environ.get("APIFOOTBALL_KEY")
+    sleutel = (os.environ.get("APIFOOTBALL_KEY") or "").strip()
     if not sleutel:
-        sys.exit("APIFOOTBALL_KEY ontbreekt (zet hem als secret in GitHub).")
+        schrijf_status(False, "APIFOOTBALL_KEY ontbreekt: zet de sleutel als repository secret (Settings > Secrets and variables > Actions).")
+        print("APIFOOTBALL_KEY ontbreekt"); return 1
     try:
         db = json.load(open(UITVOER, encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError):
@@ -77,6 +91,7 @@ def main():
     W = db["wedstrijden"]
     stand = {"over": None, "gebruikt": 0}
     log = []
+    fout = None
     try:
         # 1) programma en uitslagen per competitie (1 verzoek per competitie)
         for lid, code in COMPETITIES.items():
@@ -113,6 +128,10 @@ def main():
                 w["stats"] = None  # niet beschikbaar bij de bron; niet opnieuw proberen
     except Budget:
         log.append("dagbudget bereikt; morgen verder")
+    except urllib.error.HTTPError as e:
+        fout = f"HTTP {e.code} van API-Football: {e.read()[:300].decode(errors='ignore')}"
+    except Exception as e:  # noqa: BLE001 - melding naar status.json
+        fout = f"{type(e).__name__}: {str(e)[:400]}"
     finally:
         db["bijgewerkt"] = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
         os.makedirs(os.path.dirname(UITVOER), exist_ok=True)
@@ -120,8 +139,12 @@ def main():
             json.dump(db, fh, ensure_ascii=False, separators=(",", ":"))
         met = sum(1 for w in W.values() if w.get("stats") and w["stats"].get("xg") and w["stats"]["xg"][0] is not None)
         log.append(f"verzoeken gebruikt: {stand['gebruikt']}, over volgens API: {stand['over']}; duels met xG: {met}")
+        if fout: log.append("FOUT: " + fout.replace(sleutel, "***"))
         print("\n".join(log))
+        schrijf_status(fout is None, (fout or "ok").replace(sleutel, "***"), {"log": [x.replace(sleutel, "***") for x in log],
+                       "duels": len(W), "met_xg": met, "verzoeken": stand["gebruikt"], "over": stand["over"]})
+    return 0 if fout is None else 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

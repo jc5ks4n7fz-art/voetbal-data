@@ -10,14 +10,16 @@ permissions:
 
 jobs:
   ophalen:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Data ophalen
+        id: ophalen
+        continue-on-error: true   # status.json wordt hoe dan ook opgeslagen
         run: python apifootball_ophalen.py
         env:
           APIFOOTBALL_KEY: ${{ secrets.APIFOOTBALL_KEY }}
@@ -25,6 +27,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
-          git add data/apifootball.json
+          git add data/
           git diff --cached --quiet || git commit -m "API-Football data bijgewerkt"
           git push
+      - name: Melding bij fout
+        if: steps.ophalen.outcome == 'failure'
+        run: |
+          echo "Ophalen mislukt; zie data/status.json"
+          cat data/status.json || true
+          exit 1
