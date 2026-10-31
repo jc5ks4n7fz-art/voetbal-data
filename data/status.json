@@ -1,0 +1,13 @@
+{
+ "tijd": "2026-10-31 18:20 UTC",
+ "ok": false,
+ "melding": "RuntimeError: API-fout bij fixtures {'league': 39, 'season': 2026}: {\"plan\": \"Free plans do not have access to this season, try from 2022 to 2024.\"}",
+ "log": [
+  "verzoeken gebruikt: 1, over volgens API: None; duels met xG: 0",
+  "FOUT: RuntimeError: API-fout bij fixtures {'league': 39, 'season': 2026}: {\"plan\": \"Free plans do not have access to this season, try from 2022 to 2024.\"}"
+ ],
+ "duels": 0,
+ "met_xg": 0,
+ "verzoeken": 1,
+ "over": null
+}
