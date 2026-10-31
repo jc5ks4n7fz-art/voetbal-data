@@ -16,13 +16,15 @@ import urllib.parse
 import urllib.request
 
 BASE = "https://v3.football.api-sports.io"
-SEIZOEN = int(os.environ.get("SEIZOEN", "2026"))  # startjaar: 2026 = 2026/27
+# startjaren: huidig seizoen eerst, daarna twee vorige seizoenen (voor de historie van het model)
+SEIZOENEN = [int(x) for x in os.environ.get("SEIZOENEN", "2026,2025,2024").split(",")]
 # API-Football competitie-id's -> code in de Voetbalvoorspeller (het script controleert de naam in het antwoord)
 COMPETITIES = {39: "ENG1", 78: "GER1", 140: "ESP1", 135: "ITA1", 61: "FRA1", 94: "POR1", 144: "BEL1",
                88: "NED1", 203: "TUR1", 106: "POL1", 89: "NED2", 2: "UCL", 3: "UEL", 848: "UECL"}
 UITVOER = "data/apifootball.json"
 RESERVE = 5          # verzoeken die we per dag overlaten
-PAUZE = 6.5          # seconden tussen verzoeken (gratis: max. 10 per minuut)
+PAUZE = float(os.environ.get("PAUZE", "0.25"))  # seconden tussen verzoeken (Pro: 300 per minuut; gratis: zet op 6.5)
+MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "4000"))  # zodat een run binnen de tijdslimiet blijft
 KLAAR = {"FT", "AET", "PEN"}
 
 
@@ -31,7 +33,7 @@ class Budget(Exception):
 
 
 def vraag(pad, params, sleutel, stand):
-    if stand["over"] is not None and stand["over"] <= RESERVE:
+    if (stand["over"] is not None and stand["over"] <= RESERVE) or stand["gebruikt"] >= MAX_PER_RUN:
         raise Budget()
     url = f"{BASE}/{pad}?{urllib.parse.urlencode(params)}"
     req = urllib.request.Request(url, headers={"x-apisports-key": sleutel})
@@ -45,6 +47,8 @@ def vraag(pad, params, sleutel, stand):
     fouten = data.get("errors")
     if fouten:
         tekst = json.dumps(fouten)
+        if "per minute" in tekst.lower() or "ratelimit" in tekst.lower():
+            time.sleep(61); return vraag(pad, params, sleutel, stand)
         if "limit" in tekst.lower() or "requests" in tekst.lower():
             raise Budget()
         raise RuntimeError(f"API-fout bij {pad} {params}: {tekst}")
@@ -86,7 +90,7 @@ def main():
         db = json.load(open(UITVOER, encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError):
         db = {}
-    db.setdefault("seizoen", SEIZOEN)
+    db["seizoenen"] = SEIZOENEN
     db.setdefault("wedstrijden", {})
     W = db["wedstrijden"]
     stand = {"over": None, "gebruikt": 0}
@@ -94,22 +98,34 @@ def main():
     fout = None
     try:
         # 1) programma en uitslagen per competitie (1 verzoek per competitie)
-        for lid, code in COMPETITIES.items():
-            resp = vraag("fixtures", {"league": lid, "season": SEIZOEN}, sleutel, stand)
+        # vorige seizoenen hoeven maar één keer opgehaald te worden
+        gedaan = set(db.get("seizoenen_compleet", []))
+        for seizoen in SEIZOENEN:
+          if seizoen != SEIZOENEN[0] and seizoen in gedaan:
+            continue
+          fouten_seizoen = 0
+          for lid, code in COMPETITIES.items():
+            try:
+                resp = vraag("fixtures", {"league": lid, "season": seizoen}, sleutel, stand)
+            except RuntimeError as e:
+                log.append(f"{code} {seizoen}: {str(e)[:160]}"); fouten_seizoen += 1; continue
             if resp:
                 naam = resp[0]["league"]["name"]
-                log.append(f"{code} (id {lid}, '{naam}'): {len(resp)} duels")
+                log.append(f"{code} {seizoen} (id {lid}, '{naam}'): {len(resp)} duels")
             for f in resp:
                 fid = str(f["fixture"]["id"])
                 w = W.get(fid, {})
                 w.update({
-                    "comp": code, "datum": f["fixture"]["date"], "status": f["fixture"]["status"]["short"],
+                    "comp": code, "seizoen": seizoen, "datum": f["fixture"]["date"], "status": f["fixture"]["status"]["short"],
                     "ronde": f["league"].get("round"), "thuis": f["teams"]["home"]["name"], "uit": f["teams"]["away"]["name"],
                     "thuisgoals": f["goals"]["home"], "uitgoals": f["goals"]["away"],
                     "rust": [f["score"]["halftime"]["home"], f["score"]["halftime"]["away"]],
                     "na90": [f["score"]["fulltime"]["home"], f["score"]["fulltime"]["away"]],
                 })
                 W[fid] = w
+          if seizoen != SEIZOENEN[0] and not fouten_seizoen:
+            gedaan.add(seizoen)
+        db["seizoenen_compleet"] = sorted(gedaan)
         # 2) statistieken (xG, schoten) voor gespeelde duels die die nog missen; nieuwste eerst
         todo = sorted([k for k, w in W.items() if w["status"] in KLAAR and "stats" not in w], key=lambda k: W[k]["datum"], reverse=True)
         log.append(f"{len(todo)} gespeelde duels zonder statistieken")
