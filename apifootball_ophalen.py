@@ -33,6 +33,10 @@ class Budget(Exception):
 
 
 def vraag(pad, params, sleutel, stand):
+    return _vraag(pad, params, sleutel, stand, volledig=False)
+
+
+def _vraag(pad, params, sleutel, stand, volledig):
     if (stand["over"] is not None and stand["over"] <= RESERVE) or stand["gebruikt"] >= MAX_PER_RUN:
         raise Budget()
     url = f"{BASE}/{pad}?{urllib.parse.urlencode(params)}"
@@ -48,11 +52,15 @@ def vraag(pad, params, sleutel, stand):
     if fouten:
         tekst = json.dumps(fouten)
         if "per minute" in tekst.lower() or "ratelimit" in tekst.lower():
-            time.sleep(61); return vraag(pad, params, sleutel, stand)
+            time.sleep(61); return _vraag(pad, params, sleutel, stand, volledig)
         if "limit" in tekst.lower() or "requests" in tekst.lower():
             raise Budget()
         raise RuntimeError(f"API-fout bij {pad} {params}: {tekst}")
-    return data.get("response", [])
+    return data if volledig else data.get("response", [])
+
+
+def vraag_ruw(pad, params, sleutel, stand):
+    return _vraag(pad, params, sleutel, stand, volledig=True)
 
 
 def stat(lijst, naam):
@@ -69,6 +77,66 @@ def stat(lijst, naam):
 
 
 STATUS = "data/status.json"
+BLESSURES = "data/blessures.json"
+SPELERS = "data/spelers.json"
+LEAGUES = {"ENG1", "GER1", "ESP1", "ITA1", "FRA1", "POR1", "BEL1", "NED1", "TUR1", "POL1", "NED2"}
+
+
+def laad(pad, leeg):
+    try:
+        return json.load(open(pad, encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return leeg
+
+
+def blessures(seizoen, sleutel, stand, log, BL):
+    """Afwezige spelers per wedstrijd (blessure, schorsing, twijfelachtig). Huidig seizoen elke run, vorige seizoenen eenmalig."""
+    vorig = seizoen != SEIZOENEN[0]
+    if vorig and str(seizoen) in BL["seizoenen"]:
+        return
+    n = 0
+    for lid, code in COMPETITIES.items():
+        try:
+            resp = vraag("injuries", {"league": lid, "season": seizoen}, sleutel, stand)
+        except RuntimeError as e:
+            log.append(f"blessures {code} {seizoen}: {str(e)[:120]}"); continue
+        per = {}
+        for x in resp:
+            fid = str((x.get("fixture") or {}).get("id") or "")
+            if not fid: continue
+            per.setdefault(fid, []).append([x["team"]["id"], x["player"]["id"], x["player"]["name"], x["player"].get("type"), x["player"].get("reason")])
+        BL["per_wedstrijd"].update(per); n += len(resp)
+    BL["seizoenen"][str(seizoen)] = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
+    log.append(f"blessures {seizoen}: {n} meldingen")
+
+
+def spelers(seizoen, W, sleutel, stand, log, SP, ververs_dagen):
+    """Per club: minuten, wedstrijden, goals, assists en beoordeling per speler (voor het gewicht van afwezigen)."""
+    teams = sorted({(w["thuis_id"]) for w in W.values() if w.get("comp") in LEAGUES and w.get("seizoen") == SEIZOENEN[0] and w.get("thuis_id")})
+    vandaag = dt.date.today(); n = 0
+    for tid in teams:
+        sleutel_ts = f"{tid}|{seizoen}"; laatst = SP["opgehaald"].get(sleutel_ts)
+        if laatst and (ververs_dagen is None or (vandaag - dt.date.fromisoformat(laatst)).days < ververs_dagen):
+            continue
+        rijen, pagina, totaal = {}, 1, 1
+        while pagina <= totaal:
+            data = vraag_ruw("players", {"team": tid, "season": seizoen, "page": pagina}, sleutel, stand)
+            totaal = (data.get("paging") or {}).get("total") or 1
+            for x in data.get("response", []):
+                p = x["player"]; mins = apps = g = a = 0; rating = []; pos = None
+                for st in x.get("statistics", []):
+                    if (st.get("team") or {}).get("id") != tid: continue
+                    ga = st.get("games") or {}; gl = st.get("goals") or {}
+                    mins += ga.get("minutes") or 0; apps += ga.get("appearences") or 0; pos = pos or ga.get("position")
+                    g += gl.get("total") or 0; a += gl.get("assists") or 0
+                    if ga.get("rating"):
+                        try: rating.append(float(ga["rating"]))
+                        except ValueError: pass
+                rijen[str(p["id"])] = [p.get("name"), pos, apps, mins, g, a, round(sum(rating) / len(rating), 2) if rating else None]
+            pagina += 1
+        SP["teams"].setdefault(str(tid), {})[str(seizoen)] = rijen
+        SP["opgehaald"][sleutel_ts] = vandaag.isoformat(); n += 1
+    if n: log.append(f"spelers {seizoen}: {n} clubs bijgewerkt")
 
 
 def schrijf_status(ok, melding, extra=None):
@@ -93,6 +161,8 @@ def main():
     db["seizoenen"] = SEIZOENEN
     db.setdefault("wedstrijden", {})
     W = db["wedstrijden"]
+    BL = laad(BLESSURES, {"seizoenen": {}, "per_wedstrijd": {}})
+    SP = laad(SPELERS, {"opgehaald": {}, "teams": {}})
     stand = {"over": None, "gebruikt": 0}
     log = []
     fout = None
@@ -118,6 +188,7 @@ def main():
                 w.update({
                     "comp": code, "seizoen": seizoen, "datum": f["fixture"]["date"], "status": f["fixture"]["status"]["short"],
                     "ronde": f["league"].get("round"), "thuis": f["teams"]["home"]["name"], "uit": f["teams"]["away"]["name"],
+                    "thuis_id": f["teams"]["home"]["id"], "uit_id": f["teams"]["away"]["id"],
                     "thuisgoals": f["goals"]["home"], "uitgoals": f["goals"]["away"],
                     "rust": [f["score"]["halftime"]["home"], f["score"]["halftime"]["away"]],
                     "na90": [f["score"]["fulltime"]["home"], f["score"]["fulltime"]["away"]],
@@ -126,6 +197,10 @@ def main():
           if seizoen != SEIZOENEN[0] and not fouten_seizoen:
             gedaan.add(seizoen)
         db["seizoenen_compleet"] = sorted(gedaan)
+        # 1b) blessures/schorsingen per wedstrijd (1 verzoek per competitie per seizoen)
+        blessures(SEIZOENEN[0], sleutel, stand, log, BL)
+        # 1c) spelersstatistieken (minuten, goals, assists) per club in de competities: huidig seizoen wekelijks verversen
+        spelers(SEIZOENEN[0], W, sleutel, stand, log, SP, ververs_dagen=6)
         # 2) statistieken (xG, schoten) voor gespeelde duels die die nog missen; nieuwste eerst
         todo = sorted([k for k, w in W.items() if w["status"] in KLAAR and "stats" not in w], key=lambda k: W[k]["datum"], reverse=True)
         log.append(f"{len(todo)} gespeelde duels zonder statistieken")
@@ -142,6 +217,10 @@ def main():
                 }
             else:
                 w["stats"] = None  # niet beschikbaar bij de bron; niet opnieuw proberen
+        # 3) vorig seizoen: blessures en spelers eenmalig (nodig om het effect van afwezigen te toetsen)
+        if len(SEIZOENEN) > 1:
+            blessures(SEIZOENEN[1], sleutel, stand, log, BL)
+            spelers(SEIZOENEN[1], W, sleutel, stand, log, SP, ververs_dagen=None)
     except Budget:
         log.append("dagbudget bereikt; morgen verder")
     except urllib.error.HTTPError as e:
@@ -153,6 +232,9 @@ def main():
         os.makedirs(os.path.dirname(UITVOER), exist_ok=True)
         with open(UITVOER, "w", encoding="utf-8") as fh:
             json.dump(db, fh, ensure_ascii=False, separators=(",", ":"))
+        for pad, obj in ((BLESSURES, BL), (SPELERS, SP)):
+            with open(pad, "w", encoding="utf-8") as fh:
+                json.dump(obj, fh, ensure_ascii=False, separators=(",", ":"))
         met = sum(1 for w in W.values() if w.get("stats") and w["stats"].get("xg") and w["stats"]["xg"][0] is not None)
         log.append(f"verzoeken gebruikt: {stand['gebruikt']}, over volgens API: {stand['over']}; duels met xG: {met}")
         if fout: log.append("FOUT: " + fout.replace(sleutel, "***"))
