@@ -79,13 +79,22 @@ def verzamel(bookmakers):
     per_bm = {}
     for bm in bookmakers:
         naam = bm.get("name", "?")
-        markten = {"1x2": {}, "ah": {}, "ou": {}}
+        markten = {"1x2": {}, "ah": {}, "ou": {}, "dc": {}, "dnb": {}}
         for bet in bm.get("bets", []):
             bid, vals = bet.get("id"), bet.get("values", [])
             if bid == 1:  # Match Winner
                 m = {str(v.get("value")).lower(): getal(v.get("odd")) for v in vals}
                 if all(m.get(k) for k in ("home", "draw", "away")):
                     markten["1x2"]["-"] = [m["home"], m["draw"], m["away"]]
+            elif bid == 12 or bet.get("name") == "Double Chance":  # 1X, 12, X2
+                m = {str(v.get("value")).lower().replace(" ", ""): getal(v.get("odd")) for v in vals}
+                r = [m.get("home/draw"), m.get("home/away"), m.get("draw/away")]
+                if all(r):
+                    markten["dc"]["-"] = r
+            elif bid == 2 or bet.get("name") == "Home/Away":  # draw no bet
+                m = {str(v.get("value")).lower(): getal(v.get("odd")) for v in vals}
+                if m.get("home") and m.get("away"):
+                    markten["dnb"]["-"] = [m["home"], m["away"]]
             elif bid == 4:  # Asian Handicap: per lijn (vanuit de thuisploeg) [thuis, uit]
                 for v in vals:
                     kant, l = lijn(v.get("value"))
@@ -113,7 +122,7 @@ def verzamel(bookmakers):
 def samenvatting(per_bm):
     """Per markt/lijn: pinnacle, max (+ bookmaker), gemiddelde en aantal bookmakers."""
     uit = {}
-    for mk in ("1x2", "ah", "ou"):
+    for mk in ("1x2", "ah", "ou", "dc", "dnb"):
         lijnen = {}
         for naam, markten in per_bm.items():
             for k, odds in markten[mk].items():
