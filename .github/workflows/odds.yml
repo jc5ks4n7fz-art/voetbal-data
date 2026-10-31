@@ -1,0 +1,42 @@
+name: Odds ophalen
+
+on:
+  schedule:
+    - cron: "41 */2 * * *"   # elke twee uur (voor openings- en slotkoersen)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-schrijven
+  cancel-in-progress: false
+
+jobs:
+  odds:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Odds ophalen
+        id: ophalen
+        continue-on-error: true
+        run: python odds_ophalen.py
+        env:
+          APIFOOTBALL_KEY: ${{ secrets.APIFOOTBALL_KEY }}
+      - name: Opslaan in de repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "Odds bijgewerkt"
+          git pull --rebase origin main
+          git push
+      - name: Melding bij fout
+        if: steps.ophalen.outcome == 'failure'
+        run: |
+          cat data/odds_status.json || true
+          exit 1

@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: data-schrijven
+  cancel-in-progress: false
+
 jobs:
   ophalen:
     runs-on: ubuntu-24.04
