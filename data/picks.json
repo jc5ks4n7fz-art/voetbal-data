@@ -50,5 +50,31 @@
   "minOdds": 3.571,
   "stake": 2,
   "ref": "Betfair Exchange"
+ },
+ {
+  "id": "ITA1|Lecce|Genoa|2026-11-01|1x2|-|2",
+  "at": "2026-10-31T20:11:59.795Z",
+  "c": "ITA1",
+  "d": "2026-11-01",
+  "t": "18:00",
+  "ko": "2026-11-01T17:00:00Z",
+  "h": "Lecce",
+  "a": "Genoa",
+  "src": "fd",
+  "fid": null,
+  "div": "I1",
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Genoa",
+  "odds": 2.55,
+  "bm": "Bwin",
+  "p": 0.4058,
+  "pMarkt": 0.4055,
+  "pModel": 0.4069,
+  "ev": 0.0347,
+  "minOdds": 2.538,
+  "stake": 3,
+  "ref": "Betfair Exchange"
  }
 ]
