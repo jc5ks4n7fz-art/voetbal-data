@@ -24,7 +24,7 @@ COMPETITIES = {39: "ENG1", 78: "GER1", 140: "ESP1", 135: "ITA1", 61: "FRA1", 94:
 UITVOER = "data/apifootball.json"
 RESERVE = 5          # verzoeken die we per dag overlaten
 PAUZE = float(os.environ.get("PAUZE", "0.25"))  # seconden tussen verzoeken (Pro: 300 per minuut; gratis: zet op 6.5)
-MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "4000"))  # zodat een run binnen de tijdslimiet blijft
+MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "7000"))  # zodat een run binnen de tijdslimiet blijft
 KLAAR = {"FT", "AET", "PEN"}
 
 
