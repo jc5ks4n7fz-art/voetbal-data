@@ -27,6 +27,7 @@ jobs:
         run: python apifootball_ophalen.py
         env:
           APIFOOTBALL_KEY: ${{ secrets.APIFOOTBALL_KEY }}
+          MAX_PER_RUN: "5500"   # ruimte laten voor de odds-runs (elke twee uur)
       - name: Opslaan in de repository
         run: |
           git config user.name "github-actions[bot]"
