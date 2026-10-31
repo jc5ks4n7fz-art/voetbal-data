@@ -1,5 +1,5 @@
 {
- "tijd": "2026-10-31T19:22:53Z",
+ "tijd": "2026-10-31T23:44:11Z",
  "ok": false,
  "melding": "RuntimeError: API-fout bij odds {'league': 39, 'season': 2026, 'page': 1}: {\"requests\": \"You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.\"}",
  "log": [
