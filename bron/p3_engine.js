@@ -5,7 +5,7 @@ const DEFAULT_SETTINGS = {
   leagueScale: 0.6, tierGap: 0.55, otherLeague: -0.5, clubCoefWeight: 0.2, hfaPrior: 0.12,
   useHistory: true, hfaTau: 600, hfaTauNoHist: 600, xgWeight: 0.5, spread: 1.3, supCap: 1.0, rhoMode: 'fit', rhoFixed: -0.05, maxGoals: 10, mcRuns: 10000, simNoise: 0.15, penShareHome: 0.5,
   eloHome: 100, eloK: {friendly: 20, nl: 35, qual: 40, final: 55}, eloGoals: 2.6, nationRho: -0.04, eloRegress: 0, refDate: '',
-  valueW: 0.15, valueThr: 0.03, bank: 500, kellyFrac: 0.25, maxStake: 0.02, maxOdds: 6, valueWComp: ''
+  valueW: 0.15, valueThr: 0.03, bank: 500, kellyFrac: 0.25, maxStake: 0.02, maxOdds: 6, valueWComp: '', injAtt: 1, injDef: 1
 };
 const ZONE_INFO = {
   champ: {label: 'Kampioen', short: 'Kamp.', cls: 'z-champ'},

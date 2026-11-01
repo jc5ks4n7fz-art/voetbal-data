@@ -230,6 +230,48 @@ def odds_hist(log):
     return out
 
 
+def inj_build(af, log):
+    """Afwezigen (blessures/schorsingen, API-Football) voor komende duels, met hun gewicht voor het model:
+    {"comp|datum|thuis|uit": [attThuis, verdThuis, attUit, verdUit, [namen thuis], [namen uit]]}.
+    att = aandeel in goals + ½·assists van de club; verd = belang afwezige verdedigers/keeper (minuten/meeste minuten)/5."""
+    from zoneinfo import ZoneInfo
+    try:
+        B = json.loads(_raw("blessures.json", 120)); P = json.loads(_raw("spelers.json", 120))
+    except Exception as e:
+        log.append(f"Blessures: niet opgehaald ({e})"); return {}
+    W = (af or {}).get("wedstrijden", {}); out = {}; nu = dt.datetime.now(dt.timezone.utc)
+    for fid, lst in B.get("per_wedstrijd", {}).items():
+        w = W.get(fid)
+        if not w or w.get("status") in ("FT", "AET", "PEN"): continue
+        k = dt.datetime.fromisoformat(w["datum"])
+        if k < nu - dt.timedelta(hours=3) or k > nu + dt.timedelta(days=12): continue
+        uniek = {}
+        for x in lst:  # API-Football levert soms dezelfde speler twee keer; "Missing Fixture" gaat voor "Questionable"
+            kk = (x[0], x[1])
+            if kk not in uniek or uniek[kk][3] == "Questionable": uniek[kk] = x
+        lst = list(uniek.values())
+        res = []
+        for tid in (w["thuis_id"], w["uit_id"]):
+            ps = (P.get("teams", {}).get(str(tid)) or {}).get("2026") or {}
+            gmax = max([v[3] or 0 for v in ps.values()] + [1]); ga = sum((v[4] or 0) + 0.5 * (v[5] or 0) for v in ps.values()) or 1
+            att = dfd = 0.0; namen = []
+            for t, pid, naam, typ, reden in lst:
+                if t != tid: continue
+                v = ps.get(str(pid)); f = 0.5 if typ == "Questionable" else 1.0
+                if not v: continue
+                imp = (v[3] or 0) / gmax
+                if imp < 0.15: continue
+                att += f * ((v[4] or 0) + 0.5 * (v[5] or 0)) / ga
+                if v[1] in ("Defender", "Goalkeeper"): dfd += f * imp / 5
+                namen.append((imp, naam + (" (twijfel)" if typ == "Questionable" else "")))
+            namen = [n for _, n in sorted(namen, reverse=True)[:4]]
+            res.append((round(att, 4), round(min(dfd, 1), 4), namen))
+        d = k.astimezone(ZoneInfo("Europe/Amsterdam")).strftime("%Y-%m-%d")
+        out[f'{w["comp"]}|{d}|{w["thuis"]}|{w["uit"]}'] = [res[0][0], res[0][1], res[1][0], res[1][1], res[0][2], res[1][2]]
+    log.append(f"Blessures: {len(out)} komende duels met afwezigen")
+    return out
+
+
 def picks_build(odds, log):
     """Markeringen uit data/picks.json, aangevuld met de slotkoers zodra de aftrap voorbij is."""
     try:
@@ -371,13 +413,14 @@ def main():
     odds, odds_upd = odds_build(af_obj, log)
     picks = picks_build(odds, log)
     ohist = odds_hist(log)
+    inj = inj_build(af_obj, log)
     now = dt.datetime.now()
     j = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":"))
     block = (f"\nconst DATA_VERSION = '{now:%Y%m%d%H%M}';\nconst DATA_UPDATED = '{now:%Y-%m-%d %H:%M}';\nconst EXTRA_ELO_DATE = '{start}';\n"
              f"const EXTRA_HIST_SEASON = '{prev_folder}';\nconst EXTRA_HIST = {j(hist)};\n"
              f"const EXTRA_AF_TIME = '{af_tijd}';\nconst EXTRA_AF = {j(af_cur)};\nconst EXTRA_AF_HIST = {j(af_hist)};\n"
              f"const EXTRA_CLUB = {j(club)};\nconst EXTRA_ELO = {j(e0)};\nconst EXTRA_INTL = {j(recent)};\nconst EXTRA_FD = {j(fd)};\nconst EXTRA_WEB = {j(prev_web)};\n"
-             f"const ODDS_UPDATED = {j(odds_upd)};\nconst EXTRA_ODDS = {j(odds)};\nconst EXTRA_PICKS = {j(picks)};\nconst EXTRA_ODDS_HIST = {j(ohist)};\n")
+             f"const ODDS_UPDATED = {j(odds_upd)};\nconst EXTRA_ODDS = {j(odds)};\nconst EXTRA_PICKS = {j(picks)};\nconst EXTRA_ODDS_HIST = {j(ohist)};\nconst EXTRA_INJ = {j(inj)};\n")
     open(dst, "w", encoding="utf-8").write(html[:m.start(1)] + block + html[m.end(1):])
     print("\n".join(log)); print("Geschreven:", dst)
 

@@ -38,11 +38,28 @@ function wFor(c) {
   const t = String(S.settings.valueWComp || ''); const m = t.match(new RegExp('(?:^|[\\s,;])' + c + '\\s*=\\s*([0-9.,]+)', 'i'));
   if (m) { const v = +m[1].replace(',', '.'); if (v >= 0 && v <= 1) return v; } return vset('valueW');
 }
+// ---------- afwezigen (blessures/schorsingen) ----------
+// Getoetst (573 duels top-5 + Eredivisie + Süper Lig, 2026/27; meldingen ontdubbeld): λ × exp(−1·att + 1·verdediging tegenstander),
+// gekozen op de eerste helft, verbeterde op de tweede helft de log-loss van het model (0,9542 → 0,9461) en van de combinatie
+// (0,9474 → 0,9454, markt alleen 0,9484).
+let INJ_CACHE = null;
+function injIndex(sid) {
+  const key = sid + '|' + VER; if (INJ_CACHE && INJ_CACHE.key === key) return INJ_CACHE.map; const map = new Map();
+  const src = typeof EXTRA_INJ !== 'undefined' && EXTRA_INJ ? EXTRA_INJ : {};
+  for (const k in src) { const [c, d, hn, an] = k.split('|'); if (!S.comps[c]) continue; const h = teamIn(sid, c, hn), a = teamIn(sid, c, an); if (h && a) map.set(c + '|' + h + '|' + a, {d, v: src[k]}); }
+  INJ_CACHE = {key, map}; return map;
+}
+function injFor(sid, m) { const x = injIndex(sid).get(m.c + '|' + m.h + '|' + m.a); return x && Math.abs(daysBetween(x.d, m.d)) <= 2 ? x.v : null; }
+function applyInj(l, v) {
+  const ka = S.settings.injAtt != null ? +S.settings.injAtt : 1, kd = S.settings.injDef != null ? +S.settings.injDef : 1;
+  if (!v || (!ka && !kd)) return l; const [aH, dH, aA, dA] = v;
+  return [l[0] * Math.exp(-ka * aH + kd * dA), l[1] * Math.exp(-ka * aA + kd * dH), l[2]];
+}
 // alle kandidaten voor één duel (alle markten/lijnen), met modelkans, marktkans, combinatie, beste prijs en verwachte waarde.
 // Dubbele kans en draw no bet krijgen hun faire kans uit de 1X2-markt (zelfde combinatie), zodat alle markten consistent zijn.
 function matchValue(sid, m, e, snapKey, before) {
   const snap = e && e[snapKey || 'last']; if (!snap) return {list: []};
-  const l = lambdas(sid, m.c, m.h, m.a, !!m.n, before ? {before} : undefined), p = predict(l[0], l[1], l[2]);
+  const inj = before ? null : injFor(sid, m), l0 = lambdas(sid, m.c, m.h, m.a, !!m.n, before ? {before} : undefined), l = inj ? applyInj(l0, inj) : l0, p = predict(l[0], l[1], l[2]);
   const W = wFor(m.c), out = [], hn = tName(m.h), an = tName(m.a);
   // q = gecombineerde kans dat de inzet wint (exclusief 'push'), pp = kans op geld terug
   const add = (mk, line, side, label, pM, pK, q, ent, pp, src) => {
@@ -70,7 +87,7 @@ function matchValue(sid, m, e, snapKey, before) {
     const r = ahLine(p.M, p.N, L), wl = r.w + r.l; if (wl <= 0) continue;
     const ahLab = (t, x) => t + ' ' + ahFmt(x) + (Math.abs(x - 0.5) < 1e-9 ? ' (= wint of gelijk)' : Math.abs(x + 0.5) < 1e-9 ? ' (= moet winnen)' : '');
     [0, 1].forEach(i => two('ah', L, i, i ? ahLab(an, -L) : ahLab(hn, L), [r.w / wl, r.l / wl], f, ent, r.p)); }
-  return {list: out, p, l};
+  return {list: out, p, l, inj};
 }
 function upcomingWithOdds(sid, fromIso) {
   const now = fromIso || new Date().toISOString(), today = refDate();
@@ -142,7 +159,8 @@ function scaleMatrix(M, N, from, to) {
 function predictMatch(sid, m, opt) {
   opt = opt || {}; const bf = opt.before ? {before: opt.before} : undefined;
   const e = 'e' in opt ? opt.e : oddsForMatch(sid, m); const r = e ? matchValue(sid, m, e, 'last', opt.before) : null;
-  const l = r ? r.l : lambdas(sid, m.c, m.h, m.a, !!m.n, bf), p = r ? r.p : predict(l[0], l[1], l[2]);
+  const inj = r ? r.inj : (opt.before ? null : injFor(sid, m));
+  const l = r ? r.l : (inj ? applyInj(lambdas(sid, m.c, m.h, m.a, !!m.n, bf), inj) : lambdas(sid, m.c, m.h, m.a, !!m.n, bf)), p = r ? r.p : predict(l[0], l[1], l[2]);
   const pm = [p.pH, p.pD, p.pA]; let pk = null, src = 'alleen model (geen odds)', pb = pm;
   const f1 = e && fairFrom(((e.last || {}).x || {})['1x2'] && e.last.x['1x2']['-']);
   if (f1) { pk = f1.p; pb = blendP(pm, pk, wFor(m.c)); src = 'markt (' + f1.src + ') + model ' + pct(wFor(m.c)); }
@@ -174,7 +192,7 @@ function predictMatch(sid, m, opt) {
   if (pk) { const d = [0, 1, 2].map(i => pm[i] - pk[i]); const i = [0, 1, 2].reduce((a, b) => Math.abs(d[b]) > Math.abs(d[a]) ? b : a, 0);
     if (Math.abs(d[i]) >= 0.04) dev = {i, d: d[i], pm: pm[i], pk: pk[i], label: ['1 ' + tName(m.h), 'gelijkspel', '2 ' + tName(m.a)][i]}; }
   const vb = r ? r.list.filter(v => v.odds <= vset('maxOdds') && v.ev >= vset('valueThr')).sort((a, b) => b.ev - a.ev)[0] : null;
-  return {m, e, l, pm, pk, pb, src, M, N, top: cells.slice(0, 5), over, btts, sure, fav, play, dev, value: vb || null, hasOdds: !!pk};
+  return {m, e, l, pm, pk, pb, src, M, N, top: cells.slice(0, 5), over, btts, sure, fav, play, dev, value: vb || null, hasOdds: !!pk, inj};
 }
 // Poule-advies (Roda JC-poule): exacte uitslag 5, juist doelsaldo + uitkomst 3, alleen juiste uitkomst 2.
 // Kiest de voorspelling met de hoogste verwachte punten, vanuit het perspectief van 'team' (eerst diens doelpunten).

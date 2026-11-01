@@ -355,13 +355,14 @@ function pageWeek() {
       const P = predictMatch(sid, m), pb = P.pb, hn = tName(m.h), an = tName(m.a), pl = P.play, open = ui.ahOpen === m.id;
       const play = `<b>${esc(pl.label)}</b><br><small>${esc(P.sure)} · faire odds ${num(pl.fair, 2)}${pl.odds ? ` · beste ${num(pl.odds, 2)} ${esc(pl.bm)}${pl.via ? ' (' + pl.via + ')' : ''} → <span class="${pl.ev >= vset('valueThr') ? 'pos' : 'dim'}">${pl.ev >= 0 ? '+' : ''}${pct(pl.ev, 1)}</span>` : ''}</small>${P.value ? `<br><small class="alt">Waarde: <b>${esc(P.value.label)}</b> @ ${num(P.value.odds, 2)} (+${pct(P.value.ev, 1)})</small>` : ''}`;
       const dev = P.dev ? `<b>${esc(P.dev.label)}</b><br><small>model ${pct(P.dev.pm)} · markt ${pct(P.dev.pk)}</small>` : (P.hasOdds ? '<span class="dim">eens</span>' : '<span class="dim">geen odds</span>');
-      return `<tr><td class="l mono dim hide-s">${fmtDate(m.d)}${m.t ? ' ' + esc(m.t) : ''}</td><td class="l wm">${teamLink(m.h)} – ${teamLink(m.a)}<small class="show-s">${fmtDate(m.d)}${m.t ? ' ' + esc(m.t) : ''}</small><small class="blk">${P.hasOdds ? 'markt + model' : 'alleen model'}</small><small class="show-s mono">1 ${pct(pb[0])} · X ${pct(pb[1])} · 2 ${pct(pb[2])}</small></td>
+      return `<tr><td class="l mono dim hide-s">${fmtDate(m.d)}${m.t ? ' ' + esc(m.t) : ''}</td><td class="l wm">${teamLink(m.h)} – ${teamLink(m.a)}<small class="show-s">${fmtDate(m.d)}${m.t ? ' ' + esc(m.t) : ''}</small><small class="blk">${P.hasOdds ? 'markt + model' : 'alleen model'}${P.inj && (P.inj[4].length || P.inj[5].length) ? ' · afwezigen verwerkt' : ''}</small><small class="show-s mono">1 ${pct(pb[0])} · X ${pct(pb[1])} · 2 ${pct(pb[2])}</small></td>
         ${pb.map((x, i) => `<td class="pc hide-s" style="--p:${x.toFixed(3)}"><b>${pct(x)}</b><br><small>${num(1 / x, 2)}</small></td>`).join('')}
         <td class="mono hide-s l">${P.top.slice(0, 3).map(([i, j, v]) => `${i}–${j} <small>${pct(v)}</small>`).join('<br>')}</td>
         <td class="l wp">${play}</td><td class="l hide-s">${dev}</td>
         <td><button class="lnk sm" data-act="ahopen" data-v="${m.id}">${open ? 'sluit' : 'meer'}</button></td></tr>
         ${open ? `<tr class="ahrow"><td colspan="10"><p><b>Waarom deze speelwijze:</b> ${esc(pl.why)}. Bron van de kansen: ${esc(P.src)}.</p>
           <p class="dim">Model alleen: 1 ${pct(P.pm[0])} · X ${pct(P.pm[1])} · 2 ${pct(P.pm[2])} · xG ${num(P.l[0], 2)}–${num(P.l[1], 2)}${P.pk ? ` · Markt alleen: 1 ${pct(P.pk[0])} · X ${pct(P.pk[1])} · 2 ${pct(P.pk[2])}` : ''} · Over 2,5: ${pct(P.over)} · Beide scoren: ${pct(P.btts)}</p>
+          ${P.inj ? `<p><b>Afwezig</b> (blessure/schorsing, API-Football): ${esc(hn)}: ${esc(P.inj[4].join(', ') || 'geen belangrijke spelers')} · ${esc(an)}: ${esc(P.inj[5].join(', ') || 'geen belangrijke spelers')}. Verwerkt in de verwachte doelpunten.</p>` : ''}
           ${P.dev ? `<p class="dim">Het model wijkt ${Math.round(Math.abs(P.dev.d) * 100)} procentpunt af van de markt bij ${esc(P.dev.label)}. Vaak weet de markt iets wat het model mist (blessures, schorsingen, rotatie, trainerswissel); soms ziet het model iets (bijv. sterke xG) dat de markt onderschat. Jouw eigen kennis van de ploegen beslist.</p>` : ''}
           ${ahTable(P.M, P.N, hn, an, 1.5)}<p class="dim">Meest waarschijnlijke uitslagen: ${P.top.map(([i, j, v]) => `${i}–${j} (${pct(v, 1)})`).join(' · ')}</p></td></tr>` : ''}`;
     }).join('');
@@ -373,7 +374,7 @@ function pageWeek() {
     ${pouleHTML(sid)}
     ${blocks || notice('Geen wedstrijden met een bekende datum gevonden voor deze selectie.', 'info')}
     ${missing.length ? `<p class="dim">Geen wedstrijden gepland in deze periode: ${missing.map(c => esc(c.name)).join(', ')}.</p>` : ''}
-    <p class="dim">Zonder odds (bijv. sommige Keuken Kampioen Divisie-duels) weet de voorspelling niets van blessures, schorsingen en opstellingen; corrigeer dan zelf via Teams & correcties.</p>`;
+    <p class="dim">Blessures en schorsingen (API-Football) worden verwerkt voor de Premier League, Bundesliga, LaLiga, Serie A, Ligue 1, Eredivisie, Süper Lig en een deel van de Europese duels; zie "meer" bij een wedstrijd. Opstellingen zitten er nog niet in. Voor andere competities zonder odds: corrigeer zelf via Teams & correcties.</p>`;
 }
 
 const MK_LABEL = {'1x2': '1X2', ah: 'Asian handicap', ou: 'Over/under', dc: 'Dubbele kans', dnb: 'Draw no bet'};
@@ -716,6 +717,8 @@ function pageSettings() {
   ${f('kellyFrac', 'Kelly-fractie', '0,25 = kwart-Kelly: voorzichtig, omdat de kans zelf een schatting is.', 0.05)}
   ${f('maxStake', 'Maximale inzet per duel (deel van bank)', '0,02 = 2%.', 0.005)}
   <label>Modelgewicht per competitie<input id="set-valueWComp" data-setting="valueWComp" type="text" value="${esc(st.valueWComp || '')}" placeholder="bv. NED2=0.3, POL1=0.2"><small>Overschrijft het algemene gewicht voor die competities. Pas aanpassen als het CLV-logboek daar aanleiding toe geeft.</small></label>
+  ${f('injAtt', 'Blessures: effect op aanval', 'Hoe sterk afwezige spelers (aandeel in goals en assists) de verwachte doelpunten verlagen. 0 = uit. Getoetst: 1.', 0.05)}
+  ${f('injDef', 'Blessures: effect op verdediging', 'Hoe sterk afwezige verdedigers/keeper de verwachte tegengoals verhogen. 0 = uit. Getoetst: 1.', 0.05)}
   ${f('maxOdds', 'Hoogste odds', 'Outsiders boven deze odds worden overgeslagen (veel marge, veel ruis).', 0.5)}
   </div><h3>Seizoensovergang en startratings</h3><div class="sgrid">
   ${f('regress', 'Terugtrekking naar gemiddelde', '0 = rating volledig meenemen, 1 = iedereen gemiddeld.', 0.01)}
