@@ -28,8 +28,9 @@ VOORBEELD = "data/odds_voorbeeld.json"
 PAUZE = 0.25
 RESERVE = 50
 PINNACLE = "pinnacle"
-# niet beschikbaar voor wedders in Nederland (geen KSA-vergunning): wel als marktinformatie, niet als "beste prijs"
-NIET_IN_NL = {"pinnacle", "1xbet", "sbo", "dafabet", "marathonbet", "188bet", "betway"}
+# "Beste prijs" alleen bij bookmakers met een Nederlandse vergunning (Kansspelautoriteit); de rest telt wel mee als
+# marktinformatie (gemiddelde) en Pinnacle als scherpe referentie.
+NL_VERGUND = ("bet365", "unibet", "betcity", "toto", "holland casino", "jacks", "leovegas", "zebet", "vbet", "bingoal", "711", "betmgm", "circus", "tonybet", "kansino")
 
 
 def nu():
@@ -135,7 +136,7 @@ def samenvatting(per_bm):
             n = len(rij[0][1])
             pin = next((o for nm, o in rij if nm.lower() == PINNACLE), None)
             mx, mxbm, gem = [], [], []
-            nl = [x for x in rij if x[0].lower() not in NIET_IN_NL]
+            nl = [x for x in rij if any(v in x[0].lower() for v in NL_VERGUND)]
             for i in range(n):
                 if nl:
                     beste = max(nl, key=lambda x: x[1][i])

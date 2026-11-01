@@ -14,7 +14,8 @@ function overround(o) { return o && o.every(x => x > 1) ? o.reduce((a, x) => a +
 function fairFrom(e) {
   if (!e) return null; const r = overround(e.ref);
   if (r && r > 0.97 && r < 1.12) return {p: devigPower(e.ref), src: e.refN || 'referentie'};
-  const g = overround(e.gem); if (g && g > 1.0 && g < 1.25) return {p: devigPower(e.gem), src: 'gemiddelde bookmakers'};
+  // gemiddelde alleen gebruiken als er genoeg bookmakers zijn (bij 1-3 bookmakers op een randlijn is het te onbetrouwbaar)
+  const g = overround(e.gem); if (g && g > 1.0 && g < 1.25 && !(e.n != null && e.n < 4)) return {p: devigPower(e.gem), src: 'gemiddelde bookmakers'};
   return null;
 }
 function blendP(pm, pk, w) { const e = pm.map((a, i) => Math.exp(w * Math.log(Math.max(a, 1e-9)) + (1 - w) * Math.log(Math.max(pk[i], 1e-9)))); const t = e.reduce((a, b) => a + b, 0); return e.map(x => x / t); }

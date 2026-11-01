@@ -112,7 +112,7 @@ def af_rows(af, cur_year):
 # ---------- odds (voor de pagina Waarde) en markeringen (CLV-logboek) ----------
 REPO_RAW = "https://raw.githubusercontent.com/jc5ks4n7fz-art/voetbal-data/main/data/"
 FD_DIV = {"E0": "ENG1", "D1": "GER1", "SP1": "ESP1", "I1": "ITA1", "F1": "FRA1", "N1": "NED1", "B1": "BEL1", "P1": "POR1", "T1": "TUR1"}
-FD_BMS = {"B365": "Bet365", "BFD": "Betfred", "BV": "BetVictor", "BW": "Bwin", "PP": "Paddy Power", "SKB": "Sky Bet"}
+FD_BMS = {"B365": "Bet365"}  # beste prijs alleen bij bookmakers met een Nederlandse vergunning (van de bookmakers in football-data alleen Bet365)
 
 
 def _raw(name, timeout=60):
@@ -140,8 +140,6 @@ def _fd_entry(r, suf, ref_pre, ref_name, avg_pre="Avg"):
     mx, bm = [], []
     for x in suf:
         best = max(((_fnum(r.get(k + x)), n) for k, n in FD_BMS.items()), key=lambda z: z[0] or 0)
-        if not best[0]:
-            best = (_fnum(r.get("Max" + x)), "hoogste (diverse)")
         mx.append(best[0]); bm.append(best[1])
     if not all(mx): return None
     return {"ref": ref if ref and all(ref) else None, "refN": ref_name, "max": mx, "bm": bm, "gem": gem if all(gem) else None}
@@ -166,7 +164,7 @@ def odds_build(af, log):
                     x[mk] = {}
                     for ln, e in (sn.get(mk) or {}).items():
                         if mk == "ou" and not (1.5 <= float(ln) <= 4.5 and abs(float(ln) * 2 - round(float(ln) * 2)) < 1e-9): continue
-                        if mk == "ah" and not all(1.3 <= o <= 3.5 for o in e["max"]): continue
+                        if mk == "ah" and not all(o is not None and 1.3 <= o <= 3.5 for o in e["max"]): continue
                         x[mk][ln] = {"ref": e.get("pin"), "refN": "Pinnacle", "max": e["max"], "bm": e["bm"], "gem": e["gem"], "n": e.get("n")}
                 return {"t": sn.get("t"), "x": x}
             out.append({"c": w.get("comp") or f["comp"], "d": ka.strftime("%Y-%m-%d"), "t": ka.strftime("%H:%M"), "ko": k.strftime("%Y-%m-%dT%H:%M:%SZ"),
