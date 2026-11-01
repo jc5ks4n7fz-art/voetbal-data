@@ -28,6 +28,8 @@ VOORBEELD = "data/odds_voorbeeld.json"
 PAUZE = 0.25
 RESERVE = 50
 PINNACLE = "pinnacle"
+# niet beschikbaar voor wedders in Nederland (geen KSA-vergunning): wel als marktinformatie, niet als "beste prijs"
+NIET_IN_NL = {"pinnacle", "1xbet", "sbo", "dafabet", "marathonbet", "188bet", "betway"}
 
 
 def nu():
@@ -101,8 +103,9 @@ def verzamel(bookmakers):
                     o = getal(v.get("odd"))
                     if kant not in ("home", "away") or o is None:
                         continue
-                    # API-Football noteert beide kanten met hun eigen handicap ('Home -0.5', 'Away +0.5').
-                    thuislijn = l if kant == "home" else -l
+                    # API-Football noteert bij beide kanten de handicap van de THUISploeg: 'Home -1' (5,00) en
+                    # 'Away -1' (1,17) horen bij dezelfde lijn (thuis −1 / uit +1); gecontroleerd: 1/5,00 + 1/1,17 ≈ 1,05.
+                    thuislijn = l
                     s = markten["ah"].setdefault(f"{thuislijn:+.2f}", [None, None])
                     s[0 if kant == "home" else 1] = o
             elif bid == 5:  # Goals Over/Under
@@ -132,9 +135,13 @@ def samenvatting(per_bm):
             n = len(rij[0][1])
             pin = next((o for nm, o in rij if nm.lower() == PINNACLE), None)
             mx, mxbm, gem = [], [], []
+            nl = [x for x in rij if x[0].lower() not in NIET_IN_NL]
             for i in range(n):
-                beste = max(rij, key=lambda x: x[1][i])
-                mx.append(beste[1][i]); mxbm.append(beste[0])
+                if nl:
+                    beste = max(nl, key=lambda x: x[1][i])
+                    mx.append(beste[1][i]); mxbm.append(beste[0])
+                else:
+                    mx.append(None); mxbm.append(None)
                 gem.append(round(sum(x[1][i] for x in rij) / len(rij), 3))
             res[k] = {"pin": pin, "max": mx, "bm": mxbm, "gem": gem, "n": len(rij)}
         uit[mk] = res
@@ -180,7 +187,7 @@ def main():
                     w["laatste"] = snap
                     n += 1
                     if len(voorbeeld) < 2:
-                        voorbeeld.append(x)
+                        voorbeeld.append({**x, "bookmakers": [{**b, "bets": [t for t in b.get("bets", []) if t.get("id") in (1, 2, 4, 5, 12)]} for b in x.get("bookmakers", [])]})
                 pagina += 1
             log.append(f"{code}: {n} duels met odds")
     except urllib.error.HTTPError as e:
