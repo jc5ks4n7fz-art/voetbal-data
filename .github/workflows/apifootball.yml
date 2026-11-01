@@ -2,7 +2,7 @@ name: API-Football ophalen
 
 on:
   schedule:
-    - cron: "17 4 * * *"   # elke dag rond 05:17/06:17 Nederlandse tijd
+    - cron: "17 4,11,17 * * *"   # drie keer per dag (GitHub slaat geplande runs soms over); elke run is incrementeel
   workflow_dispatch:         # handmatig starten via het tabblad Actions
 
 permissions:
@@ -27,7 +27,7 @@ jobs:
         run: python apifootball_ophalen.py
         env:
           APIFOOTBALL_KEY: ${{ secrets.APIFOOTBALL_KEY }}
-          MAX_PER_RUN: "5500"   # ruimte laten voor de odds-runs (elke twee uur)
+          MAX_PER_RUN: "2200"   # 3 runs per dag + odds-runs blijven binnen 7.500 verzoeken
       - name: Opslaan in de repository
         run: |
           git config user.name "github-actions[bot]"
