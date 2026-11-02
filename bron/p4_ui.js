@@ -455,7 +455,7 @@ function pageReview() {
       <td class="l hide-s">${r.vb ? `${esc(r.vb.label)} @ ${num(r.vb.odds, 2)}<br><small>${eur(r.vres * ST)}</small>` : '<span class="dim">–</span>'}</td></tr>`; }).join('')}
     </tbody></table></div></section>`; }).join('');
   return `<h2>Terugblik</h2>
-  <p class="dim">Voorspellingen opnieuw berekend met alleen data van vóór de speelweek, odds van vóór de aftrap (football-data.co.uk: Betfair Exchange en gangbare bookmakers). Inzet in deze terugblik: €${ST} per bet. Prijzen voor draw no bet en dubbele kans zijn benaderd uit de beste 1X2-odds en in het echt vaak iets lager. Ekstraklasa, Keuken Kampioen Divisie en Europese duels ontbreken nog (geen odds van vóór de aftrap).</p>
+  <p class="dim">Voorspellingen opnieuw berekend met alleen data van vóór de speelweek, odds van vóór de aftrap (football-data.co.uk; faire kans uit Betfair Exchange, prijs van Bet365 als bookmaker met Nederlandse vergunning). Inzet in deze terugblik: €${ST} per bet. Prijzen voor draw no bet en dubbele kans zijn benaderd uit de beste 1X2-odds en in het echt vaak iets lager. Ekstraklasa, Keuken Kampioen Divisie en Europese duels ontbreken nog (geen odds van vóór de aftrap).</p>
   <div class="kpis"><div><b>${A.n}</b><small>duels</small></div>
   <div><b>${pct(A.hit)}</b><small>uitkomst goed (combinatie) · model ${pct(A.hitM)} · markt ${pct(A.hitK)}</small></div>
   <div><b>${num(A.brC, 3)}</b><small>Brier combinatie · model ${num(A.brM, 3)} · markt ${num(A.brK, 3)} (lager = beter)</small></div>
