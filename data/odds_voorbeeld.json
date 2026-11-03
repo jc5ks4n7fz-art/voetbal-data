@@ -14,7 +14,7 @@
    "date": "2026-11-07T15:00:00+00:00",
    "timestamp": 1794063600
   },
-  "update": "2026-11-03T02:30:36+00:00",
+  "update": "2026-11-03T03:43:15+00:00",
   "bookmakers": [
    {
     "id": 7,
@@ -1837,7 +1837,7 @@
    "date": "2026-11-08T14:00:00+00:00",
    "timestamp": 1794146400
   },
-  "update": "2026-11-02T16:33:16+00:00",
+  "update": "2026-11-03T03:43:15+00:00",
   "bookmakers": [
    {
     "id": 7,
@@ -2079,11 +2079,11 @@
        },
        {
         "value": "Over 0.5",
-        "odd": "1.03"
+        "odd": "1.02"
        },
        {
         "value": "Under 0.5",
-        "odd": "15.00"
+        "odd": "17.00"
        },
        {
         "value": "Over 4.5",
@@ -2952,6 +2952,108 @@
        {
         "value": "Under 4.0",
         "odd": "1.30"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": 5,
+    "name": "SBO",
+    "bets": [
+     {
+      "id": 1,
+      "name": "Match Winner",
+      "values": [
+       {
+        "value": "Home",
+        "odd": "1.87"
+       },
+       {
+        "value": "Draw",
+        "odd": "3.38"
+       },
+       {
+        "value": "Away",
+        "odd": "3.35"
+       }
+      ]
+     },
+     {
+      "id": 4,
+      "name": "Asian Handicap",
+      "values": [
+       {
+        "value": "Home -0.75",
+        "odd": "2.20"
+       },
+       {
+        "value": "Away -0.75",
+        "odd": "1.71"
+       },
+       {
+        "value": "Home -0.5",
+        "odd": "1.90"
+       },
+       {
+        "value": "Away -0.5",
+        "odd": "1.98"
+       },
+       {
+        "value": "Home -0.25",
+        "odd": "1.67"
+       },
+       {
+        "value": "Away -0.25",
+        "odd": "2.26"
+       }
+      ]
+     },
+     {
+      "id": 5,
+      "name": "Goals Over/Under",
+      "values": [
+       {
+        "value": "Over 2.75",
+        "odd": "1.77"
+       },
+       {
+        "value": "Under 2.75",
+        "odd": "2.09"
+       },
+       {
+        "value": "Over 3.0",
+        "odd": "2.03"
+       },
+       {
+        "value": "Under 3.0",
+        "odd": "1.83"
+       },
+       {
+        "value": "Over 3.25",
+        "odd": "2.33"
+       },
+       {
+        "value": "Under 3.25",
+        "odd": "1.61"
+       }
+      ]
+     },
+     {
+      "id": 12,
+      "name": "Double Chance",
+      "values": [
+       {
+        "value": "Home/Draw",
+        "odd": "1.20"
+       },
+       {
+        "value": "Home/Away",
+        "odd": "1.20"
+       },
+       {
+        "value": "Draw/Away",
+        "odd": "1.95"
        }
       ]
      }
