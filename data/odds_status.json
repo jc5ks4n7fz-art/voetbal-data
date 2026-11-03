@@ -1,5 +1,5 @@
 {
- "tijd": "2026-11-03T18:02:07Z",
+ "tijd": "2026-11-03T23:41:12Z",
  "ok": true,
  "melding": "ok",
  "log": [
@@ -14,9 +14,9 @@
   "TUR1: 9 duels met odds",
   "POL1: 9 duels met odds",
   "NED2: 10 duels met odds",
-  "UCL: 15 duels met odds",
+  "UCL: 9 duels met odds",
   "UEL: 18 duels met odds",
   "UECL: 18 duels met odds",
-  "verzoeken gebruikt: 34, over volgens API: 7368"
+  "verzoeken gebruikt: 34, over volgens API: 7297"
  ]
 }
