@@ -1,5 +1,5 @@
 {
- "tijd": "2026-11-06 12:08 UTC",
+ "tijd": "2026-11-06 22:08 UTC",
  "ok": true,
  "melding": "ok",
  "log": [
@@ -18,11 +18,11 @@
   "UEL 2026 (id 3, 'UEFA Europa League'): 224 duels",
   "UECL 2026 (id 848, 'UEFA Europa Conference League'): 366 duels",
   "blessures 2026: 9448 meldingen",
-  "0 gespeelde duels zonder statistieken",
-  "verzoeken gebruikt: 28, over volgens API: 7437; duels met xG: 8962"
+  "17 gespeelde duels zonder statistieken",
+  "verzoeken gebruikt: 45, over volgens API: 7324; duels met xG: 8979"
  ],
  "duels": 13832,
- "met_xg": 8962,
- "verzoeken": 28,
- "over": 7437
+ "met_xg": 8979,
+ "verzoeken": 45,
+ "over": 7324
 }
