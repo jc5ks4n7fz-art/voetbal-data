@@ -1,22 +1,22 @@
 {
- "tijd": "2026-11-08T15:35:35Z",
+ "tijd": "2026-11-08T20:45:30Z",
  "ok": true,
  "melding": "ok",
  "log": [
-  "ENG1: 16 duels met odds",
-  "GER1: 11 duels met odds",
-  "ESP1: 13 duels met odds",
-  "ITA1: 12 duels met odds",
+  "ENG1: 15 duels met odds",
+  "GER1: 17 duels met odds",
+  "ESP1: 10 duels met odds",
+  "ITA1: 15 duels met odds",
   "FRA1: 14 duels met odds",
-  "POR1: 3 duels met odds",
-  "BEL1: 2 duels met odds",
-  "NED1: 12 duels met odds",
-  "TUR1: 1 duels met odds",
-  "POL1: 2 duels met odds",
-  "NED2: 6 duels met odds",
+  "POR1: 0 duels met odds",
+  "BEL1: 0 duels met odds",
+  "NED1: 9 duels met odds",
+  "TUR1: 0 duels met odds",
+  "POL1: 0 duels met odds",
+  "NED2: 5 duels met odds",
   "UCL: 0 duels met odds",
   "UEL: 0 duels met odds",
   "UECL: 0 duels met odds",
-  "verzoeken gebruikt: 34, over volgens API: 7397"
+  "verzoeken gebruikt: 35, over volgens API: 7362"
  ]
 }
