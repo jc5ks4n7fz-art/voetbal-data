@@ -30,6 +30,9 @@ jobs:
       - name: Uitslagen en odds van football-data.co.uk
         continue-on-error: true
         run: python fd_ophalen.py
+      - name: Automatisch markeren (op papier) en slotkoersen bewaren
+        continue-on-error: true   # een fout hier mag het opslaan van de odds niet tegenhouden
+        run: bash bron/markeren.sh || { git checkout -- data/picks.json; exit 1; }
       - name: Opslaan in de repository
         run: |
           git config user.name "github-actions[bot]"
