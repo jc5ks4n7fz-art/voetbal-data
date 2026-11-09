@@ -1,4 +1,5 @@
+*.pyc
+__pycache__/
 basis.html
 pagina.html
 pagina2.html
-__pycache__/
