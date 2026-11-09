@@ -18,6 +18,8 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+import kambi_ophalen
+
 BASE = "https://v3.football.api-sports.io"
 SEIZOEN = int(os.environ.get("SEIZOEN", "2026"))
 COMPETITIES = {39: "ENG1", 78: "GER1", 140: "ESP1", 135: "ITA1", 61: "FRA1", 94: "POR1", 144: "BEL1",
@@ -123,8 +125,10 @@ def verzamel(bookmakers):
     return per_bm
 
 
-def samenvatting(per_bm):
-    """Per markt/lijn: pinnacle, max (+ bookmaker), gemiddelde en aantal bookmakers."""
+def samenvatting(per_bm, extra=None):
+    """Per markt/lijn: pinnacle, max (+ bookmaker), gemiddelde en aantal bookmakers.
+    extra = Nederlandse bookmakers uit de Kambi-feed: tellen alleen mee voor de beste prijs, niet voor het gemiddelde
+    (ze delen één oddsleverancier en zouden het gemiddelde anders drie keer dezelfde kant op trekken)."""
     uit = {}
     for mk in ("1x2", "ah", "ou", "dc", "dnb"):
         lijnen = {}
@@ -137,6 +141,7 @@ def samenvatting(per_bm):
             pin = next((o for nm, o in rij if nm.lower() == PINNACLE), None)
             mx, mxbm, gem = [], [], []
             nl = [x for x in rij if any(v in x[0].lower() for v in NL_VERGUND)]
+            nl += [(nm, m[mk][k]) for nm, m in (extra or {}).items() if len(m.get(mk, {}).get(k) or []) == n]
             for i in range(n):
                 if nl:
                     beste = max(nl, key=lambda x: x[1][i])
@@ -163,6 +168,13 @@ def main():
     stand = {"over": None, "gebruikt": 0}
     log, fout, voorbeeld = [], None, []
     tijd = nu()
+    # Nederlandse bookmakers (Unibet, Jack's, LeoVegas) uit de Kambi-feed; clubnamen voor de koppeling uit apifootball.json
+    kambi, namen, n_kambi = [], {}, 0
+    try:
+        namen = json.load(open("data/apifootball.json", encoding="utf-8")).get("wedstrijden", {})
+        kambi = kambi_ophalen.haal(log=log)
+    except Exception as e:  # noqa: BLE001
+        log.append(f"Kambi: niet opgehaald ({type(e).__name__})")
     try:
         for lid, code in COMPETITIES.items():
             pagina, totaal, n = 1, 1, 0
@@ -181,7 +193,10 @@ def main():
                     per_bm = verzamel(x.get("bookmakers", []))
                     if not per_bm:
                         continue
-                    snap = {"t": tijd, "bron_t": x.get("update"), **samenvatting(per_bm)}
+                    f = namen.get(fid) or {}
+                    extra = kambi_ophalen.koppel(kambi, code, aftrap, f.get("thuis"), f.get("uit")) if kambi and f else {}
+                    n_kambi += 1 if extra else 0
+                    snap = {"t": tijd, "bron_t": x.get("update"), **samenvatting(per_bm, extra)}
                     w = W.setdefault(fid, {"comp": code})
                     w["aftrap"] = aftrap
                     w.setdefault("eerste", snap)
@@ -206,6 +221,7 @@ def main():
         if voorbeeld:
             with open(VOORBEELD, "w", encoding="utf-8") as fh:
                 json.dump(voorbeeld, fh, ensure_ascii=False, indent=1)
+        log.append(f"Kambi (Unibet, Jack's, LeoVegas): {len(kambi)} regels opgehaald, {n_kambi} duels gekoppeld")
         log.append(f"verzoeken gebruikt: {stand['gebruikt']}, over volgens API: {stand['over']}")
         melding = (fout or "ok").replace(sleutel, "***")
         print("\n".join(log)); print(melding)
