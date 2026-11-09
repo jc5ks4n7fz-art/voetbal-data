@@ -25,7 +25,8 @@ toets/           walk-forward toetsen (zie toets/README.md)
 data/            door GitHub Actions bijgewerkt: apifootball.json, odds.json, blessures.json, spelers.json,
                  fd/*.csv (football-data.co.uk), picks.json (markeringen)
 rapporten/       weekrapporten van de wekelijkse toets
-*_ophalen.py     scripts van de GitHub Actions (API-Football, odds, football-data.co.uk)
+*_ophalen.py     scripts van de GitHub Actions (API-Football, odds, Kambi-feed, football-data.co.uk)
+bron/markeren.sh markeert in de odds-run automatisch waarde-bets (op papier) en bewaart slotkoersen in picks.json
 ```
 
 ## Bouwen en bekijken
@@ -50,7 +51,9 @@ roep `buildSeed()` aan (zie toets/fit.js).
 - Blessures: λ × exp(−injAtt·aandeel goals+½assists afwezigen + injDef·belang afwezige verdedigers tegenstander).
 - Voorspelling = faire marktkans (Pinnacle/Betfair Exchange, power-devig) gecombineerd met het model
   (gewicht 0,15, per competitie instelbaar via valueWComp); zonder odds alleen het model.
-- "Beste prijs" alleen bij bookmakers met Nederlandse vergunning (in de data: Bet365).
+- "Beste prijs" alleen bij bookmakers met Nederlandse vergunning: Bet365 (API-Football) en Unibet, Jack's en
+  LeoVegas (kambi_ophalen.py: openbare, onofficiële Kambi-feed, alleen 1X2 en de hoofdlijn over/under). De
+  Kambi-prijzen tellen niet mee in het gemiddelde of als referentie, alleen als beste prijs.
 
 ## Regels
 
