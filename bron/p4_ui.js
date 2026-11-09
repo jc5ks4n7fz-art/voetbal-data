@@ -987,6 +987,8 @@ function boot() {
   if ((S.modelRev || 0) < 3) { const OLD = {hfaPrior: 0.25, hfaTau: 100}; for (const k in OLD) if (S.settings[k] === OLD[k]) S.settings[k] = DEFAULT_SETTINGS[k]; S.modelRev = 3; save(); }
   // modelrevisie 4 (2 nov. 2026): grotere spreiding sterkteverschil (spread 1,3 → 1,5; log-loss op 736 duels 0,9708 → 0,9683, controleweken 0,9495 → 0,9448)
   if ((S.modelRev || 0) < 4) { const OLD = {spread: 1.3}; for (const k in OLD) if (S.settings[k] === OLD[k]) S.settings[k] = DEFAULT_SETTINGS[k]; S.modelRev = 4; save(); }
+  // modelrevisie 5 (9 nov. 2026): spread 1,5 → 1,6 (log-loss op 904 duels 0,9511 → 0,9500, controleweken vanaf 12 okt. 0,9182 → 0,9159)
+  if ((S.modelRev || 0) < 5) { const OLD = {spread: 1.5}; for (const k in OLD) if (S.settings[k] === OLD[k]) S.settings[k] = DEFAULT_SETTINGS[k]; S.modelRev = 5; save(); }
   loadUI(); if (!S.comps[ui.comp]) { ui.comp = 'NED2'; ui.type = 'league'; } if (S.comps[ui.comp].type !== ui.type) ui.type = S.comps[ui.comp].type;
   if (!FN[ui.type].some(x => x[0] === ui.fn)) ui.fn = 'stand';
   const app = document.getElementById('app');
