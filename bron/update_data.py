@@ -7,7 +7,8 @@ Bronnen (allemaal openbaar via GitHub):
   - optioneel --fd-url           : football-data.org-bundel {"fd":[...]} (bv. raw-URL uit een eigen GitHub-repo met Action)
   - optioneel --web              : JSON-lijst met elders gecontroleerde uitslagen [{competitie,datum,ronde,thuis,uit,thuisgoals,uitgoals}]
 
-Gebruik: python3 update_data.py pagina.html uit.html [--fd-url URL] [--web web_rows.json]
+Gebruik: python3 update_data.py pagina.html uit.html [--fd-url URL] [--web web_rows.json] [--picks-uit data/picks.json]
+Met de omgevingsvariabele VOETBAL_DATA_DIR=data worden odds, markeringen en blessures uit die map gelezen in plaats van van GitHub.
 """
 import csv, datetime as dt, io, json, os, re, sys, urllib.request
 
@@ -116,6 +117,9 @@ FD_BMS = {"B365": "Bet365"}  # beste prijs alleen bij bookmakers met een Nederla
 
 
 def _raw(name, timeout=60):
+    lokaal = os.environ.get("VOETBAL_DATA_DIR")  # in de GitHub Action: de zojuist opgehaalde bestanden, niet de (oudere) versie op main
+    if lokaal:
+        return open(os.path.join(lokaal, name), encoding="utf-8").read()
     return get(REPO_RAW + name, timeout)
 
 
@@ -412,6 +416,9 @@ def main():
         af_obj = None
     odds, odds_upd = odds_build(af_obj, log)
     picks = picks_build(odds, log)
+    if "--picks-uit" in a and picks:  # slotkoersen blijvend bewaren (data/odds.json houdt oude duels niet eeuwig vast)
+        with open(a[a.index("--picks-uit") + 1], "w", encoding="utf-8") as f:
+            json.dump(picks, f, ensure_ascii=False, indent=1)
     ohist = odds_hist(log)
     inj = inj_build(af_obj, log)
     now = dt.datetime.now()
