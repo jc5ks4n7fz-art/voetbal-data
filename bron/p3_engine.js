@@ -48,7 +48,7 @@ function gauss() { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v 
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 const isNation = cid => S.comps[cid] && S.comps[cid].type === 'nation';
 const isClubComp = cid => S.comps[cid] && S.comps[cid].type !== 'nation';
-const tName = id => (S.teams[id] && S.teams[id].name) || id;
+const tName = id => { const t = S.teams[id]; return t ? ((t.kind === 'nation' && typeof NL_LAND !== 'undefined' && NL_LAND[t.name]) || t.name) : id; };
 
 // ---------- opslag ----------
 let saveError = null;
@@ -67,7 +67,7 @@ function teamIndex() {
   const exact = {}, loose = {};
   for (const id in S.teams) {
     const t = S.teams[id];
-    [t.name, ...(t.aliases || [])].forEach(n => { exact[baseNorm(n)] = id; const l = looseNorm(n); if (l) (loose[l] = loose[l] || new Set()).add(id); });
+    [t.name, ...(t.aliases || []), ...(t.kind === 'nation' && typeof NL_LAND !== 'undefined' && NL_LAND[t.name] ? [NL_LAND[t.name]] : [])].forEach(n => { exact[baseNorm(n)] = id; const l = looseNorm(n); if (l) (loose[l] = loose[l] || new Set()).add(id); });
   }
   const byName = {}; for (const id in S.teams) byName[S.teams[id].name] = id;
   for (const a in S.aliases) { const tid = byName[S.aliases[a]]; if (tid) exact[baseNorm(a)] = tid; }
