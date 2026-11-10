@@ -1,13 +1,13 @@
 {
- "tijd": "2026-11-10T04:19:33Z",
+ "tijd": "2026-11-10T07:40:11Z",
  "ok": true,
  "melding": "ok",
  "log": [
-  "ENG1: 14 duels met odds",
+  "ENG1: 15 duels met odds",
   "GER1: 17 duels met odds",
   "ESP1: 10 duels met odds",
-  "ITA1: 13 duels met odds",
-  "FRA1: 15 duels met odds",
+  "ITA1: 15 duels met odds",
+  "FRA1: 14 duels met odds",
   "POR1: 0 duels met odds",
   "BEL1: 0 duels met odds",
   "NED1: 9 duels met odds",
@@ -17,6 +17,7 @@
   "UCL: 0 duels met odds",
   "UEL: 0 duels met odds",
   "UECL: 0 duels met odds",
-  "verzoeken gebruikt: 30, over volgens API: 7442"
+  "Kambi (Unibet, Jack's, LeoVegas): 249 regels opgehaald, 65 duels gekoppeld",
+  "verzoeken gebruikt: 28, over volgens API: 7414"
  ]
 }
