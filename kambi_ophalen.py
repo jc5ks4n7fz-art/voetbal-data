@@ -18,14 +18,15 @@ BOOKMAKERS = {"ubnl": "Unibet", "jvh": "Jacks", "leonl": "LeoVegas"}
 PADEN = {"ENG1": "england/premier_league", "GER1": "germany/bundesliga", "ESP1": "spain/la_liga", "ITA1": "italy/serie_a",
          "FRA1": "france/ligue_1", "POR1": "portugal/primeira_liga", "BEL1": "belgium/jupiler_pro_league",
          "NED1": "netherlands/eredivisie", "TUR1": "turkey/super_lig", "POL1": "poland/ekstraklasa",
-         "NED2": "netherlands/eerste_divisie", "UCL": "champions_league", "UEL": "europa_league", "UECL": "conference_league"}
+         "NED2": "netherlands/eerste_divisie", "UCL": "champions_league", "UEL": "europa_league", "UECL": "conference_league",
+         "UNL": "uefa_nations_league"}
 PAUZE = 0.4
 WEG = {"fc", "sc", "sv", "cf", "ac", "as", "ss", "us", "afc", "bk", "fk", "sk", "if", "cd", "ud", "rc", "rcd", "ca", "club", "de", "kv", "krc",
-       "ks", "kks", "mks", "gks", "rks", "calcio", "1", "04", "05", "1899", "1846", "1910", "tsg", "vfb", "vfl", "bsc", "ogc", "aj", "stade", "real", "29", "07", "estac", "fsv"}
+       "ks", "kks", "mks", "gks", "rks", "calcio", "1", "04", "05", "1899", "1846", "1910", "tsg", "vfb", "vfl", "bsc", "ogc", "aj", "stade", "real", "29", "07", "estac", "fsv", "republic", "of", "and", "rep"}
 ZELFDE = {"psg": "paris saint germain", "man": "manchester", "utd": "united", "spurs": "tottenham", "inter": "internazionale",
           "monchengladbach": "gladbach", "m'gladbach": "gladbach", "st": "saint", "nijmegen": "nec", "wolves": "wolverhampton",
           "munchen": "munich", "bayern": "bayern munich", "koln": "cologne", "atletico": "atl", "athletic": "ath", "sporting": "sporting cp",
-          "milan": "ac milan", "brestois": "brest"}
+          "milan": "ac milan", "brestois": "brest", "turkiye": "turkey", "czechia": "czech", "fyr": "north"}
 
 
 def _norm(naam):
@@ -79,7 +80,12 @@ def haal(codes=None, log=None):
                     continue
                 if start <= nu or e.get("state") == "STARTED" or not e.get("homeName") or not e.get("awayName"):
                     continue
-                rij = {"comp": code, "start": start, "thuis": e["homeName"], "uit": e["awayName"], "bm": naam, "1x2": None, "ou": {}}
+                thuis, uit_ = e["homeName"], e["awayName"]
+                # landen staan in het Nederlands in homeName ("Turkije"); de Engelse naam past bij API-Football
+                en = (e.get("englishName") or "").split(f' {e.get("nameDelimiter") or "-"} ')
+                if code == "UNL" and len(en) == 2:
+                    thuis, uit_ = en
+                rij = {"comp": code, "start": start, "thuis": thuis, "uit": uit_, "bm": naam, "1x2": None, "ou": {}}
                 for bo in ev.get("betOffers", []):
                     soort = (bo.get("betOfferType") or {}).get("englishName")
                     oc = bo.get("outcomes") or []

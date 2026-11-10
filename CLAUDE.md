@@ -54,6 +54,9 @@ roep `buildSeed()` aan (zie toets/fit.js).
 - "Beste prijs" alleen bij bookmakers met Nederlandse vergunning: Bet365 (API-Football) en Unibet, Jack's en
   LeoVegas (kambi_ophalen.py: openbare, onofficiële Kambi-feed, alleen 1X2 en de hoofdlijn over/under). De
   Kambi-prijzen tellen niet mee in het gemiddelde of als referentie, alleen als beste prijs.
+- Nations League (UNL): odds via API-Football (competitie-id 5) en de Kambi-feed; de landnamen staan bij het duel
+  in odds.json. Het modelgewicht is voor landenteams standaard 0 (alleen de markt): het Elo-model is niet tegen
+  odds getoetst. Aanpassen kan met valueWComp, bv. "UNL=0.15".
 
 ## Regels
 

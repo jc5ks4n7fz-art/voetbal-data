@@ -156,7 +156,7 @@ def odds_build(af, log):
     try:
         od = json.loads(_raw("odds.json", 120)); n = 0
         for fid, w in od.get("wedstrijden", {}).items():
-            f = W.get(fid); ko = w.get("aftrap")
+            f = W.get(fid) or ({"thuis": w["thuis"], "uit": w["uit"], "comp": w.get("comp")} if w.get("thuis") and w.get("uit") else None); ko = w.get("aftrap")
             if not f or not ko or not w.get("laatste"): continue
             k = dt.datetime.fromisoformat(ko.replace("Z", "+00:00"))
             if k < now - dt.timedelta(days=60): continue

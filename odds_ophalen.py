@@ -24,6 +24,9 @@ BASE = "https://v3.football.api-sports.io"
 SEIZOEN = int(os.environ.get("SEIZOEN", "2026"))
 COMPETITIES = {39: "ENG1", 78: "GER1", 140: "ESP1", 135: "ITA1", 61: "FRA1", 94: "POR1", 144: "BEL1",
                88: "NED1", 203: "TUR1", 106: "POL1", 89: "NED2", 2: "UCL", 3: "UEL", 848: "UECL"}
+# Landencompetities: de clubnamen komen hier niet uit apifootball.json, dus het programma wordt apart opgehaald
+# (1 verzoek per run) en de namen worden bij het duel in odds.json bewaard.
+LANDEN = {5: "UNL"}  # UEFA Nations League
 UITVOER = "data/odds.json"
 STATUS = "data/odds_status.json"
 VOORBEELD = "data/odds_voorbeeld.json"
@@ -176,7 +179,16 @@ def main():
     except Exception as e:  # noqa: BLE001
         log.append(f"Kambi: niet opgehaald ({type(e).__name__})")
     try:
-        for lid, code in COMPETITIES.items():
+        for lid, code in {**COMPETITIES, **LANDEN}.items():
+            if lid in LANDEN:
+                try:
+                    prog = vraag("fixtures", {"league": lid, "season": SEIZOEN}, sleutel, stand).get("response", [])
+                    for fx in prog:
+                        namen[str(fx["fixture"]["id"])] = {"thuis": fx["teams"]["home"]["name"], "uit": fx["teams"]["away"]["name"], "land": True}
+                    log.append(f"{code}: programma {len(prog)} duels" + (f" ('{prog[0]['league']['name']}')" if prog else ""))
+                except Exception as e:  # noqa: BLE001
+                    log.append(f"{code}: programma niet opgehaald ({type(e).__name__})")
+                    continue
             pagina, totaal, n = 1, 1, 0
             while pagina <= totaal:
                 data = vraag("odds", {"league": lid, "season": SEIZOEN, "page": pagina}, sleutel, stand)
@@ -199,6 +211,8 @@ def main():
                     snap = {"t": tijd, "bron_t": x.get("update"), **samenvatting(per_bm, extra)}
                     w = W.setdefault(fid, {"comp": code})
                     w["aftrap"] = aftrap
+                    if f.get("land"):
+                        w["thuis"], w["uit"] = f["thuis"], f["uit"]
                     w.setdefault("eerste", snap)
                     w["laatste"] = snap
                     n += 1

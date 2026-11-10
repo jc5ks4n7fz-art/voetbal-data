@@ -22,7 +22,7 @@ function blendP(pm, pk, w) { const e = pm.map((a, i) => Math.exp(w * Math.log(Ma
 let ODDS_CACHE = null;
 function oddsList() { return typeof EXTRA_ODDS !== 'undefined' && Array.isArray(EXTRA_ODDS) ? EXTRA_ODDS : []; }
 function picksList() { return typeof EXTRA_PICKS !== 'undefined' && Array.isArray(EXTRA_PICKS) ? EXTRA_PICKS : []; }
-function teamIn(sid, c, name) { const sc = (S.seasons[sid].comps[c] || {teams: []}).teams; const id = findTeam(name, 'club', sc); return id && sc.includes(id) ? id : null; }
+function teamIn(sid, c, name) { const sc = (S.seasons[sid].comps[c] || {teams: []}).teams; const id = findTeam(name, isNation(c) ? 'nation' : 'club', sc); return id && sc.includes(id) ? id : null; }
 function oddsIndex(sid) {
   const key = sid + '|' + (typeof DATA_VERSION !== 'undefined' ? DATA_VERSION : '') + '|' + VER;
   if (ODDS_CACHE && ODDS_CACHE.key === key) return ODDS_CACHE.map;
@@ -36,7 +36,9 @@ function overProb(M, N, L) { let s = 0; for (let i = 0; i < N; i++) for (let j =
 // modelgewicht, eventueel per competitie (instelling 'valueWComp', bv. "NED2=0.3, POL1=0.2")
 function wFor(c) {
   const t = String(S.settings.valueWComp || ''); const m = t.match(new RegExp('(?:^|[\\s,;])' + c + '\\s*=\\s*([0-9.,]+)', 'i'));
-  if (m) { const v = +m[1].replace(',', '.'); if (v >= 0 && v <= 1) return v; } return vset('valueW');
+  if (m) { const v = +m[1].replace(',', '.'); if (v >= 0 && v <= 1) return v; }
+  // landenteams: het Elo-model is niet tegen de markt getoetst (geen historische odds), dus standaard telt alleen de markt
+  return isNation(c) ? 0 : vset('valueW');
 }
 // ---------- afwezigen (blessures/schorsingen) ----------
 // Getoetst (573 duels top-5 + Eredivisie + Süper Lig, 2026/27; meldingen ontdubbeld): λ × exp(−1·att + 1·verdediging tegenstander),
@@ -91,7 +93,7 @@ function matchValue(sid, m, e, snapKey, before) {
 }
 function upcomingWithOdds(sid, fromIso) {
   const now = fromIso || new Date().toISOString(), today = refDate();
-  return S.matches.filter(m => m.s === sid && !played(m) && m.d && m.d >= today && m.d <= addDaysStr(today, 10) && S.comps[m.c] && S.comps[m.c].type !== 'nation')
+  return S.matches.filter(m => m.s === sid && !played(m) && m.d && m.d >= today && m.d <= addDaysStr(today, 10) && S.comps[m.c])
     .map(m => ({m, e: oddsForMatch(sid, m)})).filter(x => x.e && (x.e.ko || (x.e.d + 'T' + (x.e.t || '23:59') + ':00')) > now);
 }
 // Per duel de beste speelwijze (hoogste verwachte waarde) boven de drempel, met een rustiger alternatief als dat
