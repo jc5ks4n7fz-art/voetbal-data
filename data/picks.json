@@ -1132,5 +1132,31 @@
   "minOdds": 3.474,
   "stake": 2,
   "ref": "Pinnacle"
+ },
+ {
+  "id": "1528958|1x2|-|0",
+  "at": "2026-11-10T13:00:14.054Z",
+  "c": "UNL",
+  "d": "2026-11-12",
+  "t": "18:00",
+  "ko": "2026-11-12T17:00:00Z",
+  "h": "Türkiye",
+  "a": "Belgium",
+  "src": "api",
+  "fid": "1528958",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Turkije",
+  "odds": 3.95,
+  "bm": "Unibet",
+  "p": 0.2633,
+  "pMarkt": 0.2633,
+  "pModel": 0.2548,
+  "ev": 0.0401,
+  "minOdds": 3.911,
+  "stake": 2,
+  "ref": "Pinnacle"
  }
 ]
