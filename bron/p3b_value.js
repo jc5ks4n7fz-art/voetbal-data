@@ -165,7 +165,7 @@ function predictMatch(sid, m, opt) {
   const l = r ? r.l : (inj ? applyInj(lambdas(sid, m.c, m.h, m.a, !!m.n, bf), inj) : lambdas(sid, m.c, m.h, m.a, !!m.n, bf)), p = r ? r.p : predict(l[0], l[1], l[2]);
   const pm = [p.pH, p.pD, p.pA]; let pk = null, src = 'alleen model (geen odds)', pb = pm;
   const f1 = e && fairFrom(((e.last || {}).x || {})['1x2'] && e.last.x['1x2']['-']);
-  if (f1) { pk = f1.p; pb = blendP(pm, pk, wFor(m.c)); src = 'markt (' + f1.src + ') + model ' + pct(wFor(m.c)); }
+  if (f1) { pk = f1.p; pb = blendP(pm, pk, wFor(m.c)); src = 'markt (' + f1.src + ')' + (wFor(m.c) > 0 ? ' + model ' + pct(wFor(m.c)) : ', zonder model'); }
   const M = scaleMatrix(p.M, p.N, pm, pb), N = p.N; const cells = []; let over = 0, btts = 0;
   for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) { const v = M[i * N + j]; cells.push([i, j, v]); if (i + j > 2.5) over += v; if (i && j) btts += v; }
   cells.sort((a, b) => b[2] - a[2]);

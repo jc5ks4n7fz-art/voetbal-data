@@ -39,7 +39,7 @@ function bar3(pH, pD, pA, compact) {
   return `<div class="bar3${compact ? ' sm' : ''}" role="img" aria-label="1 ${pct(pH)}, X ${pct(pD)}, 2 ${pct(pA)}"><span class="b1" style="width:${pH * 100}%">${pH > .12 ? pct(pH) : ''}</span><span class="bx" style="width:${pD * 100}%">${pD > .12 ? pct(pD) : ''}</span><span class="b2" style="width:${pA * 100}%">${pA > .12 ? pct(pA) : ''}</span></div>`;
 }
 function pbar(p, cls) { return `<div class="pb"><span class="pf ${cls || ''}" style="width:${Math.min(100, p * 100)}%"></span><em>${pct(p)}</em></div>`; }
-function teamLink(t) { const x = S.teams[t]; return `<span class="tn">${esc(x ? x.name : t)}${adjV(t) ? ` <i class="adjchip" title="Handmatige correctie">${adjV(t) > 0 ? '+' : ''}${Math.round(adjV(t) * 100)}</i>` : ''}</span>`; }
+function teamLink(t) { const x = S.teams[t]; return `<span class="tn">${esc(x ? tName(t) : t)}${adjV(t) ? ` <i class="adjchip" title="Handmatige correctie">${adjV(t) > 0 ? '+' : ''}${Math.round(adjV(t) * 100)}</i>` : ''}</span>`; }
 function zoneClassAt(f, pos, elig) {
   for (const z of (f.zones || [])) { if (z.type === 'champ') continue; if (pos >= z.from && pos <= z.to) return ZONE_INFO[z.type] ? ZONE_INFO[z.type].cls : ''; }
   return '';
@@ -139,11 +139,14 @@ function viewStand(sid, cid) {
   }
   const I = groupInfo(sid, cid);
   if (!Object.keys(I.G).length) return coverage(sid, cid) + notesHTML(cid) + notice('Geen groepen gedefinieerd. Importeer groepen via JSON (zie Uitleg).', 'info') + viewNationList(sid, cid);
-  return coverage(sid, cid) + notesHTML(cid) + `<div class="groups">${Object.keys(I.G).map(g => {
+  const grp = g => {
     const X = I.G[g], t = newTab(X.teams.length); X.ms.forEach(m => { if (played(m)) applyRes(t, X.ix[m.h], X.ix[m.a], m.hg, m.ag); });
     const ord = rankIdx([...Array(X.teams.length).keys()], t, ['pts', 'gd', 'gf'], X.teams.map((_, i) => -i));
     return `<section class="grp"><h3>Groep ${esc(g)}</h3>${tableHTML(rowsFromTab(X.teams, t, ord), null, {str: t => Math.round(teamStrength(sid, t))})}</section>`;
-  }).join('')}</div>`;
+  };
+  const gs = Object.keys(I.G), perDiv = c.format.nl && gs.every(g => /^[A-D]\d/.test(g));
+  const blok = list => `<div class="groups">${list.map(grp).join('')}</div>`;
+  return coverage(sid, cid) + notesHTML(cid) + (perDiv ? [...new Set(gs.map(g => g[0]))].sort().map(d => `<h3 class="divh">Divisie ${d}</h3>` + blok(gs.filter(g => g[0] === d))).join('') : blok(gs));
 }
 function viewNationList(sid, cid) { const sc = S.seasons[sid].comps[cid]; return sc.teams.length ? `<p>${sc.teams.map(tName).join(', ')}</p>` : ''; }
 
@@ -163,20 +166,24 @@ function viewRound(sid, cid) {
   const label = k => isNaN(+k) ? KO_LABEL[k.slice(3)] : (c.type === 'league' ? 'Speelronde ' : 'Speeldag ') + k;
   const ms = R.g[cur].slice().sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : a.id - b.id);
   const ki = R.keys.indexOf(String(cur));
-  const rows = ms.map(m => {
-    const l = lambdas(sid, cid, m.h, m.a, !!m.n), single = m.st === 'f';
-    const p = outcome(l[0], l[1], l[2]); const ahm = played(m) ? null : ahMain(p.M, p.N);
+  const card = m => {
+    // nog te spelen: dezelfde voorspelling als op Komende wedstrijden (markt + model waar odds zijn) met de aanbevolen speelwijze
+    const P = played(m) ? null : predictMatch(sid, m), W = mWhen(sid, m);
+    const l = P ? P.l : lambdas(sid, cid, m.h, m.a, !!m.n), single = m.st === 'f';
+    const p = P ? {h: P.pb[0], d: P.pb[1], a: P.pb[2], M: P.M, N: P.N} : outcome(l[0], l[1], l[2]); const ahm = played(m) ? null : ahMain(p.M, p.N);
+    const pl = P && P.play, rec = pl ? `<span class="rec"><b>Aanbevolen: ${esc(pl.label)}</b><small>${esc(P.sure)} · faire odds ${num(pl.fair, 2)}${pl.odds ? ` · beste ${num(pl.odds, 2)} ${esc(pl.bm)} → <span class="${pl.ev >= vset('valueThr') ? 'pos' : 'dim'}">${pl.ev >= 0 ? '+' : ''}${pct(pl.ev, 1)}</span>` : ''} · ${P.hasOdds ? (wFor(m.c) > 0 ? 'markt + model' : 'markt') : 'alleen model'}</small></span>` : '';
     const editing = ui.edit === m.id;
     return `<div class="mrow ${played(m) ? 'done' : ''}">
-      <div class="mdate">${fmtDate(m.d)}${m.t ? ' ' + esc(m.t) : ''}${m.xg ? `<br><span title="Expected goals (API-Football)">xG ${num(m.xg[0], 2)}–${num(m.xg[1], 2)}</span>` : ''}${m.g ? ` · ${esc(m.g)}` : ''}${m.n ? ' · neutraal' : ''}</div>
+      <div class="mdate">${fmtDate(W.d)}${W.t ? ' ' + esc(W.t) : ''}${m.xg ? `<br><span title="Expected goals (API-Football)">xG ${num(m.xg[0], 2)}–${num(m.xg[1], 2)}</span>` : ''}${m.g ? ` · ${esc(m.g)}` : ''}${m.n ? ' · neutraal' : ''}</div>
       <div class="mteams"><span class="h">${teamLink(m.h)}</span>
         ${editing ? `<span class="score edit"><input id="eh${m.id}" type="number" min="0" max="30" value="${m.hg != null ? m.hg : ''}" aria-label="Doelpunten thuis"><b>–</b><input id="ea${m.id}" type="number" min="0" max="30" value="${m.ag != null ? m.ag : ''}" aria-label="Doelpunten uit"></span>`
         : `<button class="score ${played(m) ? '' : 'open'}" data-act="editscore" data-v="${m.id}" title="Uitslag invoeren of corrigeren">${played(m) ? `${m.hg}<b>–</b>${m.ag}` : 'uitslag'}</button>`}
         <span class="a">${teamLink(m.a)}</span></div>
-      <div class="mpred">${bar3(p.h, p.d, p.a, true)}<span class="xg mono" title="Verwachte doelpunten">${num(l[0], 2)} – ${num(l[1], 2)}</span>${ahm ? `<span class="xg" title="Faire Asian handicap-hoofdlijn voor de thuisploeg">AH ${ahFmt(ahm.L)}</span>` : ''}
+      <div class="mpred">${bar3(p.h, p.d, p.a, true)}<span class="xg mono" title="Verwachte doelpunten">${num(l[0], 2)} – ${num(l[1], 2)}</span>${ahm ? `<span class="xg" title="Faire Asian handicap-hoofdlijn voor de thuisploeg">AH ${ahFmt(ahm.L)}</span>` : ''}${rec}
         ${editing ? `<span class="eb"><button class="btn sm pri" data-act="savescore" data-v="${m.id}">Opslaan</button>${played(m) ? `<button class="btn sm" data-act="clearscore" data-v="${m.id}">Wis uitslag</button>` : ''}<button class="btn sm ghost" data-act="canceledit">Annuleer</button></span>` : `<button class="lnk sm" data-act="predict" data-v="${m.id}">details</button>`}</div>
     </div>`;
-  }).join('');
+  };
+  const rows = divParts(sid, ms).map(p => (p.label ? `<h4 class="divk">${esc(p.label)}</h4>` : '') + p.ms.map(card).join('')).join('');
   return coverage(sid, cid) + `<div class="roundnav"><button class="btn" data-act="rnd" data-v="${R.keys[Math.max(0, ki - 1)]}" ${ki <= 0 ? 'disabled' : ''} aria-label="Vorige">‹</button>
     <select id="roundSel" data-change="round">${R.keys.map(k => `<option value="${k}" ${String(k) === String(cur) ? 'selected' : ''}>${label(k)} (${R.g[k].filter(played).length}/${R.g[k].length})</option>`).join('')}</select>
     <button class="btn" data-act="rnd" data-v="${R.keys[Math.min(R.keys.length - 1, ki + 1)]}" ${ki >= R.keys.length - 1 ? 'disabled' : ''} aria-label="Volgende">›</button>
@@ -324,7 +331,12 @@ function upcomingSets(sid) {
       groups = [...byR.entries()].map(([r, g]) => ({label: 'Speelronde ' + r, ms: g, d: g[Math.floor(g.length / 2)].d})).filter(g => g.ms.length >= Math.min(3, L.n / 4)).sort((a, b) => a.d.localeCompare(b.d));
     } else {
       let cur = null; ms.forEach(m => { if (!cur || daysBetween(cur.last, m.d) > 3) { cur = {ms: [], d: m.d, last: m.d}; groups.push(cur); } cur.ms.push(m); cur.last = m.d; });
-      groups.forEach(g => { const rs = [...new Set(g.ms.map(m => m.r).filter(Boolean))]; g.label = c.type === 'euro' && rs.length === 1 ? 'Speeldag ' + rs[0] : fmtDate(g.d) + (g.last !== g.d ? ' – ' + fmtDate(g.last) : ''); });
+      // landen met speeldagnummers (Nations League): één blok per speeldag in plaats van alles binnen een interlandperiode bij elkaar
+      if (c.type === 'nation' && ms.every(m => m.r)) {
+        const byR = new Map(); ms.forEach(m => { if (!byR.has(m.r)) byR.set(m.r, []); byR.get(m.r).push(m); });
+        groups = [...byR.entries()].map(([r, g]) => ({ms: g, d: g[0].d, last: g[g.length - 1].d, r})).sort((a, b) => a.d.localeCompare(b.d));
+      }
+      groups.forEach(g => { const rs = [...new Set(g.ms.map(m => m.r).filter(Boolean))]; const dates = fmtDate(g.d) + (g.last !== g.d ? ' – ' + fmtDate(g.last) : ''); g.label = rs.length === 1 && c.type !== 'league' ? 'Speeldag ' + rs[0] + (c.type === 'nation' ? ' · ' + dates : '') : dates; });
     }
     if (groups.length) out.push({c, groups});
   });
@@ -344,6 +356,16 @@ function pouleHTML(sid) {
   <p class="dim">Verwachte punten volgens de poule-regels (exact 5, juist doelsaldo 3, juiste uitkomst 2), berekend over alle mogelijke uitslagen. De beste keuze is niet altijd de meest waarschijnlijke uitslag: een voorspelling die bij veel uitslagen nog 2 of 3 punten oplevert, scoort gemiddeld vaak beter. Topscorerpunten zitten hier niet in.</p></section>`;
 }
 
+// datum en aftraptijd: uit het speelschema, anders uit de odds (landenduels hebben in het schema alleen een datum)
+function mWhen(sid, m) { if (m.t) return {d: m.d, t: m.t}; const e = oddsForMatch(sid, m); return e && e.t ? {d: e.d, t: e.t} : {d: m.d, t: ''}; }
+// duels opgesplitst per divisie (Nations League: groep A1 → Divisie A), binnen een divisie op aftraptijd; anders één deel
+function divParts(sid, ms) {
+  const key = m => { const w = mWhen(sid, m); return w.d + ' ' + (w.t || '99') + ' ' + (m.g || ''); };
+  const srt = l => l.slice().sort((a, b) => key(a).localeCompare(key(b)) || a.id - b.id);
+  if (!ms.length || !ms.every(m => isNation(m.c) && /^[A-D]\d/.test(m.g || ''))) return [{label: '', ms: ms.some(m => isNation(m.c)) ? srt(ms) : ms}];
+  const by = {}; ms.forEach(m => (by[m.g[0]] = by[m.g[0]] || []).push(m));
+  return Object.keys(by).sort().map(k => ({label: 'Divisie ' + k, ms: srt(by[k])}));
+}
 function pageWeek() {
   const sid = SID(), k = ui.weekOff || 0, sets = upcomingSets(sid);
   const types = ui.weekTypes || {league: true, euro: true, nation: true};
@@ -351,11 +373,11 @@ function pageWeek() {
     ${['league', 'euro', 'nation'].map(t => `<label class="chk"><input type="checkbox" data-change="weektype" data-k="${t}" ${types[t] ? 'checked' : ''}> ${TYPE_LABEL[t]}</label>`).join('')}</div>`;
   const blocks = sets.filter(x => types[x.c.type] && x.groups[k]).map(({c, groups}) => {
     const g = groups[k];
-    const rows = g.ms.map(m => {
-      const P = predictMatch(sid, m), pb = P.pb, hn = tName(m.h), an = tName(m.a), pl = P.play, open = ui.ahOpen === m.id;
+    const rowsOf = list => list.map(m => {
+      const W = mWhen(sid, m), P = predictMatch(sid, m), pb = P.pb, hn = tName(m.h), an = tName(m.a), pl = P.play, open = ui.ahOpen === m.id;
       const play = `<b>${esc(pl.label)}</b><br><small>${esc(P.sure)} · faire odds ${num(pl.fair, 2)}${pl.odds ? ` · beste ${num(pl.odds, 2)} ${esc(pl.bm)}${pl.via ? ' (' + pl.via + ')' : ''} → <span class="${pl.ev >= vset('valueThr') ? 'pos' : 'dim'}">${pl.ev >= 0 ? '+' : ''}${pct(pl.ev, 1)}</span>` : ''}</small>${P.value ? `<br><small class="alt">Waarde: <b>${esc(P.value.label)}</b> @ ${num(P.value.odds, 2)} (+${pct(P.value.ev, 1)})</small>` : ''}`;
       const dev = P.dev ? `<b>${esc(P.dev.label)}</b><br><small>model ${pct(P.dev.pm)} · markt ${pct(P.dev.pk)}</small>` : (P.hasOdds ? '<span class="dim">eens</span>' : '<span class="dim">geen odds</span>');
-      return `<tr><td class="l mono dim hide-s">${fmtDate(m.d)}${m.t ? ' ' + esc(m.t) : ''}</td><td class="l wm">${teamLink(m.h)} – ${teamLink(m.a)}<small class="show-s">${fmtDate(m.d)}${m.t ? ' ' + esc(m.t) : ''}</small><small class="blk">${P.hasOdds ? 'markt + model' : 'alleen model'}${P.inj && (P.inj[4].length || P.inj[5].length) ? ' · afwezigen verwerkt' : ''}</small><small class="show-s mono">1 ${pct(pb[0])} · X ${pct(pb[1])} · 2 ${pct(pb[2])}</small></td>
+      return `<tr><td class="l mono dim hide-s">${fmtDate(W.d)}${W.t ? ' ' + esc(W.t) : ''}</td><td class="l wm">${teamLink(m.h)} – ${teamLink(m.a)}<small class="show-s">${fmtDate(W.d)}${W.t ? ' ' + esc(W.t) : ''}</small><small class="blk">${P.hasOdds ? (wFor(m.c) > 0 ? 'markt + model' : 'markt') : 'alleen model'}${P.inj && (P.inj[4].length || P.inj[5].length) ? ' · afwezigen verwerkt' : ''}</small><small class="show-s mono">1 ${pct(pb[0])} · X ${pct(pb[1])} · 2 ${pct(pb[2])}</small></td>
         ${pb.map((x, i) => `<td class="pc hide-s" style="--p:${x.toFixed(3)}"><b>${pct(x)}</b><br><small>${num(1 / x, 2)}</small></td>`).join('')}
         <td class="mono hide-s l">${P.top.slice(0, 3).map(([i, j, v]) => `${i}–${j} <small>${pct(v)}</small>`).join('<br>')}</td>
         <td class="l wp">${play}</td><td class="l hide-s">${dev}</td>
@@ -366,7 +388,9 @@ function pageWeek() {
           ${P.dev ? `<p class="dim">Het model wijkt ${Math.round(Math.abs(P.dev.d) * 100)} procentpunt af van de markt bij ${esc(P.dev.label)}. Vaak weet de markt iets wat het model mist (blessures, schorsingen, rotatie, trainerswissel); soms ziet het model iets (bijv. sterke xG) dat de markt onderschat. Jouw eigen kennis van de ploegen beslist.</p>` : ''}
           ${ahTable(P.M, P.N, hn, an, 1.5)}<p class="dim">Meest waarschijnlijke uitslagen: ${P.top.map(([i, j, v]) => `${i}–${j} (${pct(v, 1)})`).join(' · ')}</p></td></tr>` : ''}`;
     }).join('');
-    return `<section class="wk"><h3>${esc(c.name)} <small>· ${esc(g.label)}</small></h3><div class="tw"><table class="tbl compact wkt"><thead><tr><th class="l hide-s">Datum</th><th class="l">Wedstrijd</th><th class="hide-s">1</th><th class="hide-s">X</th><th class="hide-s">2</th><th class="l hide-s">Uitslagen</th><th class="l">Voorspelling en speelwijze</th><th class="l hide-s">Model wijkt af</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
+    const tbl = list => `<div class="tw"><table class="tbl compact wkt"><thead><tr><th class="l hide-s">Datum</th><th class="l">Wedstrijd</th><th class="hide-s">1</th><th class="hide-s">X</th><th class="hide-s">2</th><th class="l hide-s">Uitslagen</th><th class="l">Voorspelling en speelwijze</th><th class="l hide-s">Model wijkt af</th><th></th></tr></thead><tbody>${rowsOf(list)}</tbody></table></div>`;
+    const parts = divParts(sid, g.ms);
+    return `<section class="wk"><h3>${esc(c.name)} <small>· ${esc(g.label)}</small></h3>${parts.map(p => (p.label ? `<h4 class="divk">${esc(p.label)}</h4>` : '') + tbl(p.ms)).join('')}</section>`;
   }).join('');
   const missing = Object.values(S.comps).filter(c => types[c.type] && (S.seasons[sid].comps[c.id] || {teams: []}).teams.length && !sets.some(x => x.c.id === c.id && x.groups[k]));
   return `<h2>Komende wedstrijden</h2>${tabs}
