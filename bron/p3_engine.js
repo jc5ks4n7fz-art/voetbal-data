@@ -3,7 +3,7 @@ const STORE_KEY = 'voetbalvoorspeller-v1', UI_KEY = 'voetbalvoorspeller-ui-v1';
 const DEFAULT_SETTINGS = {
   halfLife: 365, priorMatches: 8, regress: 0.33, promotedPenalty: 0.15, relegatedBonus: 0.2,
   leagueScale: 0.6, tierGap: 0.55, otherLeague: -0.5, clubCoefWeight: 0.2, hfaPrior: 0.12,
-  useHistory: true, hfaTau: 600, hfaTauNoHist: 600, xgWeight: 0.5, spread: 1.6, supCap: 1.0, rhoMode: 'fit', rhoFixed: -0.05, maxGoals: 10, mcRuns: 10000, simNoise: 0.15, penShareHome: 0.5,
+  useHistory: true, hfaTau: 600, hfaTauNoHist: 600, xgWeight: 0.5, formW: 0.05, spread: 1.6, supCap: 1.0, rhoMode: 'fit', rhoFixed: -0.05, maxGoals: 10, mcRuns: 10000, simNoise: 0.15, penShareHome: 0.5,
   eloHome: 100, eloK: {friendly: 20, nl: 35, qual: 40, final: 55}, eloGoals: 2.6, nationRho: -0.04, eloRegress: 0, refDate: '',
   valueW: 0.15, valueThr: 0.03, bank: 500, kellyFrac: 0.25, maxStake: 0.02, maxOdds: 6, valueWComp: '', injAtt: 1, injDef: 1
 };
@@ -110,7 +110,7 @@ function mmdd(s) { const mo = +s.slice(0, 2); return (mo >= 7 ? '2026' : '2027')
 function nlRound(d) { const x = d.slice(5); if (x <= '09-26') return 1; if (x <= '09-29') return 2; if (x <= '10-03') return 3; if (x <= '10-06') return 4; if (x <= '11-14') return 5; return 6; }
 
 function buildSeed() {
-  S = {v: 1, settings: clone(DEFAULT_SETTINGS), coef: clone(SEED_COEF), teams: {}, comps: {}, seasons: {}, matches: [], adj: {}, aliases: clone(SEED_ALIASES), active: '2026/27', nextId: 1, created: SEED_DATE, modelRev: 5};
+  S = {v: 1, settings: clone(DEFAULT_SETTINGS), coef: clone(SEED_COEF), teams: {}, comps: {}, seasons: {}, matches: [], adj: {}, aliases: clone(SEED_ALIASES), active: '2026/27', nextId: 1, created: SEED_DATE, modelRev: 6};
   SEED_COMPS.forEach(c => S.comps[c.id] = clone(c));
   const sid = '2026/27';
   const season = S.seasons[sid] = {id: sid, status: 'actief', start: '2026-07-01', end: '2027-06-30', comps: {}, prior: {}, archive: null};
