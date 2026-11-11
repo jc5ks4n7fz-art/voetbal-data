@@ -1496,5 +1496,31 @@
   "minOdds": 1.541,
   "stake": 10,
   "ref": "Pinnacle"
+ },
+ {
+  "id": "1528960|1x2|-|2",
+  "at": "2026-11-11T18:03:56.045Z",
+  "c": "UNL",
+  "d": "2026-11-12",
+  "t": "20:45",
+  "ko": "2026-11-12T19:45:00Z",
+  "h": "Italy",
+  "a": "France",
+  "src": "api",
+  "fid": "1528960",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Frankrijk",
+  "odds": 1.89,
+  "bm": "Unibet",
+  "p": 0.5573,
+  "pMarkt": 0.5573,
+  "pModel": 0.5201,
+  "ev": 0.0533,
+  "minOdds": 1.848,
+  "stake": 7,
+  "ref": "Pinnacle"
  }
 ]
