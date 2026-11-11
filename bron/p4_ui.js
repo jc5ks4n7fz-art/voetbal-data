@@ -732,6 +732,7 @@ function pageSettings() {
   ${f('hfaTau', 'Gewicht prior thuisvoordeel (duels)', 'Hoe sterk het thuisvoordeel per competitie naar de prior wordt getrokken.', 1)}
   ${f('hfaTauNoHist', 'Idem, competities zonder historie', 'Voor competities zonder data van vorige seizoenen (KKD, Ekstraklasa): sterker naar de prior, omdat één seizoen toeval bevat.', 1)}
   ${f('xgWeight', 'Gewicht expected goals (0–1)', 'Waar xG bekend is (API-Football), telt het model deze mix van xG en echte doelpunten. 0 = alleen doelpunten.', 0.05)}
+  ${f('formW', 'Recente vorm', 'Weegt mee of een ploeg in de laatste 5 duels beter of slechter presteerde dan verwacht (0 = uit).', 0.05)}
   ${f('spread', 'Kalibratie: spreiding', 'Vergroot het krachtsverschil per duel (1 = uit). Afgestemd met de backtest en slotodds.', 0.05)}
   ${f('supCap', 'Kalibratie: verzadiging', 'Remt extreme krachtsverschillen af (0 = uit).', 0.05)}
   </div><h3>Waarde en inzet</h3><div class="sgrid">
@@ -1013,6 +1014,8 @@ function boot() {
   if ((S.modelRev || 0) < 4) { const OLD = {spread: 1.3}; for (const k in OLD) if (S.settings[k] === OLD[k]) S.settings[k] = DEFAULT_SETTINGS[k]; S.modelRev = 4; save(); }
   // modelrevisie 5 (9 nov. 2026): spread 1,5 → 1,6 (log-loss op 904 duels 0,9511 → 0,9500, controleweken vanaf 12 okt. 0,9182 → 0,9159)
   if ((S.modelRev || 0) < 5) { const OLD = {spread: 1.5}; for (const k in OLD) if (S.settings[k] === OLD[k]) S.settings[k] = DEFAULT_SETTINGS[k]; S.modelRev = 5; save(); }
+  // modelrevisie 6 (11 nov. 2026): recente vorm (formW 0 → 0,05; log-loss op 904 duels 0,9500 → 0,9486, controleweken vanaf 12 okt. 0,9159 → 0,9124)
+  if ((S.modelRev || 0) < 6) { if (S.settings.formW == null) S.settings.formW = DEFAULT_SETTINGS.formW; S.modelRev = 6; save(); }
   loadUI(); if (!S.comps[ui.comp]) { ui.comp = 'NED2'; ui.type = 'league'; } if (S.comps[ui.comp].type !== ui.type) ui.type = S.comps[ui.comp].type;
   if (!FN[ui.type].some(x => x[0] === ui.fn)) ui.fn = 'stand';
   const app = document.getElementById('app');

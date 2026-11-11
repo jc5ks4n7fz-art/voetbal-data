@@ -49,6 +49,8 @@ roep `buildSeed()` aan (zie toets/fit.js).
 - Rating-fit: gewogen Poisson-MLE met blok-Gauss-Seidel (halfLife 365 d), doel = 0,5·xG + 0,5·goals,
   historie van 2 vorige seizoenen als prior, thuisvoordeel per competitie (hfaPrior 0,12, hfaTau 600).
 - Kalibratie: spread/supCap op de supremacy (zie `calibrate()`); de wekelijkse toets stelt spread bij.
+- Recente vorm (formW 0,05, modelRev 6): gemiddeld verschil tussen behaald en verwacht doelsaldo (xG/goals-mix) in de
+  laatste 5 duels van het seizoen telt mee in de verwachte doelpunten; cijfers in toets/README.md.
 - Blessures: λ × exp(−injAtt·aandeel goals+½assists afwezigen + injDef·belang afwezige verdedigers tegenstander).
 - Voorspelling = faire marktkans (Pinnacle/Betfair Exchange, power-devig) gecombineerd met het model
   (gewicht 0,15, per competitie instelbaar via valueWComp); zonder odds alleen het model.
@@ -63,7 +65,7 @@ roep `buildSeed()` aan (zie toets/fit.js).
 
 - Een standaardinstelling (DEFAULT_SETTINGS) alleen wijzigen als de toets aantoonbaar beter is: log-loss
   minstens 0,001 beter op de laatste 4 weken (niet gebruikt bij het kiezen) én over het hele seizoen. Verhoog dan
-  `modelRev` en voeg in boot() een migratie toe zoals bij modelRev 3–5.
+  `modelRev` en voeg in boot() een migratie toe zoals bij modelRev 3–6.
 - Nooit uitslagen, odds of wedstrijden verzinnen. De API-sleutel (secret APIFOOTBALL_KEY) staat alleen in GitHub;
   nooit tonen of loggen.
 - Workflows schrijven naar data/: altijd `git pull --rebase` vóór push.

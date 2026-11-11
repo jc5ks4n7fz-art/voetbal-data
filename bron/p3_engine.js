@@ -3,7 +3,7 @@ const STORE_KEY = 'voetbalvoorspeller-v1', UI_KEY = 'voetbalvoorspeller-ui-v1';
 const DEFAULT_SETTINGS = {
   halfLife: 365, priorMatches: 8, regress: 0.33, promotedPenalty: 0.15, relegatedBonus: 0.2,
   leagueScale: 0.6, tierGap: 0.55, otherLeague: -0.5, clubCoefWeight: 0.2, hfaPrior: 0.12,
-  useHistory: true, hfaTau: 600, hfaTauNoHist: 600, xgWeight: 0.5, spread: 1.6, supCap: 1.0, rhoMode: 'fit', rhoFixed: -0.05, maxGoals: 10, mcRuns: 10000, simNoise: 0.15, penShareHome: 0.5,
+  useHistory: true, hfaTau: 600, hfaTauNoHist: 600, xgWeight: 0.5, formW: 0.05, spread: 1.6, supCap: 1.0, rhoMode: 'fit', rhoFixed: -0.05, maxGoals: 10, mcRuns: 10000, simNoise: 0.15, penShareHome: 0.5,
   eloHome: 100, eloK: {friendly: 20, nl: 35, qual: 40, final: 55}, eloGoals: 2.6, nationRho: -0.04, eloRegress: 0, refDate: '',
   valueW: 0.15, valueThr: 0.03, bank: 500, kellyFrac: 0.25, maxStake: 0.02, maxOdds: 6, valueWComp: '', injAtt: 1, injDef: 1
 };
@@ -110,7 +110,7 @@ function mmdd(s) { const mo = +s.slice(0, 2); return (mo >= 7 ? '2026' : '2027')
 function nlRound(d) { const x = d.slice(5); if (x <= '09-26') return 1; if (x <= '09-29') return 2; if (x <= '10-03') return 3; if (x <= '10-06') return 4; if (x <= '11-14') return 5; return 6; }
 
 function buildSeed() {
-  S = {v: 1, settings: clone(DEFAULT_SETTINGS), coef: clone(SEED_COEF), teams: {}, comps: {}, seasons: {}, matches: [], adj: {}, aliases: clone(SEED_ALIASES), active: '2026/27', nextId: 1, created: SEED_DATE, modelRev: 5};
+  S = {v: 1, settings: clone(DEFAULT_SETTINGS), coef: clone(SEED_COEF), teams: {}, comps: {}, seasons: {}, matches: [], adj: {}, aliases: clone(SEED_ALIASES), active: '2026/27', nextId: 1, created: SEED_DATE, modelRev: 6};
   SEED_COMPS.forEach(c => S.comps[c.id] = clone(c));
   const sid = '2026/27';
   const season = S.seasons[sid] = {id: sid, status: 'actief', start: '2026-07-01', end: '2027-06-30', comps: {}, prior: {}, archive: null};
@@ -349,7 +349,20 @@ function clubFit(sid, before) {
   }
   const nm = {}; cur.forEach(m => { nm[m.h] = (nm[m.h] || 0) + 1; nm[m.a] = (nm[m.a] || 0) + 1; });
   let ma = 0, md = 0; T.forEach(t => { ma += att[ix[t]]; md += def[ix[t]]; }); ma /= T.length || 1; md /= T.length || 1;
-  const fit = {sid, T, ix, att, def, hfa, mu, rho, n: cur.length, nHist: hist.length, nm, ma, md,
+  // recente vorm: gemiddeld verschil tussen behaald (xG/goals-mix) en verwacht doelsaldo in de laatste 5 duels van dit seizoen
+  // (alleen gebruikt als instelling formW > 0; de rating zelf reageert met halfLife traag op een ploeg die veranderd is)
+  const form = {};
+  if (st.formW > 0) {
+    const rec = {}; const order = cur.map((m, k) => k).sort((x, y) => cur[x].d < cur[y].d ? 1 : cur[x].d > cur[y].d ? -1 : 0);
+    for (const k of order) {
+      const m = ms[k], i = MI[k][0], j = MI[k][1], ha = m.n ? 0 : hfa[m.c];
+      const res = (GH[k] - GA[k]) - (Math.exp(mu + ha + att[i] - def[j]) - Math.exp(mu + att[j] - def[i]));
+      if ((rec[m.h] = rec[m.h] || []).length < 5) rec[m.h].push(res);
+      if ((rec[m.a] = rec[m.a] || []).length < 5) rec[m.a].push(-res);
+    }
+    for (const t in rec) if (rec[t].length >= 3) form[t] = rec[t].reduce((x, y) => x + y, 0) / rec[t].length;
+  }
+  const fit = {sid, T, ix, att, def, hfa, mu, rho, n: cur.length, nHist: hist.length, nm, ma, md, form,
     r(t) { const i = ix[t]; if (i == null) { const p = priorOf(sid, t); return {a: p.a, d: p.d}; } return {a: att[i], d: def[i]}; }};
   CACHE.set(key, fit); return fit;
 }
@@ -396,7 +409,8 @@ function lambdas(sid, cid, h, a, neutral, opt) {
   const f = clubFit(sid, opt.before), rh = f.r(h), ra = f.r(a);
   const ah = opt.noAdj ? 0 : adjV(h), aa = opt.noAdj ? 0 : adjV(a);
   const hf = neutral ? 0 : (f.hfa[cid] != null ? f.hfa[cid] : S.settings.hfaPrior);
-  return calibrate(Math.exp(f.mu + hf + rh.a + ah / 2 - ra.d - aa / 2), Math.exp(f.mu + ra.a + aa / 2 - rh.d - ah / 2), f.rho);
+  const fw = S.settings.formW > 0 ? S.settings.formW * ((f.form[h] || 0) - (f.form[a] || 0)) / 2 : 0;
+  return calibrate(Math.exp(f.mu + hf + rh.a + ah / 2 - ra.d - aa / 2 + fw), Math.exp(f.mu + ra.a + aa / 2 - rh.d - ah / 2 - fw), f.rho);
 }
 // Kalibratie (afgestemd met de backtest en vergeleken met slotodds): het krachtsverschil s = ½·ln(λthuis/λuit) wordt
 // vergroot met factor 'spread' maar verzadigt boven 'supCap' (tanh), zodat extreme duels niet ontsporen. Het totaal λthuis·λuit blijft gelijk.
