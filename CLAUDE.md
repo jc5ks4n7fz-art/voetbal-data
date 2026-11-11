@@ -22,7 +22,8 @@ bron/            ← de master van de pagina; wijzig hier, nooit in een gebouwde
   update_data.py haalt alle data op en schrijft het datablok in de pagina
   waarde.js      markeert waarde-bets en voegt ze toe aan data/picks.json (CLV-logboek)
 toets/           walk-forward toetsen (zie toets/README.md)
-data/            door GitHub Actions bijgewerkt: apifootball.json, odds.json, blessures.json, spelers.json,
+data/            door GitHub Actions bijgewerkt: apifootball.json (ook scheidsrechter en stadion per duel), odds.json,
+                 blessures.json, spelers.json, opstellingen.json (basiselftal, formatie en trainer per gespeeld duel),
                  fd/*.csv (football-data.co.uk), picks.json (markeringen)
 rapporten/       weekrapporten van de wekelijkse toets
 *_ophalen.py     scripts van de GitHub Actions (API-Football, odds, Kambi-feed, football-data.co.uk)

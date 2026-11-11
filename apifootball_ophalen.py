@@ -79,6 +79,7 @@ def stat(lijst, naam):
 STATUS = "data/status.json"
 BLESSURES = "data/blessures.json"
 SPELERS = "data/spelers.json"
+OPSTELLINGEN = "data/opstellingen.json"
 LEAGUES = {"ENG1", "GER1", "ESP1", "ITA1", "FRA1", "POR1", "BEL1", "NED1", "TUR1", "POL1", "NED2"}
 
 
@@ -139,6 +140,36 @@ def spelers(seizoen, W, sleutel, stand, log, SP, ververs_dagen):
     if n: log.append(f"spelers {seizoen}: {n} clubs bijgewerkt")
 
 
+def opstelling(resp):
+    """Antwoord van fixtures/lineups -> [thuis, uit], elk {"trainer": [id, naam], "formatie": "4-3-3", "basis": [speler-id's]}.
+    None als de bron geen (volledige) opstelling heeft."""
+    if len(resp) != 2:
+        return None
+    uit = []
+    for t in resp:
+        basis = [(x.get("player") or {}).get("id") for x in t.get("startXI") or []]
+        basis = [i for i in basis if i]
+        if len(basis) < 11:
+            return None
+        c = t.get("coach") or {}
+        uit.append({"trainer": [c.get("id"), c.get("name")], "formatie": t.get("formation"), "basis": basis})
+    return uit
+
+
+def opstellingen(W, sleutel, stand, log, OP):
+    """Basiselftallen en trainer van gespeelde duels (huidig en vorig seizoen), nieuwste eerst; 1 verzoek per duel, eenmalig.
+    Nodig om te toetsen of de werkelijke opstelling (rotatie, afwezige basisspelers, trainerswissel) de voorspelling verbetert."""
+    todo = sorted([k for k, w in W.items() if w["status"] in KLAAR and w.get("seizoen") in SEIZOENEN[:2] and k not in OP],
+                  key=lambda k: W[k]["datum"], reverse=True)
+    n = 0
+    try:
+        for fid in todo:
+            OP[fid] = opstelling(vraag("fixtures/lineups", {"fixture": fid}, sleutel, stand))  # None = niet beschikbaar, niet opnieuw proberen
+            n += 1
+    finally:
+        log.append(f"opstellingen: {n} duels opgehaald, {len(todo) - n} nog te doen, {sum(1 for v in OP.values() if v)} met opstelling")
+
+
 def schrijf_status(ok, melding, extra=None):
     """Status in de repository, zodat ook zonder toegang tot de Actions-logboeken zichtbaar is wat er gebeurde.
     Bevat nooit de sleutel."""
@@ -163,6 +194,7 @@ def main():
     W = db["wedstrijden"]
     BL = laad(BLESSURES, {"seizoenen": {}, "per_wedstrijd": {}})
     SP = laad(SPELERS, {"opgehaald": {}, "teams": {}})
+    OP = laad(OPSTELLINGEN, {})
     stand = {"over": None, "gebruikt": 0}
     log = []
     fout = None
@@ -192,6 +224,9 @@ def main():
                     "thuisgoals": f["goals"]["home"], "uitgoals": f["goals"]["away"],
                     "rust": [f["score"]["halftime"]["home"], f["score"]["halftime"]["away"]],
                     "na90": [f["score"]["fulltime"]["home"], f["score"]["fulltime"]["away"]],
+                    # zit al in hetzelfde antwoord (geen extra verzoek): scheidsrechter en stadion
+                    "scheids": f["fixture"].get("referee"),
+                    "stadion": [(f["fixture"].get("venue") or {}).get("id"), (f["fixture"].get("venue") or {}).get("name"), (f["fixture"].get("venue") or {}).get("city")],
                 })
                 W[fid] = w
           if seizoen != SEIZOENEN[0] and not fouten_seizoen:
@@ -221,6 +256,8 @@ def main():
         if len(SEIZOENEN) > 1:
             blessures(SEIZOENEN[1], sleutel, stand, log, BL)
             spelers(SEIZOENEN[1], W, sleutel, stand, log, SP, ververs_dagen=None)
+        # 4) opstellingen en trainers van gespeelde duels (als laatste: gebruikt wat er van het budget over is)
+        opstellingen(W, sleutel, stand, log, OP)
     except Budget:
         log.append("dagbudget bereikt; morgen verder")
     except urllib.error.HTTPError as e:
@@ -232,7 +269,7 @@ def main():
         os.makedirs(os.path.dirname(UITVOER), exist_ok=True)
         with open(UITVOER, "w", encoding="utf-8") as fh:
             json.dump(db, fh, ensure_ascii=False, separators=(",", ":"))
-        for pad, obj in ((BLESSURES, BL), (SPELERS, SP)):
+        for pad, obj in ((BLESSURES, BL), (SPELERS, SP), (OPSTELLINGEN, OP)):
             with open(pad, "w", encoding="utf-8") as fh:
                 json.dump(obj, fh, ensure_ascii=False, separators=(",", ":"))
         met = sum(1 for w in W.values() if w.get("stats") and w["stats"].get("xg") and w["stats"]["xg"][0] is not None)
