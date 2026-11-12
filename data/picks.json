@@ -1157,7 +1157,21 @@
   "ev": 0.0401,
   "minOdds": 3.911,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.97,
+    4.15,
+    1.85
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    3.839,
+    4.008,
+    1.839
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552229|1x2|-|2",
@@ -1677,7 +1691,21 @@
   "ev": 0.0781,
   "minOdds": 2.063,
   "stake": 10,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.81,
+    3.17,
+    2.75
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.634,
+    3.147,
+    2.726
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528963|ah|-1|1",
