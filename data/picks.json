@@ -1873,7 +1873,19 @@
   "ev": 0.0949,
   "minOdds": 2.822,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.52,
+    2.55
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.502,
+    2.507
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1557469|1x2|-|0",
@@ -1977,7 +1989,19 @@
   "ev": 0.0413,
   "minOdds": 1.583,
   "stake": 9,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.7,
+    1.5
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.448,
+    1.542
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528965|ah|1.75|1",
@@ -2003,7 +2027,19 @@
   "ev": 0.0364,
   "minOdds": 2.006,
   "stake": 5,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2,
+    1.89
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.897,
+    1.92
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551877|1x2|-|0",
@@ -2055,6 +2091,84 @@
   "ev": 0.0339,
   "minOdds": 1.823,
   "stake": 5,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1528973|1x2|-|0",
+  "at": "2026-11-13T23:53:10.645Z",
+  "c": "UNL",
+  "d": "2026-11-14",
+  "t": "18:00",
+  "ko": "2026-11-14T17:00:00Z",
+  "h": "Georgia",
+  "a": "Hungary",
+  "src": "api",
+  "fid": "1528973",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Georgië",
+  "odds": 3.35,
+  "bm": "Unibet",
+  "p": 0.3139,
+  "pMarkt": 0.3139,
+  "pModel": 0.3702,
+  "ev": 0.0516,
+  "minOdds": 3.281,
+  "stake": 3,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1528995|1x2|-|1",
+  "at": "2026-11-13T23:53:10.645Z",
+  "c": "UNL",
+  "d": "2026-11-17",
+  "t": "20:45",
+  "ko": "2026-11-17T19:45:00Z",
+  "h": "Hungary",
+  "a": "Northern Ireland",
+  "src": "api",
+  "fid": "1528995",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 1,
+  "label": "X gelijk",
+  "odds": 3.9,
+  "bm": "Bet365",
+  "p": 0.269,
+  "pMarkt": 0.269,
+  "pModel": 0.2288,
+  "ev": 0.0491,
+  "minOdds": 3.829,
+  "stake": 2,
+  "ref": "gemiddelde bookmakers"
+ },
+ {
+  "id": "1528980|ou|2.5|1",
+  "at": "2026-11-13T23:53:10.645Z",
+  "c": "UNL",
+  "d": "2026-11-15",
+  "t": "18:00",
+  "ko": "2026-11-15T17:00:00Z",
+  "h": "Belarus",
+  "a": "Albania",
+  "src": "api",
+  "fid": "1528980",
+  "div": null,
+  "mk": "ou",
+  "line": 2.5,
+  "side": 1,
+  "label": "Under 2,5",
+  "odds": 1.7,
+  "bm": "Unibet",
+  "p": 0.6067,
+  "pMarkt": 0.6067,
+  "pModel": 0.5171,
+  "ev": 0.0315,
+  "minOdds": 1.698,
+  "stake": 6,
   "ref": "Pinnacle"
  }
 ]
