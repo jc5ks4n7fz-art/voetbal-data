@@ -1,5 +1,5 @@
 {
- "tijd": "2026-11-14T15:20:37Z",
+ "tijd": "2026-11-14T20:55:52Z",
  "ok": true,
  "melding": "ok",
  "log": [
@@ -13,13 +13,13 @@
   "NED1: 9 duels met odds",
   "TUR1: 0 duels met odds",
   "POL1: 9 duels met odds",
-  "NED2: 8 duels met odds",
+  "NED2: 1 duels met odds",
   "UCL: 0 duels met odds",
   "UEL: 0 duels met odds",
   "UECL: 0 duels met odds",
   "UNL: programma 156 duels ('UEFA Nations League')",
-  "UNL: 33 duels met odds",
-  "Kambi (Unibet, Jack's, LeoVegas): 543 regels opgehaald, 114 duels gekoppeld",
-  "verzoeken gebruikt: 35, over volgens API: 7403"
+  "UNL: 26 duels met odds",
+  "Kambi (Unibet, Jack's, LeoVegas): 501 regels opgehaald, 102 duels gekoppeld",
+  "verzoeken gebruikt: 35, over volgens API: 7368"
  ]
 }

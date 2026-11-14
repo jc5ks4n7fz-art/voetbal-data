@@ -1105,7 +1105,21 @@
   "ev": 0.0968,
   "minOdds": 3.475,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.98,
+    3.84,
+    3.56
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.951,
+    3.731,
+    3.389
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551884|1x2|-|0",
@@ -1587,7 +1601,21 @@
   "ev": 0.0663,
   "minOdds": 1.642,
   "stake": 10,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.58,
+    4.62,
+    4.94
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.579,
+    4.328,
+    4.687
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552821|1x2|-|0",
@@ -2065,7 +2093,21 @@
   "ev": 0.0346,
   "minOdds": 1.603,
   "stake": 7,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.49,
+    4.85,
+    5.82
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.484,
+    4.496,
+    5.515
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1570458|1x2|-|0",
@@ -2117,7 +2159,21 @@
   "ev": 0.0516,
   "minOdds": 3.281,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.4,
+    3.18,
+    2.37
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    3.14,
+    3.094,
+    2.4
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528995|1x2|-|1",
@@ -2273,7 +2329,19 @@
   "ev": 0.1211,
   "minOdds": 3.216,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.41,
+    2.91
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.35,
+    3.01
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528986|ah|1|0",
@@ -2377,7 +2445,19 @@
   "ev": 0.0358,
   "minOdds": 2.067,
   "stake": 5,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.95,
+    1.95
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.873,
+    1.935
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528974|ah|-1.5|1",
@@ -2403,7 +2483,19 @@
   "ev": 0.0315,
   "minOdds": 1.578,
   "stake": 7,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.69,
+    1.49
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.521,
+    1.528
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551878|ah|-0.75|0",
@@ -2429,6 +2521,70 @@
   "ev": 0.0311,
   "minOdds": 1.448,
   "stake": 10,
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.35,
+    3.25
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.376,
+    2.854
+   ],
+   "bron": "laatste API-waarneming"
+  }
+ },
+ {
+  "id": "1545616|1x2|-|1",
+  "at": "2026-11-14T20:56:56.493Z",
+  "c": "UNL",
+  "d": "2026-11-15",
+  "t": "15:00",
+  "ko": "2026-11-15T14:00:00Z",
+  "h": "Latvia",
+  "a": "Armenia",
+  "src": "api",
+  "fid": "1545616",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 1,
+  "label": "X gelijk",
+  "odds": 3.5,
+  "bm": "Jacks",
+  "p": 0.2973,
+  "pMarkt": 0.2973,
+  "pModel": 0.2732,
+  "ev": 0.0406,
+  "minOdds": 3.464,
+  "stake": 2,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1553235|1x2|-|2",
+  "at": "2026-11-14T20:56:56.493Z",
+  "c": "POL1",
+  "d": "2026-11-21",
+  "t": "17:30",
+  "ko": "2026-11-21T16:30:00Z",
+  "h": "Zaglebie Lubin",
+  "a": "Gornik Zabrze",
+  "src": "api",
+  "fid": "1553235",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Górnik Zabrze",
+  "odds": 2.08,
+  "bm": "Jacks",
+  "p": 0.4962,
+  "pMarkt": 0.4997,
+  "pModel": 0.4762,
+  "ev": 0.0321,
+  "minOdds": 2.076,
+  "stake": 4,
   "ref": "Pinnacle"
  }
 ]
