@@ -1145,7 +1145,21 @@
   "ev": 0.0377,
   "minOdds": 3.474,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.19,
+    3.71,
+    2.17
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    3.064,
+    3.582,
+    2.121
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528958|1x2|-|0",
@@ -1991,7 +2005,19 @@
   "ev": 0.0696,
   "minOdds": 3.13,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.48,
+    2.73
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.437,
+    2.703
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1545614|ah|-0.5|1",
@@ -2225,7 +2251,19 @@
   "ev": 0.0315,
   "minOdds": 1.698,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.45,
+    1.57
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.334,
+    1.589
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1545652|dc|-|2",
@@ -2559,7 +2597,21 @@
   "ev": 0.0406,
   "minOdds": 3.464,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.27,
+    3.25,
+    2.37
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    3.134,
+    3.149,
+    2.328
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1553235|1x2|-|2",
@@ -2896,6 +2948,84 @@
   "pModel": 0.2139,
   "ev": 0.03,
   "minOdds": 4.6,
+  "stake": 1,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1553232|1x2|-|0",
+  "at": "2026-11-15T17:24:53.892Z",
+  "c": "POL1",
+  "d": "2026-11-22",
+  "t": "12:15",
+  "ko": "2026-11-22T11:15:00Z",
+  "h": "Raków Częstochowa",
+  "a": "Widzew Łódź",
+  "src": "api",
+  "fid": "1553232",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Raków Częstochowa",
+  "odds": 2.16,
+  "bm": "Unibet",
+  "p": 0.4914,
+  "pMarkt": 0.4774,
+  "pModel": 0.568,
+  "ev": 0.0613,
+  "minOdds": 2.096,
+  "stake": 7,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1551894|1x2|-|0",
+  "at": "2026-11-15T17:24:53.892Z",
+  "c": "NED2",
+  "d": "2026-11-20",
+  "t": "20:00",
+  "ko": "2026-11-20T19:00:00Z",
+  "h": "FC OSS",
+  "a": "Roda",
+  "src": "api",
+  "fid": "1551894",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 TOP Oss",
+  "odds": 3.8,
+  "bm": "Bet365",
+  "p": 0.2754,
+  "pMarkt": 0.2734,
+  "pModel": 0.2859,
+  "ev": 0.0464,
+  "minOdds": 3.741,
+  "stake": 2,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1528996|1x2|-|0",
+  "at": "2026-11-15T17:24:53.892Z",
+  "c": "UNL",
+  "d": "2026-11-17",
+  "t": "20:45",
+  "ko": "2026-11-17T19:45:00Z",
+  "h": "Israel",
+  "a": "Austria",
+  "src": "api",
+  "fid": "1528996",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Israël",
+  "odds": 5,
+  "bm": "Unibet",
+  "p": 0.2071,
+  "pMarkt": 0.2071,
+  "pModel": 0.1946,
+  "ev": 0.0357,
+  "minOdds": 4.972,
   "stake": 1,
   "ref": "Pinnacle"
  }
