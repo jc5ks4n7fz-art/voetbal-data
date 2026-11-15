@@ -1889,7 +1889,21 @@
   "ev": 0.1116,
   "minOdds": 5.461,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.49,
+    4.5,
+    7.1
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.494,
+    4.385,
+    6.44
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1545654|ou|1.5|1",
@@ -1979,7 +1993,19 @@
   "ev": 0.035,
   "minOdds": 1.791,
   "stake": 5,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.6,
+    2.43
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.621,
+    2.308
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528980|ou|1.5|1",
@@ -2715,7 +2741,21 @@
   "ev": 0.0495,
   "minOdds": 4.515,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.04,
+    3.96,
+    3.46
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.996,
+    3.861,
+    3.449
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528997|dc|-|2",
@@ -2793,7 +2833,21 @@
   "ev": 0.0625,
   "minOdds": 3.121,
   "stake": 5,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.04,
+    3.96,
+    3.46
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.996,
+    3.861,
+    3.449
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552229|ah|0.75|1",
@@ -2897,7 +2951,21 @@
   "ev": 0.0394,
   "minOdds": 1.709,
   "stake": 9,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.29,
+    3.8,
+    3.02
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.264,
+    3.661,
+    2.96
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552232|ah|-3.25|1",
@@ -3028,5 +3096,83 @@
   "minOdds": 4.972,
   "stake": 1,
   "ref": "Pinnacle"
+ },
+ {
+  "id": "1551893|1x2|-|0",
+  "at": "2026-11-15T23:11:36.135Z",
+  "c": "NED2",
+  "d": "2026-11-20",
+  "t": "20:00",
+  "ko": "2026-11-20T19:00:00Z",
+  "h": "Jong Utrecht",
+  "a": "Emmen",
+  "src": "api",
+  "fid": "1551893",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Jong FC Utrecht",
+  "odds": 3.5,
+  "bm": "Jacks",
+  "p": 0.3097,
+  "pMarkt": 0.301,
+  "pModel": 0.3609,
+  "ev": 0.0839,
+  "minOdds": 3.326,
+  "stake": 4,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1551889|1x2|-|0",
+  "at": "2026-11-15T23:11:36.135Z",
+  "c": "NED2",
+  "d": "2026-11-20",
+  "t": "20:00",
+  "ko": "2026-11-20T19:00:00Z",
+  "h": "Den Bosch",
+  "a": "VVV Venlo",
+  "src": "api",
+  "fid": "1551889",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Den Bosch",
+  "odds": 2.15,
+  "bm": "Jacks",
+  "p": 0.4985,
+  "pMarkt": 0.5081,
+  "pModel": 0.4435,
+  "ev": 0.0717,
+  "minOdds": 2.066,
+  "stake": 8,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1551895|1x2|-|2",
+  "at": "2026-11-15T23:11:36.135Z",
+  "c": "NED2",
+  "d": "2026-11-20",
+  "t": "20:00",
+  "ko": "2026-11-20T19:00:00Z",
+  "h": "Vitesse",
+  "a": "Jong AZ",
+  "src": "api",
+  "fid": "1551895",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Jong AZ",
+  "odds": 4,
+  "bm": "Jacks",
+  "p": 0.2674,
+  "pMarkt": 0.2694,
+  "pModel": 0.2558,
+  "ev": 0.0695,
+  "minOdds": 3.852,
+  "stake": 3,
+  "ref": "gemiddelde bookmakers"
  }
 ]
