@@ -2315,7 +2315,21 @@
   "ev": 0.071,
   "minOdds": 2.404,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.84,
+    3.73,
+    4.51
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.808,
+    3.657,
+    4.432
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552820|ou|2.5|1",
@@ -2367,7 +2381,19 @@
   "ev": 0.0408,
   "minOdds": 2.177,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.02,
+    1.88
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.011,
+    1.806
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551880|ou|2.5|1",
@@ -3301,7 +3327,21 @@
   "ev": 0.1077,
   "minOdds": 1.934,
   "stake": 10,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.84,
+    3.73,
+    4.51
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.808,
+    3.657,
+    4.432
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1553233|1x2|-|2",
@@ -3379,7 +3419,21 @@
   "ev": 0.0456,
   "minOdds": 1.606,
   "stake": 9,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    7.32,
+    3.88,
+    1.52
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    7.364,
+    3.722,
+    1.509
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1570462|1x2|-|2",
@@ -3405,6 +3459,32 @@
   "ev": 0.0384,
   "minOdds": 2.381,
   "stake": 3,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1557485|1x2|-|0",
+  "at": "2026-11-17T03:10:48.572Z",
+  "c": "ENG1",
+  "d": "2026-11-27",
+  "t": "21:00",
+  "ko": "2026-11-27T20:00:00Z",
+  "h": "Nottingham Forest",
+  "a": "Chelsea",
+  "src": "api",
+  "fid": "1557485",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Nottingham Forest",
+  "odds": 2.95,
+  "bm": "Jacks",
+  "p": 0.3519,
+  "pMarkt": 0.3518,
+  "pModel": 0.3524,
+  "ev": 0.0381,
+  "minOdds": 2.927,
+  "stake": 2,
   "ref": "Pinnacle"
  }
 ]
