@@ -1,5 +1,5 @@
 {
- "tijd": "2026-11-16 12:47 UTC",
+ "tijd": "2026-11-17 00:49 UTC",
  "ok": true,
  "melding": "ok",
  "log": [
@@ -20,10 +20,10 @@
   "blessures 2026: 9840 meldingen",
   "0 gespeelde duels zonder statistieken",
   "opstellingen: 0 duels opgehaald, 0 nog te doen, 6436 met opstelling",
-  "verzoeken gebruikt: 28, over volgens API: 7444; duels met xG: 9071"
+  "verzoeken gebruikt: 28, over volgens API: 7472; duels met xG: 9071"
  ],
  "duels": 13832,
  "met_xg": 9071,
  "verzoeken": 28,
- "over": 7444
+ "over": 7472
 }
