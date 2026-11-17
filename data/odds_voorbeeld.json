@@ -14,7 +14,7 @@
    "date": "2026-11-21T15:00:00+00:00",
    "timestamp": 1795273200
   },
-  "update": "2026-11-16T03:25:21+00:00",
+  "update": "2026-11-17T03:31:14+00:00",
   "bookmakers": [
    {
     "id": 7,
@@ -26,15 +26,15 @@
       "values": [
        {
         "value": "Home",
-        "odd": "1.73"
+        "odd": "1.75"
        },
        {
         "value": "Draw",
-        "odd": "3.80"
+        "odd": "3.75"
        },
        {
         "value": "Away",
-        "odd": "4.40"
+        "odd": "4.20"
        }
       ]
      },
@@ -44,11 +44,11 @@
       "values": [
        {
         "value": "Home",
-        "odd": "1.30"
+        "odd": "1.33"
        },
        {
         "value": "Away",
-        "odd": "3.30"
+        "odd": "3.10"
        }
       ]
      },
@@ -58,7 +58,7 @@
       "values": [
        {
         "value": "Home/Draw",
-        "odd": "1.20"
+        "odd": "1.22"
        },
        {
         "value": "Home/Away",
@@ -66,7 +66,7 @@
        },
        {
         "value": "Draw/Away",
-        "odd": "2.10"
+        "odd": "2.00"
        }
       ]
      }
@@ -114,27 +114,27 @@
       "values": [
        {
         "value": "Home -1.25",
-        "odd": "2.60"
+        "odd": "2.68"
        },
        {
         "value": "Away -1.25",
-        "odd": "1.48"
+        "odd": "1.45"
        },
        {
         "value": "Home -1",
-        "odd": "2.30"
+        "odd": "2.35"
        },
        {
         "value": "Away -1",
-        "odd": "1.60"
+        "odd": "1.58"
        },
        {
         "value": "Home -0.75",
-        "odd": "2.00"
+        "odd": "2.02"
        },
        {
         "value": "Away -0.75",
-        "odd": "1.85"
+        "odd": "1.82"
        },
        {
         "value": "Home -0.5",
@@ -146,59 +146,59 @@
        },
        {
         "value": "Home -0.25",
-        "odd": "1.52"
+        "odd": "1.55"
        },
        {
         "value": "Away -0.25",
-        "odd": "2.42"
+        "odd": "2.38"
        },
        {
         "value": "Home +0",
-        "odd": "1.30"
+        "odd": "1.32"
        },
        {
         "value": "Away +0",
-        "odd": "3.45"
+        "odd": "3.30"
        },
        {
         "value": "Home +0.25",
-        "odd": "1.24"
+        "odd": "1.26"
        },
        {
         "value": "Away +0.25",
-        "odd": "3.90"
+        "odd": "3.70"
        },
        {
         "value": "Home +0.5",
-        "odd": "1.20"
+        "odd": "1.21"
        },
        {
         "value": "Away +0.5",
-        "odd": "4.40"
+        "odd": "4.25"
        },
        {
         "value": "Home +0.75",
-        "odd": "1.13"
+        "odd": "1.14"
        },
        {
         "value": "Away +0.75",
-        "odd": "5.90"
+        "odd": "5.75"
        },
        {
         "value": "Home -2",
-        "odd": "5.25"
+        "odd": "5.50"
        },
        {
         "value": "Away -2",
-        "odd": "1.16"
+        "odd": "1.15"
        },
        {
         "value": "Home -1.75",
-        "odd": "3.55"
+        "odd": "3.70"
        },
        {
         "value": "Away -1.75",
-        "odd": "1.27"
+        "odd": "1.26"
        },
        {
         "value": "Home -1.5",
@@ -218,7 +218,7 @@
        },
        {
         "value": "Home -2.5",
-        "odd": "6.00"
+        "odd": "6.25"
        },
        {
         "value": "Away -2.5",
@@ -264,11 +264,11 @@
        },
        {
         "value": "Over 0.5",
-        "odd": "1.05"
+        "odd": "1.04"
        },
        {
         "value": "Under 0.5",
-        "odd": "11.00"
+        "odd": "12.00"
        },
        {
         "value": "Over 4.5",
@@ -469,14 +469,6 @@
        {
         "value": "Away -2.25",
         "odd": "1.09"
-       },
-       {
-        "value": "Home -2.75",
-        "odd": "7.10"
-       },
-       {
-        "value": "Away -2.75",
-        "odd": "1.04"
        }
       ]
      },
@@ -790,7 +782,7 @@
        },
        {
         "value": "Away",
-        "odd": "3.25"
+        "odd": "3.20"
        }
       ]
      },
@@ -800,7 +792,7 @@
       "values": [
        {
         "value": "Home -1.25",
-        "odd": "2.64"
+        "odd": "2.66"
        },
        {
         "value": "Away -1.25",
@@ -808,7 +800,7 @@
        },
        {
         "value": "Home -1",
-        "odd": "2.29"
+        "odd": "2.30"
        },
        {
         "value": "Away -1",
@@ -816,15 +808,15 @@
        },
        {
         "value": "Home -0.75",
-        "odd": "1.90"
+        "odd": "1.91"
        },
        {
         "value": "Away -0.75",
-        "odd": "1.78"
+        "odd": "1.77"
        },
        {
         "value": "Home -0.5",
-        "odd": "1.68"
+        "odd": "1.69"
        },
        {
         "value": "Away -0.5",
@@ -836,15 +828,15 @@
        },
        {
         "value": "Away -0.25",
-        "odd": "2.40"
+        "odd": "2.39"
        },
        {
         "value": "Home +0",
-        "odd": "1.28"
+        "odd": "1.29"
        },
        {
         "value": "Away +0",
-        "odd": "3.25"
+        "odd": "3.20"
        },
        {
         "value": "Home -1.5",
@@ -874,39 +866,39 @@
        },
        {
         "value": "Under 2.0",
-        "odd": "2.80"
+        "odd": "2.82"
        },
        {
         "value": "Over 2.25",
-        "odd": "1.55"
+        "odd": "1.54"
        },
        {
         "value": "Under 2.25",
-        "odd": "2.25"
+        "odd": "2.27"
        },
        {
         "value": "Over 2.5",
-        "odd": "1.73"
+        "odd": "1.72"
        },
        {
         "value": "Under 2.5",
-        "odd": "1.96"
+        "odd": "1.97"
        },
        {
         "value": "Over 2.75",
-        "odd": "1.91"
+        "odd": "1.90"
        },
        {
         "value": "Under 2.75",
-        "odd": "1.77"
+        "odd": "1.78"
        },
        {
         "value": "Over 3.5",
-        "odd": "2.72"
+        "odd": "2.70"
        },
        {
         "value": "Under 3.5",
-        "odd": "1.38"
+        "odd": "1.39"
        },
        {
         "value": "Over 0.5",
@@ -914,15 +906,15 @@
        },
        {
         "value": "Under 0.5",
-        "odd": "10.50"
+        "odd": "11.00"
        },
        {
         "value": "Over 3.0",
-        "odd": "2.21"
+        "odd": "2.19"
        },
        {
         "value": "Under 3.0",
-        "odd": "1.57"
+        "odd": "1.58"
        },
        {
         "value": "Over 4.5",
@@ -934,19 +926,11 @@
        },
        {
         "value": "Over 3.25",
-        "odd": "2.47"
+        "odd": "2.45"
        },
        {
         "value": "Under 3.25",
         "odd": "1.46"
-       },
-       {
-        "value": "Over 5.5",
-        "odd": "11.00"
-       },
-       {
-        "value": "Under 5.5",
-        "odd": "1.02"
        }
       ]
      },
@@ -960,11 +944,11 @@
        },
        {
         "value": "Home/Away",
-        "odd": "1.20"
+        "odd": "1.22"
        },
        {
         "value": "Draw/Away",
-        "odd": "2.00"
+        "odd": "1.95"
        }
       ]
      }
@@ -980,15 +964,15 @@
       "values": [
        {
         "value": "Home",
-        "odd": "1.81"
+        "odd": "1.85"
        },
        {
         "value": "Draw",
-        "odd": "3.86"
+        "odd": "3.82"
        },
        {
         "value": "Away",
-        "odd": "4.55"
+        "odd": "4.37"
        }
       ]
      },
@@ -998,75 +982,75 @@
       "values": [
        {
         "value": "Home -1.25",
-        "odd": "2.84"
+        "odd": "2.94"
        },
        {
         "value": "Away -1.25",
-        "odd": "1.47"
+        "odd": "1.45"
        },
        {
         "value": "Home -1",
-        "odd": "2.46"
+        "odd": "2.54"
        },
        {
         "value": "Away -1",
-        "odd": "1.60"
+        "odd": "1.56"
        },
        {
         "value": "Home -0.75",
-        "odd": "2.05"
+        "odd": "2.10"
        },
        {
         "value": "Away -0.75",
-        "odd": "1.86"
+        "odd": "1.82"
        },
        {
         "value": "Home -0.5",
-        "odd": "1.79"
+        "odd": "1.83"
        },
        {
         "value": "Away -0.5",
-        "odd": "2.11"
+        "odd": "2.05"
        },
        {
         "value": "Home -0.25",
-        "odd": "1.57"
+        "odd": "1.61"
        },
        {
         "value": "Away -0.25",
-        "odd": "2.53"
+        "odd": "2.45"
        },
        {
         "value": "Home +0",
-        "odd": "1.35"
+        "odd": "1.37"
        },
        {
         "value": "Away +0",
-        "odd": "3.41"
+        "odd": "3.26"
        },
        {
         "value": "Home +0.25",
-        "odd": "1.28"
+        "odd": "1.30"
        },
        {
         "value": "Away +0.25",
-        "odd": "3.95"
+        "odd": "3.79"
        },
        {
         "value": "Home -1.75",
-        "odd": "4.02"
+        "odd": "4.16"
        },
        {
         "value": "Away -1.75",
-        "odd": "1.27"
+        "odd": "1.26"
        },
        {
         "value": "Home -1.5",
-        "odd": "3.21"
+        "odd": "3.30"
        },
        {
         "value": "Away -1.5",
-        "odd": "1.38"
+        "odd": "1.36"
        }
       ]
      },
@@ -1076,19 +1060,19 @@
       "values": [
        {
         "value": "Over 1.75",
-        "odd": "1.30"
+        "odd": "1.29"
        },
        {
         "value": "Under 1.75",
-        "odd": "3.70"
+        "odd": "3.73"
        },
        {
         "value": "Over 2.0",
-        "odd": "1.37"
+        "odd": "1.36"
        },
        {
         "value": "Under 2.0",
-        "odd": "3.22"
+        "odd": "3.26"
        },
        {
         "value": "Over 2.25",
@@ -1096,7 +1080,7 @@
        },
        {
         "value": "Under 2.25",
-        "odd": "2.47"
+        "odd": "2.49"
        },
        {
         "value": "Over 2.5",
@@ -1104,11 +1088,11 @@
        },
        {
         "value": "Under 2.5",
-        "odd": "2.09"
+        "odd": "2.10"
        },
        {
         "value": "Over 2.75",
-        "odd": "2.02"
+        "odd": "2.00"
        },
        {
         "value": "Under 2.75",
@@ -1116,7 +1100,7 @@
        },
        {
         "value": "Over 3.5",
-        "odd": "2.98"
+        "odd": "2.96"
        },
        {
         "value": "Under 3.5",
@@ -1124,23 +1108,23 @@
        },
        {
         "value": "Over 3.0",
-        "odd": "2.36"
+        "odd": "2.34"
        },
        {
         "value": "Under 3.0",
-        "odd": "1.64"
+        "odd": "1.65"
        },
        {
         "value": "Over 3.25",
-        "odd": "2.68"
+        "odd": "2.66"
        },
        {
         "value": "Under 3.25",
-        "odd": "1.51"
+        "odd": "1.52"
        },
        {
         "value": "Over 3.75",
-        "odd": "3.61"
+        "odd": "3.58"
        },
        {
         "value": "Under 3.75",
@@ -1160,15 +1144,15 @@
       "values": [
        {
         "value": "Home",
-        "odd": "1.75"
+        "odd": "1.80"
        },
        {
         "value": "Draw",
-        "odd": "3.30"
+        "odd": "3.29"
        },
        {
         "value": "Away",
-        "odd": "3.94"
+        "odd": "3.74"
        }
       ]
      },
@@ -1177,20 +1161,28 @@
       "name": "Asian Handicap",
       "values": [
        {
+        "value": "Home -1",
+        "odd": "2.44"
+       },
+       {
+        "value": "Away -1",
+        "odd": "1.57"
+       },
+       {
         "value": "Home -0.75",
-        "odd": "1.99"
+        "odd": "2.03"
        },
        {
         "value": "Away -0.75",
-        "odd": "1.89"
+        "odd": "1.85"
        },
        {
         "value": "Home -0.5",
-        "odd": "1.77"
+        "odd": "1.82"
        },
        {
         "value": "Away -0.5",
-        "odd": "2.12"
+        "odd": "2.06"
        }
       ]
      },
@@ -1208,11 +1200,19 @@
        },
        {
         "value": "Over 2.75",
-        "odd": "2.07"
+        "odd": "2.04"
        },
        {
         "value": "Under 2.75",
-        "odd": "1.79"
+        "odd": "1.82"
+       },
+       {
+        "value": "Over 3.0",
+        "odd": "2.33"
+       },
+       {
+        "value": "Under 3.0",
+        "odd": "1.61"
        }
       ]
      },
@@ -1222,15 +1222,15 @@
       "values": [
        {
         "value": "Home/Draw",
-        "odd": "1.14"
+        "odd": "1.17"
        },
        {
         "value": "Home/Away",
-        "odd": "1.21"
+        "odd": "1.22"
        },
        {
         "value": "Draw/Away",
-        "odd": "2.09"
+        "odd": "2.03"
        }
       ]
      }
@@ -1389,22 +1389,6 @@
        {
         "value": "Away -2.25",
         "odd": "1.11"
-       },
-       {
-        "value": "Home -3.5",
-        "odd": "11.60"
-       },
-       {
-        "value": "Away -3.5",
-        "odd": "1.00"
-       },
-       {
-        "value": "Home -2.75",
-        "odd": "7.22"
-       },
-       {
-        "value": "Away -2.75",
-        "odd": "1.06"
        }
       ]
      },
@@ -1776,15 +1760,15 @@
       "values": [
        {
         "value": "Home",
-        "odd": "1.79"
+        "odd": "1.84"
        },
        {
         "value": "Draw",
-        "odd": "3.80"
+        "odd": "3.75"
        },
        {
         "value": "Away",
-        "odd": "4.40"
+        "odd": "4.30"
        }
       ]
      }
@@ -1807,7 +1791,7 @@
    "date": "2026-11-21T15:00:00+00:00",
    "timestamp": 1795273200
   },
-  "update": "2026-11-16T03:25:21+00:00",
+  "update": "2026-11-17T03:31:14+00:00",
   "bookmakers": [
    {
     "id": 7,
@@ -1931,11 +1915,11 @@
        },
        {
         "value": "Home -0.5",
-        "odd": "2.00"
+        "odd": "1.95"
        },
        {
         "value": "Away -0.5",
-        "odd": "1.85"
+        "odd": "1.80"
        },
        {
         "value": "Home -0.25",
@@ -2024,14 +2008,6 @@
        {
         "value": "Away -2.5",
         "odd": "1.08"
-       },
-       {
-        "value": "Home -2.25",
-        "odd": "7.00"
-       },
-       {
-        "value": "Away -2.25",
-        "odd": "1.10"
        }
       ]
      },
@@ -2445,7 +2421,7 @@
        },
        {
         "value": "Away",
-        "odd": "3.70"
+        "odd": "3.75"
        }
       ]
      },
@@ -2485,19 +2461,11 @@
        },
        {
         "value": "Home -2.5",
-        "odd": "8.00"
+        "odd": "7.50"
        },
        {
         "value": "Away -2.5",
         "odd": "1.06"
-       },
-       {
-        "value": "Home +2.5",
-        "odd": "1.01"
-       },
-       {
-        "value": "Away +2.5",
-        "odd": "13.00"
        },
        {
         "value": "Home -3.5",
@@ -2515,11 +2483,11 @@
       "values": [
        {
         "value": "Over 2.5",
-        "odd": "1.75"
+        "odd": "1.80"
        },
        {
         "value": "Under 2.5",
-        "odd": "1.95"
+        "odd": "1.91"
        },
        {
         "value": "Over 0.5",
@@ -2773,15 +2741,15 @@
       "values": [
        {
         "value": "Home",
-        "odd": "2.03"
+        "odd": "2.04"
        },
        {
         "value": "Draw",
-        "odd": "3.64"
+        "odd": "3.63"
        },
        {
         "value": "Away",
-        "odd": "3.79"
+        "odd": "3.77"
        }
       ]
      },
@@ -2791,15 +2759,15 @@
       "values": [
        {
         "value": "Home -1.25",
-        "odd": "3.35"
+        "odd": "3.37"
        },
        {
         "value": "Away -1.25",
-        "odd": "1.36"
+        "odd": "1.35"
        },
        {
         "value": "Home -1",
-        "odd": "2.95"
+        "odd": "2.97"
        },
        {
         "value": "Away -1",
@@ -2807,19 +2775,19 @@
        },
        {
         "value": "Home -0.75",
-        "odd": "2.35"
+        "odd": "2.36"
        },
        {
         "value": "Away -0.75",
-        "odd": "1.66"
+        "odd": "1.65"
        },
        {
         "value": "Home -0.5",
-        "odd": "2.03"
+        "odd": "2.04"
        },
        {
         "value": "Away -0.5",
-        "odd": "1.88"
+        "odd": "1.87"
        },
        {
         "value": "Home -0.25",
@@ -2827,7 +2795,7 @@
        },
        {
         "value": "Away -0.25",
-        "odd": "2.18"
+        "odd": "2.17"
        },
        {
         "value": "Home +0",
@@ -2835,7 +2803,7 @@
        },
        {
         "value": "Away +0",
-        "odd": "2.79"
+        "odd": "2.77"
        },
        {
         "value": "Home +0.25",
@@ -2843,7 +2811,7 @@
        },
        {
         "value": "Away +0.25",
-        "odd": "3.26"
+        "odd": "3.25"
        },
        {
         "value": "Home +0.5",
@@ -2851,11 +2819,11 @@
        },
        {
         "value": "Away +0.5",
-        "odd": "3.75"
+        "odd": "3.73"
        },
        {
         "value": "Home -1.5",
-        "odd": "3.76"
+        "odd": "3.78"
        },
        {
         "value": "Away -1.5",
@@ -2885,7 +2853,7 @@
        },
        {
         "value": "Over 2.0",
-        "odd": "1.42"
+        "odd": "1.43"
        },
        {
         "value": "Under 2.0",
@@ -2897,7 +2865,7 @@
        },
        {
         "value": "Under 2.25",
-        "odd": "2.33"
+        "odd": "2.32"
        },
        {
         "value": "Over 2.5",
@@ -2937,7 +2905,7 @@
        },
        {
         "value": "Under 3.25",
-        "odd": "1.46"
+        "odd": "1.45"
        }
       ]
      }
@@ -2953,15 +2921,15 @@
       "values": [
        {
         "value": "Home",
-        "odd": "2.03"
+        "odd": "2.01"
        },
        {
         "value": "Draw",
-        "odd": "3.14"
+        "odd": "3.16"
        },
        {
         "value": "Away",
-        "odd": "3.14"
+        "odd": "3.18"
        }
       ]
      },
@@ -2970,20 +2938,28 @@
       "name": "Asian Handicap",
       "values": [
        {
+        "value": "Home -0.75",
+        "odd": "2.35"
+       },
+       {
+        "value": "Away -0.75",
+        "odd": "1.62"
+       },
+       {
         "value": "Home -0.5",
-        "odd": "2.06"
+        "odd": "2.04"
        },
        {
         "value": "Away -0.5",
-        "odd": "1.82"
+        "odd": "1.84"
        },
        {
         "value": "Home -0.25",
-        "odd": "1.80"
+        "odd": "1.75"
        },
        {
         "value": "Away -0.25",
-        "odd": "2.08"
+        "odd": "2.14"
        }
       ]
      },
@@ -2991,6 +2967,14 @@
       "id": 5,
       "name": "Goals Over/Under",
       "values": [
+       {
+        "value": "Over 2.25",
+        "odd": "1.62"
+       },
+       {
+        "value": "Under 2.25",
+        "odd": "2.31"
+       },
        {
         "value": "Over 2.5",
         "odd": "1.82"
@@ -3023,7 +3007,7 @@
        },
        {
         "value": "Draw/Away",
-        "odd": "1.79"
+        "odd": "1.81"
        }
       ]
      }
@@ -3389,7 +3373,7 @@
        },
        {
         "value": "Away",
-        "odd": "3.60"
+        "odd": "3.65"
        }
       ]
      },
@@ -3403,7 +3387,7 @@
        },
        {
         "value": "Away",
-        "odd": "2.55"
+        "odd": "2.57"
        }
       ]
      },
@@ -3426,14 +3410,6 @@
        {
         "value": "Away -0.5",
         "odd": "1.85"
-       },
-       {
-        "value": "Home +0.5",
-        "odd": "1.34"
-       },
-       {
-        "value": "Away +0.5",
-        "odd": "3.40"
        }
       ]
      },
@@ -3471,7 +3447,7 @@
        },
        {
         "value": "Under 3.5",
-        "odd": "1.39"
+        "odd": "1.40"
        },
        {
         "value": "Over 0.5",
@@ -3529,7 +3505,7 @@
        },
        {
         "value": "Draw/Away",
-        "odd": "1.82"
+        "odd": "1.83"
        }
       ]
      }
@@ -3545,15 +3521,15 @@
       "values": [
        {
         "value": "Home",
-        "odd": "2.04"
+        "odd": "2.06"
        },
        {
         "value": "Draw",
-        "odd": "3.55"
+        "odd": "3.60"
        },
        {
         "value": "Away",
-        "odd": "3.60"
+        "odd": "3.65"
        }
       ]
      }
