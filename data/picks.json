@@ -3792,5 +3792,31 @@
   "minOdds": 1.313,
   "stake": 10,
   "ref": "gemiddelde bookmakers"
+ },
+ {
+  "id": "1584466|ah|-0.75|0",
+  "at": "2026-11-18T03:53:34.259Z",
+  "c": "TUR1",
+  "d": "2026-11-21",
+  "t": "14:00",
+  "ko": "2026-11-21T13:00:00Z",
+  "h": "Amed",
+  "a": "Rizespor",
+  "src": "api",
+  "fid": "1584466",
+  "div": null,
+  "mk": "ah",
+  "line": -0.75,
+  "side": 0,
+  "label": "Amedspor −0,75",
+  "odds": 1.95,
+  "bm": "Bet365",
+  "p": 0.5307,
+  "pMarkt": 0.5069,
+  "pModel": 0.66,
+  "ev": 0.0311,
+  "minOdds": 1.948,
+  "stake": 5,
+  "ref": "Pinnacle"
  }
 ]
