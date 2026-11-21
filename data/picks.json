@@ -1225,7 +1225,21 @@
   "ev": 0.1354,
   "minOdds": 1.551,
   "stake": 10,
-  "ref": "gemiddelde bookmakers"
+  "ref": "gemiddelde bookmakers",
+  "close": {
+   "ref": [
+    4.18,
+    4.48,
+    1.75
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    3.97,
+    4.358,
+    1.712
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552226|ah|-1.75|1",
@@ -1251,7 +1265,19 @@
   "ev": 0.1313,
   "minOdds": 2.478,
   "stake": 10,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.7,
+    2.21
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.656,
+    2.144
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552233|1x2|-|0",
@@ -1277,7 +1303,21 @@
   "ev": 0.0917,
   "minOdds": 1.887,
   "stake": 10,
-  "ref": "gemiddelde bookmakers"
+  "ref": "gemiddelde bookmakers",
+  "close": {
+   "ref": [
+    1.93,
+    4.13,
+    3.65
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.903,
+    3.944,
+    3.483
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1557470|1x2|-|2",
@@ -1303,7 +1343,21 @@
   "ev": 0.0819,
   "minOdds": 4.189,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.11,
+    3.51,
+    3.76
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.997,
+    3.567,
+    3.705
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552819|1x2|-|2",
@@ -1329,7 +1383,21 @@
   "ev": 0.0752,
   "minOdds": 4.148,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.13,
+    3.69,
+    3.44
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.089,
+    3.606,
+    3.355
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552228|1x2|-|0",
@@ -1355,7 +1423,21 @@
   "ev": 0.0693,
   "minOdds": 2.36,
   "stake": 6,
-  "ref": "gemiddelde bookmakers"
+  "ref": "gemiddelde bookmakers",
+  "close": {
+   "ref": [
+    2.84,
+    3.88,
+    2.38
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.705,
+    3.712,
+    2.347
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1557471|1x2|-|2",
@@ -1381,7 +1463,21 @@
   "ev": 0.0627,
   "minOdds": 2.811,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.56,
+    3.44,
+    2.92
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.468,
+    3.49,
+    2.768
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1575225|1x2|-|0",
@@ -1407,7 +1503,21 @@
   "ev": 0.0607,
   "minOdds": 5.341,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    6.28,
+    4.97,
+    1.5
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    5.767,
+    4.774,
+    1.478
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1557475|ou|2.5|1",
@@ -1433,7 +1543,19 @@
   "ev": 0.049,
   "minOdds": 2.19,
   "stake": 5,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.74,
+    2.2
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.694,
+    2.179
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1557467|1x2|-|0",
@@ -1459,7 +1581,21 @@
   "ev": 0.0378,
   "minOdds": 1.767,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.79,
+    3.86,
+    4.8
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.765,
+    3.85,
+    4.468
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1550205|dc|-|0",
@@ -1485,7 +1621,21 @@
   "ev": 0.0375,
   "minOdds": 3.723,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    11.94,
+    6.75,
+    1.24
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    11.582,
+    6.472,
+    1.233
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552826|1x2|-|0",
@@ -1511,7 +1661,21 @@
   "ev": 0.0365,
   "minOdds": 2.236,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.21,
+    3.68,
+    3.26
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.205,
+    3.581,
+    3.073
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1545613|ah|-2|1",
@@ -2369,7 +2533,19 @@
   "ev": 0.0475,
   "minOdds": 1.878,
   "stake": 7,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.1,
+    1.81
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.055,
+    1.781
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528990|ou|3.5|0",
@@ -2509,7 +2685,21 @@
   "ev": 0.0452,
   "minOdds": 2.858,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.64,
+    3.84,
+    2.52
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.497,
+    3.556,
+    2.497
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528989|ah|-3|1",
@@ -2727,7 +2917,21 @@
   "ev": 0.0321,
   "minOdds": 2.076,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    5.21,
+    3.86,
+    1.7
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    4.692,
+    3.571,
+    1.703
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528999|1x2|-|2",
@@ -2993,7 +3197,19 @@
   "ev": 0.0469,
   "minOdds": 1.866,
   "stake": 7,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.97,
+    1.93
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.92,
+    1.863
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1550199|1x2|-|0",
@@ -3547,7 +3763,21 @@
   "ev": 0.0568,
   "minOdds": 1.871,
   "stake": 8,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    4.64,
+    4.59,
+    1.62
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    4.361,
+    4.262,
+    1.633
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1545618|1x2|-|2",
@@ -3613,7 +3843,21 @@
   "ev": 0.0384,
   "minOdds": 2.381,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.11,
+    3.36,
+    2.47
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.971,
+    3.322,
+    2.397
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1557485|1x2|-|0",
@@ -4287,7 +4531,19 @@
   "ev": 0.0513,
   "minOdds": 1.837,
   "stake": 8,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.71,
+    2.26
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.658,
+    2.217
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1635649|1x2|-|1",
@@ -4339,7 +4595,21 @@
   "ev": 0.0481,
   "minOdds": 2.933,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.13,
+    3.69,
+    3.44
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.089,
+    3.606,
+    3.355
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1636298|1x2|-|0",
@@ -4715,7 +4985,21 @@
   "ev": 0.0636,
   "minOdds": 2.663,
   "stake": 5,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.84,
+    3.88,
+    2.38
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.705,
+    3.712,
+    2.347
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1550202|ah|-2|1",
@@ -4741,7 +5025,19 @@
   "ev": 0.0494,
   "minOdds": 1.447,
   "stake": 10,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.78,
+    1.3
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    3.47,
+    1.3
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1575228|1x2|-|2",
@@ -4767,7 +5063,21 @@
   "ev": 0.043,
   "minOdds": 1.857,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    4.01,
+    4.08,
+    1.88
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    3.842,
+    4.011,
+    1.828
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1570471|1x2|-|0",
@@ -5013,7 +5323,19 @@
   "ev": 0.0553,
   "minOdds": 1.835,
   "stake": 8,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.42,
+    1.61
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.286,
+    1.634
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552235|1x2|-|0",
@@ -5221,7 +5543,19 @@
   "ev": 0.0352,
   "minOdds": 1.771,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.72,
+    2.2
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.691,
+    2.135
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1636393|1x2|-|0",
@@ -5313,7 +5647,21 @@
   "ev": 0.0651,
   "minOdds": 3.578,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.11,
+    3.36,
+    2.47
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.971,
+    3.322,
+    2.397
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1575235|ah|3.25|0",
@@ -5521,7 +5869,19 @@
   "ev": 0.0453,
   "minOdds": 2.463,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.65,
+    2.37
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.587,
+    2.36
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551896|ah|1|1",
@@ -5547,7 +5907,19 @@
   "ev": 0.0415,
   "minOdds": 2.169,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.85,
+    2
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.745,
+    2.032
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552226|ou|3.5|1",
@@ -5573,7 +5945,19 @@
   "ev": 0.0388,
   "minOdds": 2.003,
   "stake": 5,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.98,
+    1.89
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.866,
+    1.907
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1557469|ou|2.5|1",
@@ -5625,6 +6009,122 @@
   "ev": 0.0336,
   "minOdds": 1.971,
   "stake": 5,
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.94,
+    1.98
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.874,
+    1.954
+   ],
+   "bron": "laatste API-waarneming"
+  }
+ },
+ {
+  "id": "1584480|1x2|-|2",
+  "at": "2026-11-21T20:41:03.017Z",
+  "c": "TUR1",
+  "d": "2026-11-28",
+  "t": "17:00",
+  "ko": "2026-11-28T16:00:00Z",
+  "h": "Gaziantep FK",
+  "a": "Amed",
+  "src": "api",
+  "fid": "1584480",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Amedspor",
+  "odds": 2.12,
+  "bm": "Jacks",
+  "p": 0.5042,
+  "pMarkt": 0.4738,
+  "pModel": 0.6666,
+  "ev": 0.0688,
+  "minOdds": 2.043,
+  "stake": 8,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1575224|1x2|-|2",
+  "at": "2026-11-21T20:41:03.017Z",
+  "c": "GER1",
+  "d": "2026-11-22",
+  "t": "15:30",
+  "ko": "2026-11-22T14:30:00Z",
+  "h": "FC Augsburg",
+  "a": "FSV Mainz 05",
+  "src": "api",
+  "fid": "1575224",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Mainz 05",
+  "odds": 2.5,
+  "bm": "Jacks",
+  "p": 0.4239,
+  "pMarkt": 0.3975,
+  "pModel": 0.5761,
+  "ev": 0.0597,
+  "minOdds": 2.43,
+  "stake": 5,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1570465|ah|1.75|1",
+  "at": "2026-11-21T20:41:03.017Z",
+  "c": "ESP1",
+  "d": "2026-11-29",
+  "t": "16:15",
+  "ko": "2026-11-29T15:15:00Z",
+  "h": "Deportivo La Coruna",
+  "a": "Barcelona",
+  "src": "api",
+  "fid": "1570465",
+  "div": null,
+  "mk": "ah",
+  "line": 1.75,
+  "side": 1,
+  "label": "Barcelona −1,75",
+  "odds": 1.98,
+  "bm": "Bet365",
+  "p": 0.537,
+  "pMarkt": 0.5336,
+  "pModel": 0.5566,
+  "ev": 0.0568,
+  "minOdds": 1.924,
+  "stake": 8,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1584471|dnb|0|0",
+  "at": "2026-11-21T20:41:03.017Z",
+  "c": "TUR1",
+  "d": "2026-11-22",
+  "t": "14:00",
+  "ko": "2026-11-22T13:00:00Z",
+  "h": "Kasımpaşa",
+  "a": "Alanyaspor",
+  "src": "api",
+  "fid": "1584471",
+  "div": null,
+  "mk": "dnb",
+  "line": 0,
+  "side": 0,
+  "label": "Kasımpaşa draw no bet (AH 0)",
+  "odds": 1.5,
+  "bm": "Bet365",
+  "p": 0.7077,
+  "pMarkt": 0.702,
+  "pModel": 0.7387,
+  "ev": 0.0457,
+  "minOdds": 1.47,
+  "stake": 10,
   "ref": "Pinnacle"
  }
 ]
