@@ -2913,7 +2913,21 @@
   "ev": 0.0654,
   "minOdds": 1.74,
   "stake": 10,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.7,
+    4.28,
+    4.59
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.689,
+    3.99,
+    4.422
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528984|dnb|0|1",
@@ -3691,7 +3705,21 @@
   "ev": 0.0475,
   "minOdds": 3.687,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.23,
+    3.37,
+    3.5
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.21,
+    3.261,
+    3.363
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1635731|1x2|-|2",
@@ -3897,7 +3925,19 @@
   "ev": 0.0311,
   "minOdds": 1.948,
   "stake": 5,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.89,
+    2
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.85,
+    1.938
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1635735|1x2|-|0",
@@ -5233,7 +5273,21 @@
   "ev": 0.0793,
   "minOdds": 2.29,
   "stake": 7,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.23,
+    3.37,
+    3.5
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.21,
+    3.261,
+    3.363
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1570462|1x2|-|1",
@@ -5389,6 +5443,188 @@
   "ev": 0.032,
   "minOdds": 1.956,
   "stake": 4,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1551875|1x2|-|2",
+  "at": "2026-11-21T13:01:51.776Z",
+  "c": "NED2",
+  "d": "2026-11-23",
+  "t": "20:00",
+  "ko": "2026-11-23T19:00:00Z",
+  "h": "Vitesse",
+  "a": "De Graafschap",
+  "src": "api",
+  "fid": "1551875",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 De Graafschap",
+  "odds": 3.6,
+  "bm": "Jacks",
+  "p": 0.2959,
+  "pMarkt": 0.2821,
+  "pModel": 0.3797,
+  "ev": 0.0653,
+  "minOdds": 3.481,
+  "stake": 3,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1584482|1x2|-|2",
+  "at": "2026-11-21T13:01:51.776Z",
+  "c": "TUR1",
+  "d": "2026-11-27",
+  "t": "18:00",
+  "ko": "2026-11-27T17:00:00Z",
+  "h": "Rizespor",
+  "a": "Kasımpaşa",
+  "src": "api",
+  "fid": "1584482",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Kasımpaşa",
+  "odds": 3.4,
+  "bm": "Unibet",
+  "p": 0.3123,
+  "pMarkt": 0.3168,
+  "pModel": 0.2877,
+  "ev": 0.0619,
+  "minOdds": 3.298,
+  "stake": 3,
+  "ref": "gemiddelde bookmakers"
+ },
+ {
+  "id": "1552228|ah|0.5|1",
+  "at": "2026-11-21T13:01:51.776Z",
+  "c": "NED1",
+  "d": "2026-11-21",
+  "t": "21:00",
+  "ko": "2026-11-21T20:00:00Z",
+  "h": "Groningen",
+  "a": "Heerenveen",
+  "src": "api",
+  "fid": "1552228",
+  "div": null,
+  "mk": "ah",
+  "line": 0.5,
+  "side": 1,
+  "label": "Heerenveen −0,5 (= moet winnen)",
+  "odds": 2.5,
+  "bm": "Bet365",
+  "p": 0.4181,
+  "pMarkt": 0.4067,
+  "pModel": 0.4841,
+  "ev": 0.0453,
+  "minOdds": 2.463,
+  "stake": 4,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1551896|ah|1|1",
+  "at": "2026-11-21T13:01:51.776Z",
+  "c": "NED2",
+  "d": "2026-11-21",
+  "t": "16:30",
+  "ko": "2026-11-21T15:30:00Z",
+  "h": "FC Eindhoven",
+  "a": "Waalwijk",
+  "src": "api",
+  "fid": "1551896",
+  "div": null,
+  "mk": "ah",
+  "line": 1,
+  "side": 1,
+  "label": "RKC Waalwijk −1",
+  "odds": 2.2,
+  "bm": "Bet365",
+  "p": 0.4791,
+  "pMarkt": 0.4793,
+  "pModel": 0.4776,
+  "ev": 0.0415,
+  "minOdds": 2.169,
+  "stake": 6,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1552226|ou|3.5|1",
+  "at": "2026-11-21T13:01:51.776Z",
+  "c": "NED1",
+  "d": "2026-11-21",
+  "t": "18:45",
+  "ko": "2026-11-21T17:45:00Z",
+  "h": "Feyenoord",
+  "a": "Excelsior",
+  "src": "api",
+  "fid": "1552226",
+  "div": null,
+  "mk": "ou",
+  "line": 3.5,
+  "side": 1,
+  "label": "Under 3,5",
+  "odds": 2.02,
+  "bm": "Jacks",
+  "p": 0.5142,
+  "pMarkt": 0.5122,
+  "pModel": 0.5256,
+  "ev": 0.0388,
+  "minOdds": 2.003,
+  "stake": 5,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1557469|ou|2.5|1",
+  "at": "2026-11-21T13:01:51.776Z",
+  "c": "ENG1",
+  "d": "2026-11-23",
+  "t": "21:00",
+  "ko": "2026-11-23T20:00:00Z",
+  "h": "Brentford",
+  "a": "Everton",
+  "src": "api",
+  "fid": "1557469",
+  "div": null,
+  "mk": "ou",
+  "line": 2.5,
+  "side": 1,
+  "label": "Under 2,5",
+  "odds": 2.15,
+  "bm": "LeoVegas",
+  "p": 0.4819,
+  "pMarkt": 0.4757,
+  "pModel": 0.5171,
+  "ev": 0.036,
+  "minOdds": 2.138,
+  "stake": 4,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1575226|ah|1|1",
+  "at": "2026-11-21T13:01:51.776Z",
+  "c": "GER1",
+  "d": "2026-11-21",
+  "t": "15:30",
+  "ko": "2026-11-21T14:30:00Z",
+  "h": "Borussia Mönchengladbach",
+  "a": "Borussia Dortmund",
+  "src": "api",
+  "fid": "1575226",
+  "div": null,
+  "mk": "ah",
+  "line": 1,
+  "side": 1,
+  "label": "Borussia Dortmund −1",
+  "odds": 1.98,
+  "bm": "Bet365",
+  "p": 0.5264,
+  "pMarkt": 0.4947,
+  "pModel": 0.6948,
+  "ev": 0.0336,
+  "minOdds": 1.971,
+  "stake": 5,
   "ref": "Pinnacle"
  }
 ]
