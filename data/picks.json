@@ -2171,7 +2171,21 @@
   "ev": 0.0699,
   "minOdds": 1.945,
   "stake": 9,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.26,
+    3.58,
+    3.29
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.227,
+    3.498,
+    3.169
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1528983|ou|2.5|0",
@@ -3727,7 +3741,21 @@
   "ev": 0.0498,
   "minOdds": 1.982,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.92,
+    4.12,
+    3.73
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.897,
+    3.836,
+    3.557
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1584468|1x2|-|2",
@@ -3873,7 +3901,21 @@
   "ev": 0.0833,
   "minOdds": 2.757,
   "stake": 5,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.57,
+    4.07,
+    2.49
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.484,
+    3.742,
+    2.439
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551896|1x2|-|2",
@@ -4511,7 +4553,21 @@
   "ev": 0.0341,
   "minOdds": 3.685,
   "stake": 2,
-  "ref": "gemiddelde bookmakers"
+  "ref": "gemiddelde bookmakers",
+  "close": {
+   "ref": [
+    2.23,
+    4.03,
+    2.87
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.21,
+    3.836,
+    2.747
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552236|ou|2.5|0",
@@ -5599,7 +5655,19 @@
   "ev": 0.0341,
   "minOdds": 2.241,
   "stake": 3,
-  "ref": "gemiddelde bookmakers"
+  "ref": "gemiddelde bookmakers",
+  "close": {
+   "ref": [
+    1.65,
+    2.26
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.674,
+    2.136
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1635682|1x2|-|2",
@@ -5651,7 +5719,21 @@
   "ev": 0.0857,
   "minOdds": 2.087,
   "stake": 9,
-  "ref": "gemiddelde bookmakers"
+  "ref": "gemiddelde bookmakers",
+  "close": {
+   "ref": [
+    2.23,
+    4.03,
+    2.87
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.21,
+    3.836,
+    2.747
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551885|1x2|-|1",
@@ -5677,7 +5759,21 @@
   "ev": 0.0438,
   "minOdds": 4.243,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.23,
+    4.2,
+    2.8
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.182,
+    3.958,
+    2.719
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552236|1x2|-|1",
@@ -5925,7 +6021,19 @@
   "ev": 0.0384,
   "minOdds": 1.962,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.97,
+    1.88
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.948,
+    1.795
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1636402|1x2|-|2",
@@ -6003,7 +6111,21 @@
   "ev": 0.0653,
   "minOdds": 3.481,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.09,
+    3.84,
+    3.27
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.041,
+    3.685,
+    3.162
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1584482|1x2|-|2",
@@ -6169,7 +6291,19 @@
   "ev": 0.036,
   "minOdds": 2.138,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.87,
+    2.04
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.831,
+    2
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1575226|ah|1|1",
@@ -6857,7 +6991,19 @@
   "ev": 0.0541,
   "minOdds": 1.632,
   "stake": 10,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.44,
+    1.6
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.41,
+    1.559
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1635667|1x2|-|0",
@@ -6961,7 +7107,21 @@
   "ev": 0.0317,
   "minOdds": 3.245,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.26,
+    3.58,
+    3.29
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.227,
+    3.498,
+    3.169
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1635715|dc|-|2",
@@ -7351,7 +7511,19 @@
   "ev": 0.0618,
   "minOdds": 4.2,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.74,
+    1.29
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    3.657,
+    1.263
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1636420|1x2|-|2",
@@ -7584,6 +7756,240 @@
   "pModel": 0.5453,
   "ev": 0.0312,
   "minOdds": 2.427,
+  "stake": 3,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1551904|1x2|-|2",
+  "at": "2026-11-23T20:34:27.898Z",
+  "c": "NED2",
+  "d": "2026-11-28",
+  "t": "16:30",
+  "ko": "2026-11-28T15:30:00Z",
+  "h": "Emmen",
+  "a": "Helmond Sport",
+  "src": "api",
+  "fid": "1551904",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Helmond Sport",
+  "odds": 5.3,
+  "bm": "Jacks",
+  "p": 0.233,
+  "pMarkt": 0.2285,
+  "pModel": 0.2588,
+  "ev": 0.2347,
+  "minOdds": 4.421,
+  "stake": 7,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1584481|1x2|-|0",
+  "at": "2026-11-23T20:34:27.898Z",
+  "c": "TUR1",
+  "d": "2026-11-30",
+  "t": "17:00",
+  "ko": "2026-11-30T16:00:00Z",
+  "h": "Göztepe",
+  "a": "Trabzonspor",
+  "src": "api",
+  "fid": "1584481",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Göztepe",
+  "odds": 3.6,
+  "bm": "Bet365",
+  "p": 0.326,
+  "pMarkt": 0.3119,
+  "pModel": 0.409,
+  "ev": 0.1737,
+  "minOdds": 3.159,
+  "stake": 8,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1635682|1x2|-|0",
+  "at": "2026-11-23T20:34:27.898Z",
+  "c": "UCL",
+  "d": "2026-11-25",
+  "t": "21:00",
+  "ko": "2026-11-25T20:00:00Z",
+  "h": "Lille",
+  "a": "Bayern München",
+  "src": "api",
+  "fid": "1635682",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Lille",
+  "odds": 5.5,
+  "bm": "Bet365",
+  "p": 0.1939,
+  "pMarkt": 0.1875,
+  "pModel": 0.233,
+  "ev": 0.0664,
+  "minOdds": 5.312,
+  "stake": 2,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1570463|1x2|-|2",
+  "at": "2026-11-23T20:34:27.898Z",
+  "c": "ESP1",
+  "d": "2026-11-28",
+  "t": "14:00",
+  "ko": "2026-11-28T13:00:00Z",
+  "h": "Real Betis",
+  "a": "Rayo Vallecano",
+  "src": "api",
+  "fid": "1570463",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Rayo Vallecano",
+  "odds": 6,
+  "bm": "Unibet",
+  "p": 0.1769,
+  "pMarkt": 0.1728,
+  "pModel": 0.2017,
+  "ev": 0.0616,
+  "minOdds": 5.821,
+  "stake": 2,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1551901|1x2|-|2",
+  "at": "2026-11-23T20:34:27.898Z",
+  "c": "NED2",
+  "d": "2026-11-27",
+  "t": "20:00",
+  "ko": "2026-11-27T19:00:00Z",
+  "h": "MVV",
+  "a": "Jong PSV U21",
+  "src": "api",
+  "fid": "1551901",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Jong PSV",
+  "odds": 3.15,
+  "bm": "Jacks",
+  "p": 0.3307,
+  "pMarkt": 0.3264,
+  "pModel": 0.3546,
+  "ev": 0.0416,
+  "minOdds": 3.115,
+  "stake": 2,
+  "ref": "gemiddelde bookmakers"
+ },
+ {
+  "id": "1636431|1x2|-|0",
+  "at": "2026-11-23T20:34:27.898Z",
+  "c": "UECL",
+  "d": "2026-11-26",
+  "t": "18:45",
+  "ko": "2026-11-26T17:45:00Z",
+  "h": "FK Jablonec",
+  "a": "FC Lugano",
+  "src": "api",
+  "fid": "1636431",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Jablonec",
+  "odds": 3.55,
+  "bm": "Unibet",
+  "p": 0.2931,
+  "pMarkt": 0.2959,
+  "pModel": 0.2769,
+  "ev": 0.0404,
+  "minOdds": 3.515,
+  "stake": 2,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1551898|ou|3.5|1",
+  "at": "2026-11-23T20:34:27.898Z",
+  "c": "NED2",
+  "d": "2026-11-27",
+  "t": "20:00",
+  "ko": "2026-11-27T19:00:00Z",
+  "h": "Jong Ajax",
+  "a": "Heracles",
+  "src": "api",
+  "fid": "1551898",
+  "div": null,
+  "mk": "ou",
+  "line": 3.5,
+  "side": 1,
+  "label": "Under 3,5",
+  "odds": 2.2,
+  "bm": "Unibet",
+  "p": 0.472,
+  "pMarkt": 0.4576,
+  "pModel": 0.5536,
+  "ev": 0.0384,
+  "minOdds": 2.182,
+  "stake": 4,
+  "ref": "gemiddelde bookmakers"
+ },
+ {
+  "id": "1557493|1x2|-|0",
+  "at": "2026-11-23T20:34:27.898Z",
+  "c": "ENG1",
+  "d": "2026-12-02",
+  "t": "20:30",
+  "ko": "2026-12-02T19:30:00Z",
+  "h": "Liverpool",
+  "a": "Sunderland",
+  "src": "api",
+  "fid": "1557493",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Liverpool",
+  "odds": 1.53,
+  "bm": "Unibet",
+  "p": 0.6764,
+  "pMarkt": 0.6635,
+  "pModel": 0.7429,
+  "ev": 0.0349,
+  "minOdds": 1.523,
+  "stake": 8,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1636301|1x2|-|2",
+  "at": "2026-11-23T20:34:27.898Z",
+  "c": "UEL",
+  "d": "2026-11-26",
+  "t": "21:00",
+  "ko": "2026-11-26T20:00:00Z",
+  "h": "NEC Nijmegen",
+  "a": "Rennes",
+  "src": "api",
+  "fid": "1636301",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Rennes",
+  "odds": 2.25,
+  "bm": "Unibet",
+  "p": 0.4589,
+  "pMarkt": 0.4427,
+  "pModel": 0.5507,
+  "ev": 0.0325,
+  "minOdds": 2.245,
   "stake": 3,
   "ref": "Pinnacle"
  }
