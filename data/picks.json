@@ -5451,7 +5451,21 @@
   "ev": 0.0729,
   "minOdds": 5.568,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.5,
+    5.24,
+    5.69
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.487,
+    5.029,
+    5.431
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1575221|ah|-3.25|1",
@@ -6887,7 +6901,21 @@
   "ev": 0.0303,
   "minOdds": 2.549,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.05,
+    3.89,
+    2.24
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.91,
+    3.878,
+    2.207
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1575550|1x2|-|0",
@@ -7029,7 +7057,21 @@
   "ev": 0.0304,
   "minOdds": 2.799,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.05,
+    3.89,
+    2.24
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.91,
+    3.878,
+    2.207
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551903|1x2|-|2",
@@ -8303,6 +8345,136 @@
   "ev": 0.0312,
   "minOdds": 1.458,
   "stake": 8,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1551906|1x2|-|2",
+  "at": "2026-11-24T18:20:17.493Z",
+  "c": "NED2",
+  "d": "2026-11-29",
+  "t": "16:45",
+  "ko": "2026-11-29T15:45:00Z",
+  "h": "Roda",
+  "a": "De Graafschap",
+  "src": "api",
+  "fid": "1551906",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 De Graafschap",
+  "odds": 3.9,
+  "bm": "Jacks",
+  "p": 0.2855,
+  "pMarkt": 0.2806,
+  "pModel": 0.3129,
+  "ev": 0.1133,
+  "minOdds": 3.608,
+  "stake": 5,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1552238|ou|3.5|0",
+  "at": "2026-11-24T18:20:17.493Z",
+  "c": "NED1",
+  "d": "2026-11-27",
+  "t": "20:00",
+  "ko": "2026-11-27T19:00:00Z",
+  "h": "Groningen",
+  "a": "Willem II",
+  "src": "api",
+  "fid": "1552238",
+  "div": null,
+  "mk": "ou",
+  "line": 3.5,
+  "side": 0,
+  "label": "Over 3,5",
+  "odds": 2.18,
+  "bm": "Jacks",
+  "p": 0.4824,
+  "pMarkt": 0.4958,
+  "pModel": 0.4071,
+  "ev": 0.0515,
+  "minOdds": 2.135,
+  "stake": 5,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1557484|dnb|0|1",
+  "at": "2026-11-24T18:20:17.493Z",
+  "c": "ENG1",
+  "d": "2026-11-28",
+  "t": "16:00",
+  "ko": "2026-11-28T15:00:00Z",
+  "h": "Manchester United",
+  "a": "Brentford",
+  "src": "api",
+  "fid": "1557484",
+  "div": null,
+  "mk": "dnb",
+  "line": 0,
+  "side": 1,
+  "label": "Brentford draw no bet (AH 0)",
+  "odds": 2.62,
+  "bm": "Bet365",
+  "p": 0.4078,
+  "pMarkt": 0.3854,
+  "pModel": 0.5394,
+  "ev": 0.0513,
+  "minOdds": 2.55,
+  "stake": 5,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1584477|ou|2.5|1",
+  "at": "2026-11-24T18:20:17.493Z",
+  "c": "TUR1",
+  "d": "2026-11-29",
+  "t": "11:30",
+  "ko": "2026-11-29T10:30:00Z",
+  "h": "Çorum FK",
+  "a": "Kocaelispor",
+  "src": "api",
+  "fid": "1584477",
+  "div": null,
+  "mk": "ou",
+  "line": 2.5,
+  "side": 1,
+  "label": "Under 2,5",
+  "odds": 2,
+  "bm": "Bet365",
+  "p": 0.5253,
+  "pMarkt": 0.5181,
+  "pModel": 0.5653,
+  "ev": 0.0505,
+  "minOdds": 1.961,
+  "stake": 6,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1636315|1x2|-|2",
+  "at": "2026-11-24T18:20:17.493Z",
+  "c": "UEL",
+  "d": "2026-11-26",
+  "t": "18:45",
+  "ko": "2026-11-26T17:45:00Z",
+  "h": "Plzen",
+  "a": "Benfica",
+  "src": "api",
+  "fid": "1636315",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Benfica",
+  "odds": 1.49,
+  "bm": "Unibet",
+  "p": 0.6992,
+  "pMarkt": 0.6686,
+  "pModel": 0.8335,
+  "ev": 0.0418,
+  "minOdds": 1.473,
+  "stake": 10,
   "ref": "Pinnacle"
  }
 ]
