@@ -1,7 +1,7 @@
 {
- "tijd": "2026-11-24 14:54 UTC",
- "ok": true,
- "melding": "ok",
+ "tijd": "2026-11-25 01:29 UTC",
+ "ok": false,
+ "melding": "TimeoutError: The read operation timed out",
  "log": [
   "ENG1 2026 (id 39, 'Premier League'): 380 duels",
   "GER1 2026 (id 78, 'Bundesliga'): 306 duels",
@@ -17,13 +17,12 @@
   "UCL 2026 (id 2, 'UEFA Champions League'): 234 duels",
   "UEL 2026 (id 3, 'UEFA Europa League'): 224 duels",
   "UECL 2026 (id 848, 'UEFA Europa Conference League'): 366 duels",
-  "blessures 2026: 10408 meldingen",
-  "0 gespeelde duels zonder statistieken",
-  "opstellingen: 0 duels opgehaald, 0 nog te doen, 6529 met opstelling",
-  "verzoeken gebruikt: 28, over volgens API: 7393; duels met xG: 9168"
+  "blessures 2026: 10627 meldingen",
+  "verzoeken gebruikt: 211, over volgens API: 7410; duels met xG: 9168",
+  "FOUT: TimeoutError: The read operation timed out"
  ],
  "duels": 13832,
  "met_xg": 9168,
- "verzoeken": 28,
- "over": 7393
+ "verzoeken": 211,
+ "over": 7410
 }
