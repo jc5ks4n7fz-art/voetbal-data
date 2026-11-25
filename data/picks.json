@@ -4167,7 +4167,21 @@
   "ev": 0.0428,
   "minOdds": 1.314,
   "stake": 10,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    10.14,
+    6.45,
+    1.27
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    9.939,
+    6.33,
+    1.255
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551888|ou|3.5|1",
@@ -4269,7 +4283,21 @@
   "ev": 0.0327,
   "minOdds": 1.356,
   "stake": 10,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.29,
+    6.44,
+    9.26
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.268,
+    6.282,
+    9.408
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1575237|1x2|-|2",
@@ -4761,7 +4789,21 @@
   "ev": 0.0503,
   "minOdds": 5.884,
   "stake": 1,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.29,
+    6.44,
+    9.26
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.268,
+    6.282,
+    9.408
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1552819|dnb|0|1",
@@ -7189,7 +7231,21 @@
   "ev": 0.1125,
   "minOdds": 5.555,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.13,
+    10.16,
+    16.82
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.143,
+    9.476,
+    14.808
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1557495|1x2|-|0",
@@ -7799,7 +7855,21 @@
   "ev": 0.0312,
   "minOdds": 2.427,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.34,
+    3.73,
+    2.19
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    3.14,
+    3.61,
+    2.149
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551904|1x2|-|2",
@@ -8475,6 +8545,162 @@
   "ev": 0.0418,
   "minOdds": 1.473,
   "stake": 10,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1552250|1x2|-|0",
+  "at": "2026-11-25T02:47:51.649Z",
+  "c": "NED1",
+  "d": "2026-12-04",
+  "t": "20:00",
+  "ko": "2026-12-04T19:00:00Z",
+  "h": "Telstar",
+  "a": "Groningen",
+  "src": "api",
+  "fid": "1552250",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Telstar",
+  "odds": 3.25,
+  "bm": "LeoVegas",
+  "p": 0.3516,
+  "pMarkt": 0.3449,
+  "pModel": 0.3907,
+  "ev": 0.1427,
+  "minOdds": 2.929,
+  "stake": 8,
+  "ref": "gemiddelde bookmakers"
+ },
+ {
+  "id": "1550210|1x2|-|2",
+  "at": "2026-11-25T02:47:51.649Z",
+  "c": "ITA1",
+  "d": "2026-11-28",
+  "t": "15:00",
+  "ko": "2026-11-28T14:00:00Z",
+  "h": "Frosinone",
+  "a": "Parma",
+  "src": "api",
+  "fid": "1550210",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 Parma",
+  "odds": 6,
+  "bm": "Jacks",
+  "p": 0.1838,
+  "pMarkt": 0.1771,
+  "pModel": 0.2224,
+  "ev": 0.1028,
+  "minOdds": 5.604,
+  "stake": 3,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1635703|1x2|-|1",
+  "at": "2026-11-25T02:47:51.649Z",
+  "c": "UCL",
+  "d": "2026-11-25",
+  "t": "21:00",
+  "ko": "2026-11-25T20:00:00Z",
+  "h": "Paris Saint Germain",
+  "a": "AS Roma",
+  "src": "api",
+  "fid": "1635703",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 1,
+  "label": "X gelijk",
+  "odds": 5.75,
+  "bm": "Jacks",
+  "p": 0.1875,
+  "pMarkt": 0.1838,
+  "pModel": 0.2078,
+  "ev": 0.0781,
+  "minOdds": 5.493,
+  "stake": 2,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1635673|ou|3.5|1",
+  "at": "2026-11-25T02:47:51.649Z",
+  "c": "UCL",
+  "d": "2026-11-25",
+  "t": "21:00",
+  "ko": "2026-11-25T20:00:00Z",
+  "h": "Inter",
+  "a": "VfB Stuttgart",
+  "src": "api",
+  "fid": "1635673",
+  "div": null,
+  "mk": "ou",
+  "line": 3.5,
+  "side": 1,
+  "label": "Under 3,5",
+  "odds": 2.43,
+  "bm": "Jacks",
+  "p": 0.4364,
+  "pMarkt": 0.4127,
+  "pModel": 0.573,
+  "ev": 0.0604,
+  "minOdds": 2.36,
+  "stake": 5,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1636343|ah|-1.75|1",
+  "at": "2026-11-25T02:47:51.649Z",
+  "c": "UEL",
+  "d": "2026-11-26",
+  "t": "21:00",
+  "ko": "2026-11-26T20:00:00Z",
+  "h": "Sunderland",
+  "a": "Jagiellonia",
+  "src": "api",
+  "fid": "1636343",
+  "div": null,
+  "mk": "ah",
+  "line": -1.75,
+  "side": 1,
+  "label": "Jagiellonia Białystok +1,75",
+  "odds": 1.98,
+  "bm": "Bet365",
+  "p": 0.5348,
+  "pMarkt": 0.4753,
+  "pModel": 0.8161,
+  "ev": 0.0545,
+  "minOdds": 1.93,
+  "stake": 8,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1635718|ou|4.5|1",
+  "at": "2026-11-25T02:47:51.649Z",
+  "c": "UCL",
+  "d": "2026-11-25",
+  "t": "18:45",
+  "ko": "2026-11-25T17:45:00Z",
+  "h": "Sabah FA",
+  "a": "Barcelona",
+  "src": "api",
+  "fid": "1635718",
+  "div": null,
+  "mk": "ou",
+  "line": 4.5,
+  "side": 1,
+  "label": "Under 4,5",
+  "odds": 2.28,
+  "bm": "LeoVegas",
+  "p": 0.4568,
+  "pMarkt": 0.4377,
+  "pModel": 0.5661,
+  "ev": 0.0415,
+  "minOdds": 2.255,
+  "stake": 4,
   "ref": "Pinnacle"
  }
 ]
