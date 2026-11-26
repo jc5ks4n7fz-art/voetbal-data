@@ -4413,7 +4413,21 @@
   "ev": 0.0772,
   "minOdds": 2.534,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.71,
+    3.78,
+    2.56
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.614,
+    3.682,
+    2.513
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1635728|1x2|-|2",
@@ -4439,7 +4453,21 @@
   "ev": 0.0632,
   "minOdds": 2.209,
   "stake": 6,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    3.15,
+    3.76,
+    2.27
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    3.05,
+    3.685,
+    2.199
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1635642|1x2|-|0",
@@ -4465,7 +4493,21 @@
   "ev": 0.046,
   "minOdds": 4.53,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    4.67,
+    4.79,
+    1.62
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    4.488,
+    4.595,
+    1.626
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1635724|1x2|-|2",
@@ -4491,7 +4533,21 @@
   "ev": 0.0372,
   "minOdds": 2.731,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    2.74,
+    3.58,
+    2.63
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    2.696,
+    3.465,
+    2.537
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1575221|ou|3.5|0",
@@ -5749,7 +5805,21 @@
   "ev": 0.097,
   "minOdds": 1.399,
   "stake": 10,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    5.29,
+    4.11,
+    1.65
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    5.275,
+    4.078,
+    1.621
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1551886|1x2|-|0",
@@ -6749,7 +6819,16 @@
   "ev": 0.0705,
   "minOdds": 3.849,
   "stake": 3,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": null,
+   "refN": "Pinnacle",
+   "gem": [
+    5,
+    1.15
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1636420|dc|-|2",
@@ -7947,7 +8026,21 @@
   "ev": 0.0664,
   "minOdds": 5.312,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    5.29,
+    4.11,
+    1.65
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    5.275,
+    4.078,
+    1.621
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1570463|1x2|-|2",
@@ -8623,7 +8716,21 @@
   "ev": 0.0781,
   "minOdds": 5.493,
   "stake": 2,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.51,
+    4.87,
+    5.81
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.471,
+    4.864,
+    5.943
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1635673|ou|3.5|1",
@@ -8649,7 +8756,19 @@
   "ev": 0.0604,
   "minOdds": 2.36,
   "stake": 5,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.76,
+    2.15
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.726,
+    2.134
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1636343|ah|-1.75|1",
@@ -8701,7 +8820,19 @@
   "ev": 0.0415,
   "minOdds": 2.255,
   "stake": 4,
-  "ref": "Pinnacle"
+  "ref": "Pinnacle",
+  "close": {
+   "ref": [
+    1.88,
+    2
+   ],
+   "refN": "Pinnacle",
+   "gem": [
+    1.849,
+    1.971
+   ],
+   "bron": "laatste API-waarneming"
+  }
  },
  {
   "id": "1575553|ah|-1|1",
@@ -8779,6 +8910,136 @@
   "ev": 0.0301,
   "minOdds": 1.27,
   "stake": 10,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1552244|1x2|-|2",
+  "at": "2026-11-26T00:42:04.234Z",
+  "c": "NED1",
+  "d": "2026-12-05",
+  "t": "20:00",
+  "ko": "2026-12-05T19:00:00Z",
+  "h": "AZ Alkmaar",
+  "a": "PSV Eindhoven",
+  "src": "api",
+  "fid": "1552244",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 PSV",
+  "odds": 2.4,
+  "bm": "LeoVegas",
+  "p": 0.4873,
+  "pMarkt": 0.4869,
+  "pModel": 0.4895,
+  "ev": 0.1694,
+  "minOdds": 2.114,
+  "stake": 10,
+  "ref": "gemiddelde bookmakers"
+ },
+ {
+  "id": "1552249|1x2|-|0",
+  "at": "2026-11-26T00:42:04.234Z",
+  "c": "NED1",
+  "d": "2026-12-05",
+  "t": "18:45",
+  "ko": "2026-12-05T17:45:00Z",
+  "h": "Sparta Rotterdam",
+  "a": "NEC Nijmegen",
+  "src": "api",
+  "fid": "1552249",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Sparta Rotterdam",
+  "odds": 2.9,
+  "bm": "LeoVegas",
+  "p": 0.3802,
+  "pMarkt": 0.3683,
+  "pModel": 0.4496,
+  "ev": 0.1025,
+  "minOdds": 2.709,
+  "stake": 7,
+  "ref": "gemiddelde bookmakers"
+ },
+ {
+  "id": "1552248|1x2|-|2",
+  "at": "2026-11-26T00:42:04.234Z",
+  "c": "NED1",
+  "d": "2026-12-05",
+  "t": "21:00",
+  "ko": "2026-12-05T20:00:00Z",
+  "h": "Fortuna Sittard",
+  "a": "PEC Zwolle",
+  "src": "api",
+  "fid": "1552248",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 2,
+  "label": "2 PEC Zwolle",
+  "odds": 3.7,
+  "bm": "LeoVegas",
+  "p": 0.2815,
+  "pMarkt": 0.2848,
+  "pModel": 0.2632,
+  "ev": 0.0417,
+  "minOdds": 3.658,
+  "stake": 2,
+  "ref": "gemiddelde bookmakers"
+ },
+ {
+  "id": "1550215|1x2|-|0",
+  "at": "2026-11-26T00:42:04.234Z",
+  "c": "ITA1",
+  "d": "2026-11-29",
+  "t": "12:30",
+  "ko": "2026-11-29T11:30:00Z",
+  "h": "Udinese",
+  "a": "Fiorentina",
+  "src": "api",
+  "fid": "1550215",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Udinese",
+  "odds": 3.3,
+  "bm": "Jacks",
+  "p": 0.3131,
+  "pMarkt": 0.3162,
+  "pModel": 0.2958,
+  "ev": 0.0333,
+  "minOdds": 3.289,
+  "stake": 2,
+  "ref": "Pinnacle"
+ },
+ {
+  "id": "1575237|1x2|-|0",
+  "at": "2026-11-26T00:42:04.234Z",
+  "c": "GER1",
+  "d": "2026-11-27",
+  "t": "20:30",
+  "ko": "2026-11-27T19:30:00Z",
+  "h": "Werder Bremen",
+  "a": "Borussia Mönchengladbach",
+  "src": "api",
+  "fid": "1575237",
+  "div": null,
+  "mk": "1x2",
+  "line": null,
+  "side": 0,
+  "label": "1 Werder Bremen",
+  "odds": 1.76,
+  "bm": "Jacks",
+  "p": 0.5868,
+  "pMarkt": 0.5675,
+  "pModel": 0.6853,
+  "ev": 0.0328,
+  "minOdds": 1.755,
+  "stake": 5,
   "ref": "Pinnacle"
  }
 ]
